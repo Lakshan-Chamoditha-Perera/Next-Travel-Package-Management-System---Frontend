@@ -1,0 +1,180 @@
+::-webkit-scrollbar {
+    display: none;
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+#intro_section {
+    height: 50vh;
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    padding : 0 13.33vw 0 13.33vw;
+    margin-top: 50px;
+    height: 40vh;
+    background-size: auto;
+    border: 2px solid #000000;
+    color: white;
+    background-repeat: space;
+    /*background: url("https://as1.ftcdn.net/v2/jpg/02/52/46/52/1000_F_252465254_gJjMk87NxeugjLxWoO0JnZLUeZRnjRiF.jpg");*/
+    background: url("https://cdn.pixabay.com/photo/2019/04/25/15/12/sri-lanka-4155120_1280.jpg");
+}
+
+
+.my_card {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    position: relative;
+    padding: 24px;
+    background: #fff;
+    /*border-radius: 0;*/
+    width: 100%;
+    max-width: 420px;
+    /*border: 2px solid #000000;*/
+    box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+
+}
+
+.card-pill {
+    position: absolute;
+    padding: 6px 12px;
+    border-radius: 0;
+    color: #fff;
+    background: #000;
+    right: 0;
+    top: 0;
+    margin-right: 32px;
+    margin-top: 32px;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.card-img {
+    display: block;
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+.product-img{
+    height: 30%;
+}
+.category {
+    font-size: 12px;
+    line-height: 1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    color: #646464;
+}
+
+.product-cat {
+    font-size: 12px;
+    line-height: 1;
+    margin-top: 12px;
+    margin-bottom: 0;
+    color: #646464;
+    background: #f5f5f5;
+    padding: 6px 12px;
+    border-radius: 0;
+}
+
+.product-name {
+    font-size: 1.7rem;
+    line-height: 1;
+    margin-bottom: 6px;
+    margin-top: 0;
+    color: #000;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border:2px solid #1a1e21;
+    width: 100%;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.mb-sm {
+    margin-bottom: 8px;
+}
+
+.price {
+    margin-right: 12px;
+}
+
+.btn-col {
+    width: 100%;
+    margin-top: 24px;
+}
+
+.icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #fff;
+    background: #000;
+    padding: 1.4em 0;
+    border-radius: 0;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.rubicons {
+    width: 24px;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.icon-link:hover {
+    background: #333;
+}
+
+.icon-link:hover > .rubicons {
+    transform: translate(3px, -3px);
+}
+.img_collection{
+    height: 90px;
+    justify-content: space-around;
+}
+.img_collection>img{
+    width:23%;
+    height: 70px;
+    border: 2px solid #0b5ed7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#hotels{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+#contact{
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}

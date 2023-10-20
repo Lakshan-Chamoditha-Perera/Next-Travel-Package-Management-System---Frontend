@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Management</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="../css/VehicleForm_style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <box-icon name='car' type='solid'></box-icon>
+            Car </a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button aria-current="page" class="nav-link active" id="dashboard" onclick="navigate('dashboard')">
+                        Dashboard
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button aria-current="page" class="nav-link active" onclick="navigate('manage_vehicles')"> Vehicle
+                        Manage
+                    </button>
+                </li>
+                <!--                <label for="nav_search"></label><input id="nav_search" placeholder="Search : Input vehicle ID"></input>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Delete</a>-->
+                <!--                </li>-->
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<section id="view_all_section">
+    <h1>Vehicle List</h1>
+
+
+    <div class="vehicle_grid_container">
+        <div class="grid-item flex align-content-center">
+            <div class="card">
+                <img alt="product-image" class="card-img" src="assets/images/img.png">
+                <div class="flex-row img_collection space-between">
+                    <img class="vehicle_images" src="assets/images/img.png">
+                    <img class="vehicle_images" src="assets/images/img.png">
+                    <img class="vehicle_images" src="assets/images/img.png">
+                    <img class="vehicle_images" src="assets/images/img.png">
+                </div>
+                <div class="flex-row space-between w-full mb-sm">
+                    <p class="category">${data.id}</p>
+                </div>
+                <h1 class="product-name">${data.brand} </h1>
+                <div class="flex-row">
+                    <p class="price strike">per day value</p>
+                    <p class="price">Rs. ${data.fee_per_day}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">per day km</p>
+                    <p class="price">Rs. ${data.fee_per_km}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Fuel type</p>
+                    <p class="price"><span>${data.fuel_type}</span></p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Seat capacity</p>
+                    <p class="price"><span>${data.seat_capacity}</span></p>
+                </div>
+                <!--            <div class="btn-col">-->
+                <!--                <a class="icon-link" href="#">View</a>-->
+                <!--            </div>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="vehicle" id="save_vehicle_section">
+    <h1>Manage Vehicle Details</h1>
+    <form action="">
+        <div class="p-2 bg-light rounded rounded-pill shadow-sm mb-3">
+            <div class="input-group">
+                <input aria-describedby="button-addon1" class="form-control border-0 bg-light"
+                       id="txt_search_vehicle"
+                       placeholder="What're you searching for?" type="search">
+                <div class="input-group-append">
+                    <button class="btn btn-link text-primary" id="btn_search" type="submit"><i
+                            class="fa fa-search"> </i> search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="form">
+        <div class="form-row">
+            <div>
+                <label for="vehicle_id">Vehicle ID</label>
+                <input class="form-control" id="vehicle_id" placeholder="V001" required type="text">
+            </div>
+        </div>
+        <div class="form-row">
+            <div>
+                <label for="vehicle_brand">Brand</label>
+                <input class="form-control" id="vehicle_brand" placeholder="Brand" required type="text">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="category">Vehicle Category</label>
+                <select class="form-control" id="category" required>
+                    <optgroup label="">
+                        <option selected value="Economy">Economy</option>
+                        <option value="Mid-Range">Mid-Range</option>
+                        <option value="Luxury">Luxury</option>
+                        <option value="Super-Luxury">Super Luxury</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="fuel_type">Fuel Type</label>
+                <select class="form-control" id="fuel_type" required>
+                    <optgroup label="">
+                        <option selected value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="form-row" id="radio_buttons">
+            <span class="form-check-label">
+                Hybrid or non-Hybrid
+            </span>
+            <div class="form-check">
+                <input class="form-check-input" id="defaultCheck1" name="radio-group-type" type="radio" value="hybrid">
+                <label class="form-check-label" for="defaultCheck1">
+                    Hybrid
+                </label>
+            </div>
+            <div class="form-check">
+                <input checked class="form-check-input" id="defaultCheck2" name="radio-group-type"
+                       type="radio" value="non-hybrid">
+                <label class="form-check-label" for="defaultCheck2">
+                    Non-Hybrid
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="fuel_usage">Fuel usage</label>
+            <input class="form-control" id="fuel_usage" min="0" placeholder="Km/L" required step="0.01"
+                   type="number">
+        </div>
+        <div class="form-row">
+            <h4>Select Images</h4>
+            <div class="images_container">
+                <div class="image_div">
+                    <img alt="Image Preview" id="imagePreview1" src="">
+                    <input accept="image/*" class="form-control vehicleImage" id="img1" onchange="previewImage(1)"
+                           type="file">
+                </div>
+                <div class="image_div">
+                    <img alt="Image Preview" id="imagePreview2" src="">
+                    <input accept="image/*" class="form-control vehicleImage" id="img2" onchange="previewImage(2)"
+                           type="file">
+                </div>
+                <div class="image_div">
+                    <img alt="Image Preview" id="imagePreview3" src="">
+                    <input accept="image/*" class="form-control vehicleImage" id="img3" onchange="previewImage(3)"
+                           type="file">
+                </div>
+                <div class="image_div">
+                    <img alt="Image Preview" id="imagePreview4" src="">
+                    <input accept="image/*" class="form-control vehicleImage" id="img4" onchange="previewImage(4)"
+                           type="file">
+                </div>
+                <div class="image_div">
+                    <img alt="Image Preview" id="imagePreview5" src="">
+                    <input accept="image/*" class="form-control vehicleImage" id="img5" onchange="previewImage(5)"
+                           type="file">
+                </div>
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="vehicle_type">Vehicle Type</label>
+                <select class="form-control" id="vehicle_type" required>
+                    <optgroup label="">
+                        <option selected value="Car">Car</option>
+                        <option value="Van">Van</option>
+                        <option value="Bus">Bus</option>
+                        <option value="SUV">SUV</option>
+                    </optgroup>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <label for="seat_capacity">Seat capacity</label>
+            <input class="form-control" id="seat_capacity" max="15" min="1" placeholder="Number of seats" required
+                   type="number">
+        </div>
+        <div class="form-row">
+            <span>Availability</span>
+            <div class="form-check">
+                <input checked class="form-check-input" id="availability1" name="vehicle-availability-group"
+                       type="radio" value="available">
+                <label class="form-check-label" for="availability1">
+                    available
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="availability2" name="vehicle-availability-group" type="radio"
+                       value="not-available">
+                <label class="form-check-label" for="availability2">
+                    not-available
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <span class="form-check-label" for="radio_buttons">
+                Transmission Type
+            </span>
+            <div class="form-check">
+                <input class="form-check-input" id="transmission_automatic" name="transmission-group" required
+                       type="radio" value="Automatic">
+                <label class="form-check-label" for="transmission_automatic">
+                    Automatic
+                </label>
+            </div>
+            <div class="form-check">
+                <input checked class="form-check-input" id="transmission_manual" name="transmission-group" type="radio"
+                       value="Manual">
+                <label class="form-check-label" for="transmission_manual">
+                    Manual
+                </label>
+            </div>
+            <div class="form-row">
+                <label for="fee_per_km">Price per 1km</label>
+                <input class="form-control" id="fee_per_km" placeholder="Rs 100.00" required
+                       type="number">
+            </div>
+            <div class="form-row">
+                <label for="fee_per_day">Price per Day</label>
+                <input class="form-control" id="fee_per_day" placeholder="Rs 100.00" required
+                       type="number">
+            </div>
+        </div>
+        <hr>
+
+
+        <div class="form-row">
+            <div class="driver_element" id="driverFormTittle">
+                <h1>Driver details</h1>
+            </div>
+            <div class="driver_element">
+                <label for="driver_id">ID</label>
+                <input class="form-control" id="driver_id" placeholder="DR001" required type="text">
+            </div>
+            <div class="driver_element">
+                <label for="driver_name">Name</label>
+                <input class="form-control" id="driver_name" placeholder="Shan" required type="text">
+            </div>
+            <div class="driver_element">
+                <label for="driver_contact">Contact</label>
+                <input class="form-control" id="driver_contact" placeholder="0711111111" required type="text">
+            </div>
+            <div class="driver_element">
+                <div class="driver_image_div">
+                    <div id="driver_image_div_left">
+                        <img alt="Image Preview" id="imagePreview10" src="">
+                        <input accept="image/*" class="form-control " id="img10" onchange="previewImage(10)"
+                               type="file">
+                    </div>
+                    <div id="driver_image_div_right">
+                        <img alt="Image Preview" id="imagePreview11" src="">
+                        <input accept="image/*" class="form-control " id="img11" onchange="previewImage(11)"
+                               type="file">
+                    </div>
+                </div>
+            </div>
+            <div class="driver_element">
+                <span>Availability</span>
+                <div class="form-check">
+                    <input checked class="form-check-input" id="defaultCheck3" name="driver-availability-group"
+                           type="radio" value="yes">
+                    <label class="form-check-label" for="defaultCheck3">
+                        available
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" id="defaultCheck4" name="driver-availability-group" type="radio"
+                           value="no">
+                    <label class="form-check-label" for="defaultCheck4">
+                        not-available
+                    </label>
+                </div>
+            </div>
+            <div class="driver_element">
+                <label for="remark">Remark</label>
+                <input class="form-control" id="remark" placeholder="" required type="text">
+            </div>
+
+        </div>
+        <div class="form-row "
+             style="border: 2px solid red">
+            <button class="btn btn-primary " id="save_vehicle_data" type="submit">Register</button>
+            <button class="btn btn-primary bg-white " id="update_btn" style="color: #333333" type="submit">Update
+            </button>
+            <button class="btn btn-primary bg-dark" id="delete" type="submit">Delete</button>
+        </div>
+    </form>
+
+</section>
+<hr>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--navigation-->
+<script>
+    $(document).ready(function () {
+        navigate('dashboard');
+    });
+
+    function navigate(name) {
+        $('#save_vehicle_section').css('display', name === 'dashboard' ? 'none' : 'flex');
+        $('#view_all_section').css('display', name === 'dashboard' ? 'flex' : 'none');
+    }
+</script>
+<script src="../js/controller/vehicle/VehicleController.js" type="module"></script>
+<!--image inputs-->
+<script>
+    function previewImage(inputNumber) {
+        let inputElement = document.getElementById('img' + inputNumber);
+        let imagePreviewElement = document.getElementById('imagePreview' + inputNumber);
+
+        if (inputElement.files && inputElement.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreviewElement.src = e.target.result;
+            };
+            reader.readAsDataURL(inputElement.files[0]);
+        } else {
+            imagePreviewElement.src = ""; // Clear the image if no file is selected
+        }
+    }
+</script>
+</body>
+</html>
