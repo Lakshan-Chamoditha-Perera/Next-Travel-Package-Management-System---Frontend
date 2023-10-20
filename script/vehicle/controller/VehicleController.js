@@ -1,4 +1,4 @@
-import {getLastOnGoingDriverId, save_driver, update_driver} from "../../model/vehicle/DriverModel.js";
+import {getLastOnGoingDriverId, save_driver, update_driver} from "../model/DriverModel.js";
 import {
     delete_vehicle,
     get_vehicle,
@@ -6,7 +6,7 @@ import {
     getLastOnGoingVehicleId,
     save_vehicle,
     update_vehicle
-} from "/js/model/vehicle/VehicleModel.js";
+} from "/home/shan/Desktop/CW/Next Trave/script/vehicle/model/VehicleModel.js";
 
 const vehicle_id_regex = /^V\d{3,}$/;
 const vehicle_brand_regex = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;

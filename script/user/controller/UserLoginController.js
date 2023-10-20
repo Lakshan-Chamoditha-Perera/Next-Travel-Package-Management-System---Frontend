@@ -1,7 +1,7 @@
 
 
 
-import {existsByUsername, signup} from "/js/model/user/UserModel.js";
+import {existsByUsername, signup} from "/home/shan/Desktop/CW/Next Trave/script/user/model/UserModel.js";
 
 const name_pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
 const email_pattern = /^([a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
@@ -86,6 +86,7 @@ $('#register_btn').on('click', (e) => {
         isSaved.then((data) => {
             console.log(data);
             alert("User saved successfully");
+            $('#user_details_form_section').css('display','none');
             // window.location.href = "login.html";
         }).catch((error) => {
             console.log(error);
