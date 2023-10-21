@@ -1,4 +1,4 @@
-import {getLastGuideId} from "../model/GuideModel.js";
+import {getAll, getLastGuideId} from "../model/GuideModel.js";
 
 
 const guide_id_regex = /^G\d{3,}$/;
@@ -17,13 +17,36 @@ function getLastVehicleId() {
         alert("Error in getting Guide ID !");
     });
 }
+
 $('#btn_save_guide').onclick = function () {
     console.log('save guide');
 }
 // -----------------------------------------------------------------------------------------
 // get all ---------------------------------------------------------------------------------
-function createGuideCard(data) {
-    const elementHTML = `<div class="grid-item flex align-content-center ">
+// const createGuideCard =
+
+function loadCards(createGuideCard) {
+    let promise = getAll();
+    promise.then((data) => {
+        console.log("array size: " + data.length)
+        if (data.length > 0) {
+            data.forEach((ele) => {
+                createGuideCard(ele)
+            });
+        } else alert("No Guide found !")
+    }).catch((e) => {
+        // alert(e.message);
+    });
+}
+
+// -----------------------------------------------------------------------------------------
+// save ------------------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------------------
+$(document).ready(() => {
+    loadCards(function createGuideCard(data) {
+        const elementHTML = `<div class="grid-item flex align-content-center ">
             <div class="card">
                 <img alt="product-image" class="card-img"
                      src="data:image/png;base64,${data.images_list[0]}">
@@ -52,16 +75,8 @@ function createGuideCard(data) {
             </div>
         </div>`;
 
-    document.getElementsByClassName('guide_grid_container')[0].innerHTML += elementHTML;
-}
-
-// -----------------------------------------------------------------------------------------
-// save ------------------------------------------------------------------------------------
-
-
-
-
-//-----------------------------------------------------------------------------------------
-$(document).ready(()=>{
+        document.getElementsByClassName('guide_grid_container')[0].innerHTML += elementHTML;
+    });
     getLastVehicleId();
+
 })
