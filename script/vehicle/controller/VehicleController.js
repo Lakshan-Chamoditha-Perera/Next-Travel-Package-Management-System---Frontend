@@ -26,7 +26,6 @@ function getLastVehicleId() {
         alert("Error in getting vehicle details !");
     });
 }
-
 function getLastDriverId() {
     let promise = getLastOnGoingDriverId();
     promise.then((data) => {
@@ -35,7 +34,6 @@ function getLastDriverId() {
         alert("Error in getting driver details !");
     });
 }
-
 $(document).ready(() => {
     getLastVehicleId();
     getLastDriverId();
@@ -189,7 +187,6 @@ $('#delete').on('click', (e) => {
 //------------------------------------------------------------------------------------------
 // get all vehicles ------------------------------------------------------------------------
 function createVehicleCard(data) {
-
     const elementHTML = ` <div class="grid-item flex align-content-center">
             <div class="card">
                 <img alt="product-image" class="card-img" src="data:image/png;base64,${data.imageList[0]}">
