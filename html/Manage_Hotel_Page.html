@@ -3,8 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <box-icon name='car' type='solid'></box-icon>
+            Hotel </a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button aria-current="page" class="nav-link active" id="dashboard" onclick="navigate('dashboard')">
+                        Dashboard
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button aria-current="page" class="nav-link active" onclick="navigate('manage_vehicles')"> Hotel
+                        Manage
+                    </button>
+                </li>
+                <!--                <label for="nav_search"></label><input id="nav_search" placeholder="Search : Input vehicle ID"></input>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Delete</a>-->
+                <!--                </li>-->
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        navigate('dashboard');
+    });
+
+    function navigate(name) {
+        // $('#save_vehicle_section').css('display', name === 'dashboard' ? 'none' : 'flex');
+        // $('#view_all_section').css('display', name === 'dashboard' ? 'flex' : 'none');
+    }
+</script>
 </body>
 </html>

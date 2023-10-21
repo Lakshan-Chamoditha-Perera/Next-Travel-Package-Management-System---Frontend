@@ -6,7 +6,7 @@ import {
     getLastOnGoingVehicleId,
     save_vehicle,
     update_vehicle
-} from "/home/shan/Desktop/CW/Next Trave/script/vehicle/model/VehicleModel.js";
+} from "../model/VehicleModel.js";
 
 const vehicle_id_regex = /^V\d{3,}$/;
 const vehicle_brand_regex = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;

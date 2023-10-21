@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="../assets/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="../css/Manage_Guide.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            Guide </a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button aria-current="page" class="nav-link active" id="dashboard" type="button">
+                        Dashboard
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button aria-current="page" class="nav-link active" type="button"> Manage Guide
+                    </button>
+                </li>
+                <!--                <label for="nav_search"></label><input id="nav_search" placeholder="Search : Input vehicle ID"></input>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Delete</a>-->
+                <!--                </li>-->
+            </ul>
+            <button class="btn btn-light fa-border border-dark rounded-top rounded-bottom" type="button">Logout &nbsp;
+                &nbsp; <i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+
+    </div>
+</nav>
+<section id="view_all_section">
+    <h1 class="text-center text-capitalize">Registered Guide List</h1>
+
+    <div class="guide_grid_container">
+        <div class="grid-item flex align-content-center ">
+            <div class="card">
+                <img alt="product-image" class="card-img"
+                     src="https://www.stryx.com/cdn/shop/articles/man-looking-attractive.jpg?v=1666662774">
+                <div class="flex-row img_collection space-between">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                </div>
+                <div class="flex-row space-between w-full mb-sm">
+                    <p class="category">${data.id}</p>
+                </div>
+                <h1 class="product-name">${data.name} </h1>
+                <div class="flex-row">
+                    <p class="price strike">Man day value</p>
+                    <p class="price">Rs. ${data.man_day_value}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Contact : </p>
+                    <p class="price">${data.contact_number}</p>
+                </div>
+
+                <div class="btn-col">
+                    <a class="icon-link" href="#">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item flex align-content-center ">
+            <div class="card">
+                <img alt="product-image" class="card-img"
+                     src="https://www.stryx.com/cdn/shop/articles/man-looking-attractive.jpg?v=1666662774">
+                <div class="flex-row img_collection space-between">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                </div>
+                <div class="flex-row space-between w-full mb-sm">
+                    <p class="category">${data.id}</p>
+                </div>
+                <h1 class="product-name">${data.name} </h1>
+                <div class="flex-row">
+                    <p class="price strike">Man day value</p>
+                    <p class="price">Rs. ${data.man_day_value}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Contact : </p>
+                    <p class="price">${data.contact_number}</p>
+                </div>
+                <div class="btn-col">
+                    <a class="icon-link" href="#">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item flex align-content-center ">
+            <div class="card">
+                <img alt="product-image" class="card-img"
+                     src="https://www.stryx.com/cdn/shop/articles/man-looking-attractive.jpg?v=1666662774">
+                <div class="flex-row img_collection space-between">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                    <img class="guide_images" src="assets/images/img.png">
+                </div>
+                <div class="flex-row space-between w-full mb-sm">
+                    <p class="category">${data.id}</p>
+                </div>
+                <h1 class="product-name">${data.name} </h1>
+                <div class="flex-row">
+                    <p class="price strike">Man day value</p>
+                    <p class="price">Rs. ${data.man_day_value}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Contact : </p>
+                    <p class="price">${data.contact_number}</p>
+                </div>
+                <div class="btn-col">
+                    <a class="icon-link" href="#">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="guide_form_section">
+    <div id="guide_form">
+        <h1 class="text-center text-capitalize">Guide Registration form</h1>
+        <hr>
+        <div class="container">
+
+            <form id="application-form">
+
+                <div class="form-group mb-3">
+                    <p>Guide ID : <strong id="guide_id"> G0001 </strong></p>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="avatar">
+                        <div class="avatar-bg center"></div>
+                    </div>
+                    <p><strong>Guide Profile </strong><span class="text-danger">*</span></p>
+                    <div class="file">
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                            <input class="form-control border-0" id="profile" required type="file"/>
+                            <div class="input-group-append">
+                                <div class=" m-0 rounded-pill px-4">
+                                    <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-area mt-4 text-dark">
+                            <img alt class="img-fluid rounded shadow-sm mx-auto d-block" width="200"/>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Full Name</strong><span class="text-danger">*</span></p>
+                            <input class="form-control" id="guide_name" name placeholder="Ex. John" required
+                                   type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Age &nbsp;</strong>
+                                <span class="text-danger">*</span>
+                            </p>
+                            <input class="form-control" id="guide_age" required type="number"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <p>
+                        <strong>
+                            Contact 
+                        </strong>
+                        <span class="text-danger">
+                            *
+                        </span>
+                    </p>
+                    <input class="form-control" id="guide_contact" placeholder="077 777 7777" type="number"/>
+                </div>
+
+                <div class="form-group mb-3">
+                    <p>
+                        <strong>
+                            Address 
+                        </strong>
+                        <span class="text-danger">
+                            *
+                        </span>
+                    </p>
+                    <input class="form-control" id="guide_address" placeholder="Ex. Room No-361, 33/1, 3rd Floor"
+                           requiredtype="text"/>
+                </div>
+
+                <div class="form-group mb-3">
+                    <p>
+                        <strong>
+                            Man Day Value 
+                        </strong>
+                        <span class="text-danger">
+                            *
+                        </span>
+                    </p>
+                    <input class="form-control" id="guide_man_day_value" name placeholder="Rs.2500.00" required
+                           type="number"/>
+                </div>
+
+                <div class="form-group mb-3">
+                    <p>
+                        <strong>
+                            Gender 
+                        </strong>
+                        <span class="text-danger">
+                            *
+                        </span>
+
+                    <div class="form-check">
+                        <input checked class="form-check-input" id="availability1" name="guide-gender-group"
+                               type="radio" value="Male">
+                        <label class="form-check-label" for="availability1">
+                            Male
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="availability2" name="guide-gender-group"
+                               type="radio"
+                               value="Female">
+                        <label class="form-check-label" for="availability2">
+                            Female
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p>Experience</p>
+                            <input class="form-control" id="guide_experience"
+                                   placeholder="Ex. Associate Software Engineer at Zendesk" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <p>Remark</p>
+                            <input class="form-control" id="guide_remark" placeholder="" type="text"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div>
+                        <p><strong>NIC Front Image </strong><span class="text-danger">*</span></p>
+                        <div class="file">
+                            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                                <input class="form-control border-0" id="nic_front" type="file"/>
+                                <div class="input-group-append">
+                                    <div class=" m-0 rounded-pill px-4">
+                                        <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-area mt-4 text-dark">
+                                <img alt class="img-fluid rounded shadow-sm mx-auto d-block" id="" src="#" width="200"/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <p>
+                            <strong>NIC Back Image</strong>
+                            <span class="text-danger">
+                                *
+                            </span>
+                        </p>
+                        <div class="file">
+                            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                                <input class="form-control border-0" id="nic_back" type="file"/>
+                                <div class="input-group-append">
+                                    <div class=" m-0 rounded-pill px-4">
+                                        <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-area mt-4 text-dark">
+                                <img alt class="img-fluid rounded shadow-sm mx-auto d-block" width="200"/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <p><strong>Guide ID Front </strong>
+                            <span class="text-danger">
+                                *
+                            </span>
+                        </p>
+                        <div class="file">
+                            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                                <input class="form-control border-0" id="id_front" type="file"/>
+                                <div class="input-group-append">
+                                    <div class=" m-0 rounded-pill px-4">
+                                        <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-area mt-4 text-dark">
+                                <img alt class="img-fluid rounded shadow-sm mx-auto d-block" width="200"/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <p>
+                            <strong>Guide ID Back</strong>
+                            <span class="text-danger">
+                                *
+                            </span>
+                        </p>
+                        <div class="file">
+                            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                                <input class="form-control border-0" id="id_back" type="file"/>
+                                <div class="input-group-append">
+                                    <div class=" m-0 rounded-pill px-4">
+                                        <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-area mt-4 text-dark">
+                                <img alt class="img-fluid rounded shadow-sm mx-auto d-block" width="200"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end bd-highlight form-group mb-3  ">
+                    <button class="btn btn-primary btn-primary m-2 rounded-pill px-4" id="btn_save_guide"
+                            style="min-width: 100px; border: 2px solid black" type="submit">Save
+                    </button>
+                    <button class="btn btn-primary btn-secondary m-2 rounded-pill px-4" id="btn_update_guide"
+                            style="min-width: 100px; border: 2px solid black" type="submit">Update
+                    </button>
+                    <button class="btn btn-primary btn-dark m-2 rounded-pill px-4" id="btn_delete_guide"
+                            style="min-width: 100px; border: 2px solid black" type="submit">Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
