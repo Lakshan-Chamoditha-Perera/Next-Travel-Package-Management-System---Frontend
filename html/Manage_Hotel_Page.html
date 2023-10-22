@@ -66,13 +66,14 @@
     <div class="row gy-4 row-cols-1 " style="display: flex; align-items: center; justify-content: space-around">
         <div class="col w-75">
             <div class="card">
-                <img  class="card-img-top w-80 d-block fit-cover main_hotel_img"
+                <img class="card-img-top w-80 d-block fit-cover main_hotel_img"
                      src="https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1600"
                      style="height: 400px;"/>
-                <div class="card-body p-4">
+                <div class="card-body p-4 ">
                     <p class="text-primary card-text mb-0">Article</p>
-                    <h1 class="card-title ">Hotel Jaffna</h1>
-                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus
+                    <h1 class="card-title hotel_name">Hotel Jaffna</h1>
+                    <p class="card-text hotel_description">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                        justo odio, dapibus
                         ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
 
                     <div class="d-flex col align-items-center justify-content-center">
@@ -93,8 +94,9 @@
                                           fill-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center">jaffna@gmail.com</p>
-                            <p class="text-muted mb-0">Erat netus</p>
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center hotel_email">
+                                jaffna@gmail.com</p>
+                            <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
                         <div class=" me-3 w-25 rounded p-2"
                              style=" flex-direction:column; display: flex; align-items: center; justify-content: space-around">
@@ -105,8 +107,9 @@
                                           fill-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center">+94 71 406 5987</p>
-                            <p class="text-muted mb-0">Erat netus</p>
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center hotel_contact">+94 71
+                                406 5987</p>
+                            <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
                         <div class=" me-3 w-25 rounded p-2"
                              style=" flex-direction:column; display: flex; align-items: center; justify-content: space-around">
@@ -117,15 +120,16 @@
                                           fill-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center">Jaffna</p>
-                            <p class="text-muted mb-0">Erat netus</p>
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center hotel_city">Jaffna</p>
+                            <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
 
                     </div>
                 </div>
             </div>
             <section>
-                <div style="height: 300px;background: url('https://images.pexels.com/photos/1458457/pexels-photo-1458457.jpeg?auto=compress&cs=tinysrgb&w=300') center / cover; ">
+                <div class="hotel_cover"
+                     style="height: 300px;background: url('https://images.pexels.com/photos/1458457/pexels-photo-1458457.jpeg?auto=compress&cs=tinysrgb&w=300') center / cover; ">
 
                 </div>
                 <div class="h-50 position-relative " style="top: -100px;">
@@ -143,13 +147,10 @@
                                     <h4 class="card-title">Option 1</h4>
                                     <h6 class="text-muted card-subtitle mb-2">Full Board with A/C Luxury Room –
                                         Double</h6>
-                                    <p class="card-text">
-
-                                    <h4></h4>
-                                    </p>
+                                    <p class="card-text"></p>
                                 </div>
                                 <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5">60000 </strong>.00
+                                    <strong class="h5 hotel_opt_1_price">60000 </strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -177,7 +178,7 @@
                                          porta gravida at eget metus.</p>-->
                                 </div>
                                 <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5">60000 </strong>.00
+                                    <strong class="h5 hotel_opt_2_price">60000 </strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -204,7 +205,7 @@
                                         porta gravida at eget metus.</p>-->
                                 </div>
                                 <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5">60000 </strong>.00
+                                    <strong class="h5 hotel_opt_3_price">60000 </strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -231,7 +232,7 @@
                                         porta gravida at eget metus.</p>-->
                                 </div>
                                 <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5">60000 </strong>.00
+                                    <strong class="h5 hotel_opt_4_price">60000 </strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
