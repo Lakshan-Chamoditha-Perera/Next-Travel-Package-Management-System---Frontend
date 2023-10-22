@@ -50,7 +50,6 @@ function checkImages() {
     }
     return true; // All file inputs have selected files
 }
-
 function validate_Vehicle_details() {
     if (vehicle_id_regex.test($('#vehicle_id').val())) {
         if (vehicle_brand_regex.test($('#vehicle_brand').val())) {
@@ -100,7 +99,6 @@ function validate_Vehicle_details() {
     }
     return false;
 }
-
 function validate_driver_details() {
     if (driver_id_regex.test($('#driver_id').val())) {
         if (name_pattern.test(($('#driver_name').val()))) {
@@ -121,7 +119,6 @@ function validate_driver_details() {
     }
     return false;
 }
-
 $('#save_vehicle_data').on('click', (e) => {
     console.log("save vehicle data")
     e.preventDefault()
@@ -224,7 +221,6 @@ function createVehicleCard(data) {
 
     document.getElementsByClassName('vehicle_grid_container')[0].innerHTML += elementHTML;
 }
-
 $(document).ready(() => {
     let promise = getAll();
     promise.then((data) => {
@@ -238,7 +234,6 @@ $(document).ready(() => {
         // alert(e.message);
     });
 })
-
 // -----------------------------------------------------------------------------------------
 // get vehicle & driver --------------------------------------------------------------------
 function setImages(dataImageList) {

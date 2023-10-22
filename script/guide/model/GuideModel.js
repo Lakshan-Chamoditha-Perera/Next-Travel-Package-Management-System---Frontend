@@ -94,9 +94,9 @@ export function delete_guide(id) {
         };
 
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
-            resolve(response);
+            resolve(textStatus);
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            reject(errorThrown);
+            reject(textStatus);
         });
     })
 }

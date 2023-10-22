@@ -193,7 +193,33 @@ $('#btn_delete_guide').on('click', (e) => {
                 alert("Guide Deleted!");
                 location.reload();
             }).catch((e) => {
-            alert("Error in deleting Guide !");
+            alert(e.toJSON());
+        });
+    }
+});
+// -----------------------------------------------------------------------------------------
+// update ----------------------------------------------------------------------------------
+$('#btn_update_guide').on('click', (e) => {
+    e.preventDefault();
+    if (validateFormData()) {
+        let guide = {
+            id: document.getElementById('guide_id').textContent,
+            name: $('#guide_name').val(),
+            address: $('#guide_address').val(),
+            age: $('#guide_age').val(),
+            gender: $("input[name='guide-gender-group']:checked").val(),
+            contact_number: $('#guide_contact').val(),
+            experience: $('#guide_experience').val(),
+            man_day_value: $('#guide_man_day_value').val(),
+            remark: $('#guide_remark').val()
+        }
+        let promise = update_guide(guide);
+        promise.then((data) => {
+            console.log(data);
+            alert("Guide updated successfully !");
+            location.reload();
+        }).catch((e) => {
+            alert("Error in updating Guide !");
         });
     }
 });
