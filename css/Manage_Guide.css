@@ -233,13 +233,14 @@
 #guide_form > h1 {
     margin-bottom: 50px;
 }
-
 div.avatar-bg {
-    background: url(https://www.gravatar.com/avatar/1234566?size=200&d=mm);
+    background-image: url("https://www.w3schools.com/howto/img_avatar.png");
     background-position: 50% 50%;
     height: 200px;
     width: 200px;
     background-size: cover;
     border-radius: 50%;
     margin-left: calc(50% - 100px);
+    object-fit: cover;
+    overflow: hidden; /* Add overflow property to create a circular mask */
 }

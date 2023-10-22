@@ -1,10 +1,11 @@
-import {getAll, getLastGuideId} from "../model/GuideModel.js";
+import {getAll, getLastGuideId, save_guide} from "../model/GuideModel.js";
 
 
 const guide_id_regex = /^G\d{3,}$/;
 const name_pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
-const doublePattern = /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
+const double_pattern = /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
 const contact_number = /^\d{10}$/;
+const address_pattern = /^\d+\s[A-z\s]+\s[A-z\s]+\s\d{5}(-\d{4})?$/
 
 // -----------------------------------------------------------------------------------------
 // get last ongoing vehicle id -------------------------------------------------------------
@@ -18,9 +19,6 @@ function getLastVehicleId() {
     });
 }
 
-$('#btn_save_guide').onclick = function () {
-    console.log('save guide');
-}
 // -----------------------------------------------------------------------------------------
 // get all ---------------------------------------------------------------------------------
 // const createGuideCard =
@@ -41,6 +39,78 @@ function loadCards(createGuideCard) {
 
 // -----------------------------------------------------------------------------------------
 // save ------------------------------------------------------------------------------------
+
+function validateImagesInForm() {
+    const inputIds = ['profile_img', 'nic_front', 'nic_back', 'id_front', 'id_back']; // Add the IDs of your file input fields
+    for (const inputId of inputIds) {
+        const input = document.getElementById(inputId);
+        if (!input.files || input.files.length === 0) {
+            return false; // At least one image input is empty
+        }
+    }
+    return true; // All image inputs have files selected
+}
+
+function validateFormData() {
+    if (guide_id_regex.test(document.getElementById('guide_id').textContent.trim())) {
+        console.log(($('#guide_name').val()))
+        if (name_pattern.test($('#guide_name').val())) {
+            console.log($('#guide_man_day_value').val())
+            if (double_pattern.test($('#guide_man_day_value').val())) {
+                console.log($('#guide_contact').val())
+                if (contact_number.test($('#guide_contact').val())) {
+                    console.log($('#guide_age').val())
+                    if ($('#guide_age').val() > 0) {
+                        console.log($('#guide_address').val());
+                        if (name_pattern.test($('#guide_address').val())) {
+                            if ($("input[name='guide-gender-group']:checked").val() != null) {
+                                if (validateImagesInForm()) {
+                                    return true;
+                                } else {
+                                    alert("Please select images !");
+                                }
+                            } else {
+                                alert("Please select gender !")
+                            }
+                        } else {
+                            alert("Invalid Address !");
+                        }
+                    } else {
+                        alert("Invalid Age !");
+                    }
+                } else {
+                    alert("Invalid Contact Number !");
+                }
+            } else {
+                alert("Invalid man day value!");
+            }
+        } else {
+            alert("Invalid name!");
+        }
+    } else {
+        alert("Invalid Guide ID !")
+    }
+    return false;
+}
+
+$('#btn_save_guide').click((e) => {
+    e.preventDefault();
+    if (validateFormData()) {
+        let guide = {
+            id: $('#guide_id').val(),
+            name: $('#guide_name').val(),
+            address: $('#guide_address').val(),
+            age: $('#guide_age').val(),
+            gender: $("input[name='guide-gender-group']:checked").val(),
+            contact_number: $('#guide_contact').val(),
+            experience: $('#guide_experience').val(),
+            man_day_value: $('#guide_man_day_value').val(),
+            remark: $('#guide_remark').val()
+
+        };
+        let promise = save_guide(guide);
+    }
+});
 
 
 //-----------------------------------------------------------------------------------------
@@ -78,5 +148,4 @@ $(document).ready(() => {
         document.getElementsByClassName('guide_grid_container')[0].innerHTML += elementHTML;
     });
     getLastVehicleId();
-
 })
