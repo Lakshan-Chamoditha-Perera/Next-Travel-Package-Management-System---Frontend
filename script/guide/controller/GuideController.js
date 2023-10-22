@@ -1,4 +1,4 @@
-import {getAll, getLastGuideId, save_guide} from "../model/GuideModel.js";
+import {get_guide, getAll, getLastGuideId, save_guide} from "../model/GuideModel.js";
 
 
 const guide_id_regex = /^G\d{3,}$/;
@@ -155,9 +155,14 @@ $(document).ready(() => {
 
 // -----------------------------------------------------------------------------------------
 // search ----------------------------------------------------------------------------------
-$('#search_guide').on('click', (e) => {
+$('#btn_search').on('click', (e) => {
     e.preventDefault();
     if (guide_id_regex.test($('#txt_search_guide').val())) {
-
+        get_guide($('#txt_search_guide').val())
+            .then((data) => {
+                console.log(data);
+            }).catch((e) => {
+alert("Error in getting Guide !");
+        });
     }
 });
