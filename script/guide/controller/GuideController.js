@@ -160,9 +160,25 @@ $('#btn_search').on('click', (e) => {
     if (guide_id_regex.test($('#txt_search_guide').val())) {
         get_guide($('#txt_search_guide').val())
             .then((data) => {
+                alert("Guide Found!");
                 console.log(data);
+                $('#guide_id').text(data.id);
+                $('#guide_name').val(data.name);
+                $('#guide_address').val(data.address);
+                $('#guide_age').val(data.age);
+                $('#guide_contact').val(data.contact_number);
+                $('#guide_experience').val(data.experience);
+                $('#guide_man_day_value').val(data.man_day_value);
+                $('#guide_remark').val(data.remark);
+                $('#guide_profile_img').attr('src', 'data:image/png;base64,' + data.images_list[0]);
+                $('#guide_nic_front').attr('src', 'data:image/png;base64,' + data.images_list[1]);
+                $('#guide_nic_back').attr('src', 'data:image/png;base64,' + data.images_list[2]);
+                $('#guide_id_front').attr('src', 'data:image/png;base64,' + data.images_list[3]);
+                $('#guide_id_back').attr('src', 'data:image/png;base64,' + data.images_list[4]);
+                $(`input[name="guide-gender-group"][value="${data.gender}"]`).prop('checked', true);
+                $('#btn_save_guide').prop('disabled', true);
             }).catch((e) => {
-alert("Error in getting Guide !");
+                alert("Error in getting Guide !");
         });
     }
 });
