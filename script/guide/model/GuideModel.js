@@ -27,7 +27,7 @@ export function getAll() {
     })
 }
 
-export function save_guide(guide){
+export function save_guide(guide) {
     console.log(guide)
     return new Promise((resolve, reject) => {
         const guideBlob = new Blob([JSON.stringify(guide)], {type: 'application/json'});
@@ -56,6 +56,24 @@ export function save_guide(guide){
             console.log(response)
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown)
+            reject(errorThrown);
+        });
+    })
+}
+
+export function get_guide(id) {
+    return new Promise((resolve, reject) => {
+        let settings = {
+            "url": "http://localhost:8089/api/v1/guide/get",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "id": id,
+            },
+        };
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            resolve(response);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
             reject(errorThrown);
         });
     })

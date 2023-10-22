@@ -47,6 +47,7 @@ function validateImagesInForm() {
     }
     return true; // All image inputs have files selected
 }
+
 function validateFormData() {
     if (guide_id_regex.test(document.getElementById('guide_id').textContent.trim())) {
         console.log(($('#guide_name').val()))
@@ -88,6 +89,7 @@ function validateFormData() {
     }
     return false;
 }
+
 $('#btn_save_guide').click((e) => {
     e.preventDefault();
     if (validateFormData()) {
@@ -150,3 +152,12 @@ $(document).ready(() => {
     });
     getLastVehicleId();
 })
+
+// -----------------------------------------------------------------------------------------
+// search ----------------------------------------------------------------------------------
+$('#search_guide').on('click', (e) => {
+    e.preventDefault();
+    if (guide_id_regex.test($('#txt_search_guide').val())) {
+
+    }
+});
