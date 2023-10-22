@@ -78,3 +78,25 @@ export function get_guide(id) {
         });
     })
 }
+//-----------------------------------------------------------------------------------------
+// delete ---------------------------------------------------------------------------------
+
+
+export function delete_guide(id) {
+    return new Promise((resolve, reject) => {
+        let settings = {
+            "url": "http://localhost:8087/api/v1/guide/delete",
+            "method": "DELETE",
+            "timeout": 0,
+            "headers": {
+                "id": id,
+            },
+        };
+
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            resolve(response);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            reject(errorThrown);
+        });
+    })
+}

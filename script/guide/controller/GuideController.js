@@ -1,4 +1,4 @@
-import {get_guide, getAll, getLastGuideId, save_guide} from "../model/GuideModel.js";
+import {delete_guide, get_guide, getAll, getLastGuideId, save_guide} from "../model/GuideModel.js";
 
 
 const guide_id_regex = /^G\d{3,}$/;
@@ -179,7 +179,7 @@ $('#btn_search').on('click', (e) => {
 
                 $('#btn_save_guide').prop('disabled', true);
             }).catch((e) => {
-                alert("Error in getting Guide !");
+            alert("Error in getting Guide !");
         });
     }
 });
@@ -187,11 +187,10 @@ $('#btn_search').on('click', (e) => {
 // delete ----------------------------------------------------------------------------------
 $('#btn_delete_guide').on('click', (e) => {
     e.preventDefault()
-    if (guide_id_regex.test($('#txt_search_guide').val())) {
-        delete_guide($('#txt_search_guide').val())
+    if (guide_id_regex.test(document.getElementById('guide_id').textContent.trim())) {
+        delete_guide(document.getElementById('guide_id').textContent.trim())
             .then((data) => {
                 alert("Guide Deleted!");
-                console.log(data);
                 location.reload();
             }).catch((e) => {
             alert("Error in deleting Guide !");
