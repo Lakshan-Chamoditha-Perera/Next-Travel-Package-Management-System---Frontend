@@ -80,8 +80,6 @@ export function get_guide(id) {
 }
 //-----------------------------------------------------------------------------------------
 // delete ---------------------------------------------------------------------------------
-
-
 export function delete_guide(id) {
     return new Promise((resolve, reject) => {
         let settings = {
@@ -99,4 +97,38 @@ export function delete_guide(id) {
             reject(textStatus);
         });
     })
+}
+
+//-----------------------------------------------------------------------------------------
+// update ---------------------------------------------------------------------------------
+
+export function update_guide(guide) {
+    return new Promise((resolve, reject) => {
+        const guideBlob = new Blob([JSON.stringify(guide)], {type: 'application/json'});
+        let form = new FormData();
+
+        form.append("guide", guideBlob);
+        form.append("nic_front", $('#nic_front')[0].files[0],);
+        form.append("nic_back", $('#nic_back')[0].files[0],);
+        form.append("guide_id_front", $('#id_front')[0].files[0],);
+        form.append("guide_id_back", $('#id_back')[0].files[0],);
+        form.append("profile", $('#profile_img')[0].files[0],);
+
+        let settings = {
+            "url": "http://localhost:8089/api/v1/guide/update",
+            "method": "PATCH",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            resolve(response);
+            console.log(response)
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            reject(errorThrown);
+        });
+    });
 }
