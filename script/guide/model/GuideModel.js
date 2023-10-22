@@ -85,7 +85,7 @@ export function get_guide(id) {
 export function delete_guide(id) {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8087/api/v1/guide/delete",
+            "url": "http://localhost:8089/api/v1/guide/delete",
             "method": "DELETE",
             "timeout": 0,
             "headers": {
