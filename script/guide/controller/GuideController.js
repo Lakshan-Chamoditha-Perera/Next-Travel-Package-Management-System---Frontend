@@ -1,4 +1,4 @@
-import {delete_guide, get_guide, getAll, getLastGuideId, save_guide} from "../model/GuideModel.js";
+import {delete_guide, get_guide, getAll, getLastGuideId, save_guide, update_guide} from "../model/GuideModel.js";
 
 
 const guide_id_regex = /^G\d{3,}$/;
