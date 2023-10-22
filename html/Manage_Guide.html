@@ -111,7 +111,8 @@
                 </div>
                 <div class="flex-row space-between w-full mb-sm">
                     <p class="category">${data.id}</p>
-                </div>f
+                </div>
+                f
                 <h1 class="product-name">${data.name} </h1>
                 <div class="flex-row">
                     <p class="price strike">Man day value</p>
@@ -131,13 +132,27 @@
 
 <section id="guide_form_section">
     <div id="guide_form">
-        <h1 class="text-center text-capitalize">Guide Registration form</h1>
+        <h1 class="text-center text-capitalize">Manage Guide Details</h1>
+        <form action="">
+            <div class="p-2 bg-light rounded rounded-pill shadow-sm mb-3">
+                <div class="input-group">
+                    <input aria-describedby="button-addon1" class="form-control border-0 bg-light"
+                           id="txt_search_guide"
+                           placeholder="Who are you searching for?" type="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-link text-primary" id="btn_search" type="submit"><i
+                                class="fa fa-search"> </i> search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
         <hr>
         <div class="container">
 
             <form id="application-form">
                 <div class="form-group mb-3">
-                    <p>Guide ID : <strong id="guide_id"> G0001 </strong></p>
+                    <p>Guide ID : <strong id="guide_id"></strong></p>
                 </div>
 
                 <div class="form-group mb-3">
@@ -147,7 +162,8 @@
                     <p><strong>Guide Profile </strong><span class="text-danger">*</span></p>
                     <div class="file">
                         <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
-                           <input class="form-control border-0" id="profile_img" type="file" onchange="setProfileImg()"/>
+                            <input class="form-control border-0" id="profile_img" onchange="setProfileImg()"
+                                   type="file"/>
                             <div class="input-group-append">
                                 <div class=" m-0 rounded-pill px-4">
                                     <i class="fa fa-cloud-upload mr-2 text-muted"></i>
@@ -314,7 +330,7 @@
                         </p>
                         <div class="file">
                             <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
-                                <input class="form-control border-0" id="id_front" type="file" />
+                                <input class="form-control border-0" id="id_front" type="file"/>
                                 <div class="input-group-append">
                                     <div class=" m-0 rounded-pill px-4">
                                         <i class="fa fa-cloud-upload mr-2 text-muted"></i>

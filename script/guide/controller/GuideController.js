@@ -21,8 +21,6 @@ function getLastVehicleId() {
 
 // -----------------------------------------------------------------------------------------
 // get all ---------------------------------------------------------------------------------
-// const createGuideCard =
-
 function loadCards(createGuideCard) {
     let promise = getAll();
     promise.then((data) => {
@@ -39,7 +37,6 @@ function loadCards(createGuideCard) {
 
 // -----------------------------------------------------------------------------------------
 // save ------------------------------------------------------------------------------------
-
 function validateImagesInForm() {
     const inputIds = ['profile_img', 'nic_front', 'nic_back', 'id_front', 'id_back']; // Add the IDs of your file input fields
     for (const inputId of inputIds) {
@@ -50,7 +47,6 @@ function validateImagesInForm() {
     }
     return true; // All image inputs have files selected
 }
-
 function validateFormData() {
     if (guide_id_regex.test(document.getElementById('guide_id').textContent.trim())) {
         console.log(($('#guide_name').val()))
@@ -92,7 +88,6 @@ function validateFormData() {
     }
     return false;
 }
-
 $('#btn_save_guide').click((e) => {
     e.preventDefault();
     if (validateFormData()) {
@@ -118,7 +113,6 @@ $('#btn_save_guide').click((e) => {
         });
     }
 });
-
 
 //-----------------------------------------------------------------------------------------
 $(document).ready(() => {
