@@ -176,9 +176,25 @@ $('#btn_search').on('click', (e) => {
                 $('#guide_id_front').attr('src', 'data:image/png;base64,' + data.images_list[3]);
                 $('#guide_id_back').attr('src', 'data:image/png;base64,' + data.images_list[4]);
                 $(`input[name="guide-gender-group"][value="${data.gender}"]`).prop('checked', true);
+
                 $('#btn_save_guide').prop('disabled', true);
             }).catch((e) => {
                 alert("Error in getting Guide !");
+        });
+    }
+});
+// -----------------------------------------------------------------------------------------
+// delete ----------------------------------------------------------------------------------
+$('#btn_delete_guide').on('click', (e) => {
+    e.preventDefault()
+    if (guide_id_regex.test($('#txt_search_guide').val())) {
+        delete_guide($('#txt_search_guide').val())
+            .then((data) => {
+                alert("Guide Deleted!");
+                console.log(data);
+                location.reload();
+            }).catch((e) => {
+            alert("Error in deleting Guide !");
         });
     }
 });
