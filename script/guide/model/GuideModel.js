@@ -55,6 +55,7 @@ export function save_guide(guide){
             resolve(response);
             console.log(response)
         }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(errorThrown)
             reject(errorThrown);
         });
     })

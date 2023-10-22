@@ -13,7 +13,7 @@ function getLastVehicleId() {
     let promise = getLastGuideId();
     promise.then((data) => {
         console.log(data);
-        $('#guide_id').val(data);
+        document.getElementById('guide_id').textContent = data;
     }).catch((e) => {
         alert("Error in getting Guide ID !");
     });
@@ -97,7 +97,7 @@ $('#btn_save_guide').click((e) => {
     e.preventDefault();
     if (validateFormData()) {
         let guide = {
-            id: $('#guide_id').val(),
+            id: document.getElementById('guide_id').textContent,
             name: $('#guide_name').val(),
             address: $('#guide_address').val(),
             age: $('#guide_age').val(),
@@ -109,6 +109,13 @@ $('#btn_save_guide').click((e) => {
 
         };
         let promise = save_guide(guide);
+        promise.then((data) => {
+            console.log(data);
+            alert("Guide saved successfully !");
+            location.reload();
+        }).catch((e) => {
+            alert("Error in saving Guide !");
+        });
     }
 });
 
