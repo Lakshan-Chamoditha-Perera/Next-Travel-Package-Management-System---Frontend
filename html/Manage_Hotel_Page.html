@@ -46,7 +46,6 @@
 
     </div>
 </nav>
-
 <section
         style="border: 2px solid black;border-radius: 15px; margin: 0 13.33vw 50px 13.33vw; height: auto; padding-top: 100px; display: flex; flex-direction: column">
     <div class="row"
@@ -154,7 +153,7 @@
                                             <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
                                         </svg>
                                     </div>
-                                    <h4 class="card-title">Option 1</h4>
+                                    <h4 class="card-title">Option 1 </h4>
                                     <h6 class="text-muted card-subtitle mb-2">Full Board with A/C Luxury Room –
                                         Double</h6>
                                     <p class="card-text"></p>
@@ -258,9 +257,265 @@
         </div>
         <hr>
     </div>
-
 </section>
+<section class="p-3 flex-column align-items-center" style="margin: 0 13.33vw 0 13.33vw">
+    <div class="row border border-primary flex-row align-items-center justify-content-around">
+        <h1 class="text-center text-capitalize">Hotel Manage form</h1>
+        <form class="mt-3 " style="width: 50%">
+            <div class="p-2 bg-light rounded rounded-pill shadow-sm mb-3">
+                <div class="input-group">
+                    <input aria-describedby="button-addon1" class="form-control border-0 bg-light"
+                           id="txt_search_hotel"
+                           placeholder="What're you searching for?" type="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-link text-primary" id="btn_search" type="submit">
+                            <i class="fa fa-search"> </i> search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container border border-black ">
+        <form id="application-form">
+            <div class="form-group m-3">
+                <h3 class="mb-3">Hotel ID : <strong id="hotel_form_id">H0001</strong></h3>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p><strong>Hotel Name</strong><span class="text-danger">*</span></p>
+                        <input class="form-control" name placeholder="Turyaa Hotel" required type="text"/>
+                    </div>
+                    <div class="col">
+                        <p><strong>Location URL</strong><span class="text-danger">*</span></p><input
+                            class="form-control" name placeholder="https://www.google.com/maps?example" required type="url"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-3">
+                <p><strong>Email </strong><span class="text-danger">*</span></p>
+                <input class="form-control" name placeholder="user@domain.com" type="email"/>
+            </div>
+            <div class="form-group m-3">
+                <p><strong>Contact Number </strong><span class="text-danger">*</span></p><input
+                    class="form-control" name placeholder="077 77 77 7777" type="number"/>
+            </div>
+            <div class="form-group m-3">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Star Rate <span class="text-danger">*</span></strong></p>
+                        <input class="form-control" max="5" min="0" name placeholder="range 0 - 5" required
+                               type="number"/>
+                    </div>
+                    <div class="col">
+                        <p><strong>City <span class="text-danger">*</span></strong></p>
+                        <input class="form-control" name placeholder="Panadura" required type="text"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-3">
+                <div class="row border border-primary">
+                    <div class="col border border-black mt-3">
+                        <p><strong>Description</strong></p>
+                        <textarea class="form-control h-75" name="Qualification" placeholder="Description" required
+                                  type="text"></textarea>
+                    </div>
+                    <div class="col mt-3">
+                        <p><strong>Cancellation Criteria </strong></p>
+                        <textarea class="form-control" name="Qualification"
+                                  placeholder="" required
+                                  type="text">
+                        </textarea>
+                        <label>Tax: </label>
+                        <input class="form-control" id="cancellation_tax" max="100" min="0"
+                               name placeholder="50%" required type="number"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-3">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Option 1 <span class="text-danger">*</span></strong></p>
+                        <textarea class="form-control mb-3" id="opt1_description"  placeholder="Full Board with A/C Luxury Room – Double" required type="text">
+                        </textarea>
+                        <input class="form-control" id="opt1_price" min="0"  placeholder="10000.00" required
+                               type="number"/>
+                    </div>
+                    <div class="col">
+                        <p><strong>Option 2 <span class="text-danger">*</span></strong></p>
+                        <textarea class="form-control mb-3" id="opt2_description"
+                                  placeholder="Half Board with A/C Luxury Room -
+                                        Double" required
+                                  type="number">
 
+                                </textarea>
+                        <input class="form-control" id="opt2_price" min="0" name placeholder="10000.00" required
+                               type="number"/>
+                    </div>
+                    <div class="col">
+                        <p><strong>Option 3 <span class="text-danger">*</span></strong></p>
+                        <textarea class="form-control mb-3" id="opt3_description" name
+                                  placeholder="Full Board with A/C Luxury Room –
+                                        Triple" required
+                                  type="number">
+
+                                </textarea>
+                        <input class="form-control" id="opt3_price" min="0" name placeholder="10000.00" required
+                               type="number"/>
+                    </div>
+                    <div class="col">
+                        <p><strong>Option 4 <span class="text-danger">*</span></strong></p>
+                        <textarea class="form-control mb-3" id="opt4_description" min="0" name
+                                  placeholder="Half Board with A/C Luxury Room - Triple" required
+                                  type="number">
+
+                                </textarea>
+                        <input class="form-control" id="opt4_price" min="0" name placeholder="10000.00" required
+                               type="number"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border border-black form-group m-3 flex-column justify-content-around mt-4"
+                 style="display: flex; align-items: center">
+                <div class="row w-75 border  border-black">
+                    <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
+                    <div class="file">
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                            <input class="form-control border-0" id="hotel_img_1" type="file"/>
+                            <div class="input-group-append">
+                                <label class="btn btn-light m-0 rounded-pill px-4">
+                                    <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    <small class="text-uppercase font-weight-bold text-muted">
+                                        Choose file
+                                    </small>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="font-italic text-dark text-center">The image uploaded will be rendered
+                            inside the box below.</p>
+                        <div class="image-area mt-4 text-dark">
+                            <img alt class="img-fluid rounded shadow-sm mx-auto d-block"
+                                 id="hotel_image_result_1" src="#" width="200"/></div>
+                        <div class="col d-none">
+                            <p><strong>URL</strong><span class="text-danger">*</span></p>
+                            <input class="form-control" name="url" readonly type="url"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row w-75 border  border-black">
+                    <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
+                    <div class="file">
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                            <input class="form-control border-0" id="hotel_img_2" type="file"/>
+                            <div class="input-group-append">
+                                <label class="btn btn-light m-0 rounded-pill px-4">
+                                    <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    <small class="text-uppercase font-weight-bold text-muted">
+                                        Choose file
+                                    </small>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="font-italic text-dark text-center">The image uploaded will be rendered
+                            inside the box below.</p>
+                        <div class="image-area mt-4 text-dark">
+                            <img alt class="img-fluid rounded shadow-sm mx-auto d-block"
+                                 id="hotel_image_result_2" src="#" width="200"/></div>
+                        <div class="col d-none">
+                            <p><strong>URL</strong><span class="text-danger">*</span></p>
+                            <input class="form-control" name="url" readonly type="url"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row w-75 border  border-black">
+                    <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
+                    <div class="file">
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                            <input class="form-control border-0" id="hotel_img_3" type="file"/>
+                            <div class="input-group-append">
+                                <label class="btn btn-light m-0 rounded-pill px-4">
+                                    <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    <small class="text-uppercase font-weight-bold text-muted">
+                                        Choose file
+                                    </small>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="font-italic text-dark text-center">The image uploaded will be rendered
+                            inside the box below.</p>
+                        <div class="image-area mt-4 text-dark">
+                            <img alt class="img-fluid rounded shadow-sm mx-auto d-block"
+                                 id="hotel_image_result_3" src="#" width="200"/></div>
+                        <div class="col d-none">
+                            <p><strong>URL</strong><span class="text-danger">*</span></p>
+                            <input class="form-control" name="url" readonly type="url"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row w-75 border  border-black">
+                    <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
+                    <div class="file">
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
+                            <input class="form-control border-0" id="hotel_img_4" type="file"/>
+                            <div class="input-group-append">
+                                <label class="btn btn-light m-0 rounded-pill px-4">
+                                    <i class="fa fa-cloud-upload mr-2 text-muted"></i>
+                                    <small class="text-uppercase font-weight-bold text-muted">
+                                        Choose file
+                                    </small>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="font-italic text-dark text-center">The image uploaded will be rendered
+                            inside the box below.</p>
+                        <div class="image-area mt-4 text-dark">
+                            <img alt class="img-fluid rounded shadow-sm mx-auto d-block"
+                                 id="hotel_image_result_4" src="#" width="200"/></div>
+                        <div class="col d-none">
+                            <p><strong>URL</strong><span class="text-danger">*</span></p>
+                            <input class="form-control" name="url" readonly type="url"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <fieldset></fieldset>
+            <div class="justify-content-center d-flex form-group mb-3">
+                <div id="submit-btn">
+                    <div class="col">
+                        <button class="btn btn-primary btn-light m-0 rounded-pill px-4" id="btn_save_hotel"
+                                style="min-width: 200px;"
+                                type="submit">
+                            Register
+                        </button>
+                        <button class="btn btn-primary btn-light m-0 rounded-pill px-4" id="btn_update_hotel"
+                                style="min-width: 200px;"
+                                type="submit">
+                            Update
+                        </button>
+                        <button class="btn btn-primary btn-light m-0 rounded-pill px-4" id="btn_delete_hotel"
+                                style="min-width: 200px;"
+                                type="submit">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <h3 class="text-center text-danger d-none" id="fail">
+            <br/>
+            Form not Submitted 
+            <a href="contact.html">Try Again</a>
+            <br/>
+            <br/>
+        </h3>
+        <h3 class="text-center text-success d-none" id="success-1">
+            <br/>
+            Form Submitted Successfully <a
+                href="contact.html">Send Another Response</a><br/><br/></h3>
+    </div>
+</section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script crossorigin="anonymous"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
