@@ -626,7 +626,7 @@
                     <div class="form-group mb-3">
                         <div class="row">
                             <div class="col-lg-6">
-                                <p><strong>Room ID</strong><span class="text-danger"></span></p>
+                                <p><strong>Room ID : </strong><span class="text-danger"></span></p>
                                 <input class="form-control" name placeholder="R0001" readonly required type="text"/>
                             </div>
                             <div class="col">
@@ -723,7 +723,6 @@
 
 </section>
 
-<!--
 
 <section class=" rounded vh-80 p-3 flex-column align-items-center" style="margin: 75px 13.33vw 0 13.33vw">
     <form class="">
@@ -771,39 +770,22 @@
                     <div class="form-group mb-3">
                         <div class="row">
                             <div class="col-lg-6">
-                                <p><strong>Room ID</strong><span class="text-danger"></span></p>
-                                <input class="form-control" name placeholder="R0001" readonly required type="text"/>
+                                <p><strong>Discount Code: </strong><span class="text-danger"></span></p>
+                                <input class="form-control" name placeholder="DIS0001" readonly required type="text"/>
                             </div>
-                            <div class="col">
-                                <div class="col">
-                                    <p><strong>Category</strong></p>
-                                    <div class="dropdown mt-3" id="room_category">
-                                        <button aria-expanded="false" class=" btn btn-primary dropdown-toggle"
-                                                data-bs-toggle="dropdown" type="button">
-                                            Select Room Category
-                                        </button>
-                                        <div class="dropdown-menu" id="room_category_list">
-                                            <a class="dropdown-item ">First Item</a>
-                                            <a class="dropdown-item">Second Item</a>
-                                            <a class="dropdown-item">Third Item</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <p><strong>Price</strong><span class="text-danger"></span></p>
-                                <input class="form-control" name placeholder="Rs.1000.00" readonly required
-                                       type="text"/>
 
+                            <div class="col">
+                                <p><strong>Percentage : </strong><span class="text-danger">*</span></p>
+                                <input class="form-control" max="100" min="1" name placeholder="10%" required
+                                       type="number"/>
                             </div>
                         </div>
                     </div>
                     <div class="form-group mb-3">
                         <div class="row">
                             <div class="col w-25">
-                                <p><strong>Capacity</strong></p><input class="form-control" name placeholder="3"
-                                                                       required
-                                                                       type="text"/>
+                                <p><strong>Condition (above range) </strong></p>
+                                <input class="form-control" name placeholder="3" required type="text"/>
                             </div>
 
                         </div>
@@ -813,41 +795,55 @@
                             <div class="col-lg-6">
                                 <p><strong>Description</strong></p>
                                 <textarea class="form-control" name="Qualification"
-                                          placeholder="Ex.  2000 - 2004   Prague Engineer College ,etc"
+                                          placeholder=""
                                           required
                                           type="text"></textarea>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <div class="row">
                             <div class="col-lg-6">
-                                <p><strong>Availability</strong></p>
-                                <div class="form-check">
-                                    <input checked class="form-check-input" id="formCheck-1" name="availability"
-                                           type="radio" value="available"/>
-                                    <label class="form-check-label" for="formCheck-1">available</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" id="formCheck-2" name="availability" type="radio"
-                                           value="not-available"/>
-                                    <label class="form-check-label" for="formCheck-2">not-available</label>
+                                <p><strong>Notify Users </strong></p>
+                                <div class="input-group-text">
+                                    <input class="form-check-input mt-0" type="checkbox" value="">
                                 </div>
                             </div>
-
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p><strong>Discount availability</strong></p>
+                                <div class="form-check">
+                                    <input checked class="form-check-input" id="d1" name="discount-availability"
+                                           type="radio" value="available"/>
+                                    <label class="form-check-label" for="d1">available</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" id="d2" name="discount-availability" type="radio"
+                                           value="not-available"/>
+                                    <label class="form-check-label" for="d2">not-available</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <fieldset></fieldset>
                     <div class="justify-content-center d-flex form-group mb-3">
                         <div>
                             <div class="col">
-                                <button class="btn btn-primary btn-primary m-0 rounded-3 px-4" id="btn_save_room"
+                                <button class="btn btn-primary btn-primary m-0 rounded-3 px-4" id="btn_save_discount"
                                         style="min-width: 200px;"
                                         type="submit">
                                     Register
                                 </button>
-                                <button class="btn btn-primary btn-light m-0 rounded-3 px-4" id="btn_update_room"
+                                <button class="btn btn-primary btn-light m-0 rounded-3 px-4" id="btn_update_discount"
                                         style="min-width: 200px;"
                                         type="submit">
                                     Update
                                 </button>
-                                <button class="btn btn-primary btn-dark m-0 rounded-3 px-4" id="btn_delete_room"
+                                <button class="btn btn-primary btn-dark m-0 rounded-3 px-4" id="btn_delete_discount"
                                         style="min-width: 200px;"
                                         type="submit">
                                     Delete
@@ -857,17 +853,12 @@
                     </div>
                 </form>
             </div>
-            <div class="col">
-                <h3 class="text-center text-danger d-none" id="fail"><br/>Form not Submitted <a href="contact.html">Try
-                    Again</a><br/><br/></h3>
-                <h3 class="text-center text-success d-none" id="success-1"><br/>Form Submitted Successfully <a
-                        href="contact.html">Send Another Response</a><br/><br/></h3>
-            </div>
+
         </section>
     </form>
 
 </section>
--->
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script crossorigin="anonymous"
