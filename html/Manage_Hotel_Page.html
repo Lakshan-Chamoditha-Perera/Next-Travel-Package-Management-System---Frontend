@@ -532,13 +532,13 @@
 <section class=" p-3 flex-column align-items-center" style="margin: 0 13.33vw 0 13.33vw" >
     <form >
         <section class="rounded-2 mb-2 bg-light">
-            <h1 class="text-center mb-2 text-capitalize">Add Room</h1>
+            <h1 class="text-center mb-2 text-capitalize">Manage Room</h1>
 
             <div class="container">
                 <div class="row">
                     <div class= "p-2 col align-items-center border-primary ">
                         <div class="dropdown mt-3">
-                            <button id="hotel_list_dropdown" class=" btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                            <button aria-required="true" id="hotel_list_dropdown" class=" btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
                                 Select Hotel
                             </button>
                             <div id="hotel_list_dropdown_list" class="dropdown-menu">
@@ -561,28 +561,28 @@
                                 <p><strong>Room ID</strong><span class="text-danger">*</span></p><input class="form-control" type="text" required name placeholder="R0001" />
                             </div>
                             <div class="col">
-                                <ul class="list-group"></ul>
+                                <div class="col">
+                                    <p><strong>Category</strong></p>
+                                    <div id="room_category" class="dropdown mt-3">
+                                        <button class=" btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                                            Select Room Category
+                                        </button>
+                                        <div class="dropdown-menu" id="room_category_list">
+                                            <a class="dropdown-item " >First Item</a>
+                                            <a class="dropdown-item" >Second Item</a>
+                                            <a class="dropdown-item" >Third Item</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group mb-3">
                         <div class="row">
-                            <div class="col">
+                            <div class="col w-25">
                                 <p><strong>Capacity</strong></p><input class="form-control" type="text" required name placeholder="3" />
                             </div>
-                            <div class="col">
-                                <p><strong>Category</strong></p>
-                                <div id="room_category" class="dropdown mt-3">
-                                    <button class=" btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                                        Select Room Category
-                                    </button>
-                                    <div class="dropdown-menu" id="room_category_list">
-                                        <a class="dropdown-item" >First Item</a>
-                                        <a class="dropdown-item" >Second Item</a>
-                                        <a class="dropdown-item" >Third Item</a>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="form-group mb-3">
@@ -595,9 +595,16 @@
                             </div>
                             <div class="col-lg-6">
                                 <p><strong>Availability</strong></p>
-                                <div class="form-check"><input id="formCheck-1" class="form-check-input" type="radio" /><label class="form-check-label" for="formCheck-1">Label</label></div>
-                                <div class="form-check"><input id="formCheck-2" class="form-check-input" type="radio" /><label class="form-check-label" for="formCheck-2">Label</label></div>
+                                <div class="form-check">
+                                    <input id="formCheck-1" class="form-check-input"  type="radio" name="availability" value="available" />
+                                    <label class="form-check-label" for="formCheck-1">available</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="formCheck-2" class="form-check-input" type="radio" name="availability" value="not-available" />
+                                    <label class="form-check-label" for="formCheck-2">not-available</label>
+                                </div>
                             </div>
+
                             <div class="col">
                                 <p>Cancellation Criteria</p><textarea class="form-control" type="text" required placeholder="Ex.  2000 - 2004   Prague Engineer College ,etc" name="Qualification"></textarea>
                             </div>
