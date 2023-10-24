@@ -216,8 +216,8 @@ function loadHotelCardList() {
 function getLastHotelId() {
     let promise = getLastOngoingHotelId();
     promise.then((data) => {
-        console.log("last id: " + data)
-        $('#hotel_form_id').val(data);
+        console.log("last id: " + data);
+        document.getElementById('hotel_form_id').textContent = data;
     }).catch((e) => {
         alert("Error in getting hotel details !");
     });
@@ -331,7 +331,7 @@ $('#btn_save_hotel').on('click', (e) => {
             name: $('#hotel_form_name').val(),
             geo_location: $('#hotel_form_iframe').val(),
             email: $('#hotel_form_email').val(),
-            contact_list: $('#hotel_form_contact').val(),
+            contact: $('#hotel_form_contact').val(),
             location: $('#hotel_form_location').val(),
             star_rate: $('#hotel_form_star_rate').val(),
             is_pet_allowed: $("input[name='pets-allowed-group']:checked").val(),
