@@ -284,37 +284,23 @@ function validateHotelData() {
         return false;
     }
 
-    if (!description_regex.test($('#hotel_form_opt1_description').val().trim())) {
-        alert("Invalid option 1 description !")
-        return false;
-    }
+
     if (!double_regex.test($('#hotel_form_opt1_price').val())) {
         alert("Invalid option 1 price !")
         return false;
     }
 
-    if (!description_regex.test($('#hotel_form_opt2_description').val().trim())) {
-        alert("Invalid option 2 description !")
-        return false;
-    }
     if (!double_regex.test($('#hotel_form_opt2_price').val())) {
         alert("Invalid option 2 price !")
         return false;
     }
 
-    if (!description_regex.test($('#hotel_form_opt3_description').val().trim())) {
-        alert("Invalid option 3 description !")
-        return false;
-    }
+
     if (!double_regex.test($('#hotel_form_opt3_price').val())) {
         alert("Invalid option 3 price !")
         return false;
     }
 
-    if (!description_regex.test($('#hotel_form_opt1_description').val().trim())) {
-        alert("Invalid option 4 description !")
-        return false;
-    }
     if (!double_regex.test($('#hotel_form_opt4_price').val())) {
         alert("Invalid option 4 price !")
         return false;
@@ -327,7 +313,7 @@ $('#btn_save_hotel').on('click', (e) => {
     if (validateHotelData()) {
         console.log("validated -> hotel details");
         let hotel = {
-            id: $('#hotel_form_id').val(),
+            id: document.getElementById('hotel_form_id').textContent,
             name: $('#hotel_form_name').val(),
             geo_location: $('#hotel_form_iframe').val(),
             email: $('#hotel_form_email').val(),
@@ -338,26 +324,22 @@ $('#btn_save_hotel').on('click', (e) => {
             description: $('#hotel_form_description').val(),
             cancellation_criteria: $('#hotel_form_cancellation_criteria').val(),
             tax: $('#hotel_form_cancellation_tax').val(),
-            room_type_list: [{
-                name: $('#hotel_form_opt1_description').val(),
-                price: $('#hotel_form_opt1_price').val()
+            options_list: [{
+                description: $('#hotel_form_opt1_description').val(), price: $('#hotel_form_opt1_price').val()
             }, {
-                name: $('#hotel_form_opt2_description').val(),
-                price: $('#hotel_form_opt2_price').val()
+                description: $('#hotel_form_opt2_description').val(), price: $('#hotel_form_opt2_price').val()
             }, {
-                name: $('#hotel_form_opt3_description').val(),
-                price: $('#hotel_form_opt3_price').val()
+                description: $('#hotel_form_opt3_description').val(), price: $('#hotel_form_opt3_price').val()
             }, {
-                name: $('#hotel_form_opt4_description').val(),
-                price: $('#hotel_form_opt4_price').val()
+                description: $('#hotel_form_opt4_description').val(), price: $('#hotel_form_opt4_price').val()
             }],
         }
+
+        console.log(hotel)
         let promise = save_hotel(hotel);
-        promise.then(
-            (data) => {
-                alert("Hotel details saved successfully !")
-            }
-        ).catch((e) => {
+        promise.then((data) => {
+            alert("Hotel details saved successfully !")
+        }).catch((e) => {
             alert("Error in saving hotel details !")
         });
     }
