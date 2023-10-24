@@ -229,8 +229,6 @@ $(document).ready(() => {
 })
 
 // ---------------------------------------------------------------------------------------
-
-
 // save hotel ----------------------------------------------------------------------------
 
 function validateImages(imageInputIds) {
@@ -344,3 +342,15 @@ $('#btn_save_hotel').on('click', (e) => {
         });
     }
 });
+// ---------------------------------------------------------------------------------------
+// delete hotel --------------------------------------------------------------------------
+$('#btn_delete_hotel').on('click', (e) => {
+    e.preventDefault();
+    let id = document.getElementById('hotel_form_id').textContent;
+    let promise = delete_hotel(id);
+    promise.then((data) => {
+        alert("Hotel deleted successfully !")
+    }).catch((e) => {
+        alert("Error in deleting hotel !")
+    });
+}

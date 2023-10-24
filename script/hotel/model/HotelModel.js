@@ -59,3 +59,19 @@ export function save_hotel(hotel) {
         });
     })
 }
+//----------------------------------------------------------------------------------------------------
+// delete --------------------------------------------------------------------------------------------
+export function delete_hotel(hotel_id) {
+    return new Promise((resolve, reject) => {
+        let settings = {
+            "url": "http://localhost:8091/api/v1/hotel/delete/" + hotel_id,
+            "method": "DELETE",
+            "timeout": 0,
+        };
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            resolve(response);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            reject(errorThrown);
+        });
+    })
+}
