@@ -125,35 +125,31 @@
                 Vestibulum dui eget ultrices.</p>
         </div>
     </div>
-    <div class="row gy-4 row-cols-1 " style="display: flex; align-items: center; justify-content: space-around">
-        <div class="col w-75">
-            <div class="card">
+
+    <div class="row gy-4 row-cols-1 " id="hotel_card_list_section"
+         style="display: flex; align-items: center; justify-content: space-around">
+        <div class="col w-75 hotel_card">
+            <div class="card ">
                 <img class="card-img-top w-80 d-block fit-cover main_hotel_img"
                      src="https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1600"
                      style="height: 400px;"/>
                 <div class="card-body p-4 ">
                     <p class="text-primary card-text mb-0">Article</p>
-                    <h1 class="card-title hotel_name">Barn House
-                        <span class="fa fa-star size checked " style="font-size: 15px"></span>
-                        <span class="fa fa-star checked " style="font-size: 15px"></span>
-                        <span class="fa fa-star checked " style="font-size: 15px"></span>
-                        <span class="fa fa-star checked " style="font-size: 15px"></span>
-                        <span class="fa fa-star  " style="font-size: 15px"></span>
+                    <h1 class="card-title hotel_card_name">Barn House
+                        <span class="fa fa-star size checked hotel_card_star" style="font-size: 15px"></span>
+                        <span class="fa fa-star checked hotel_card_star" style="font-size: 15px"></span>
+                        <span class="fa fa-star checked hotel_card_star" style="font-size: 15px"></span>
+                        <span class="fa fa-star checked hotel_card_star" style="font-size: 15px"></span>
+                        <span class="fa fa-star hotel_card_star" style="font-size: 15px"></span>
                     </h1>
-                    <p class="card-text hotel_description">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                    <p class="card-text hotel_card_description">
+                        Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
                         justo odio, dapibus
-                        ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+                        ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
+                    </p>
 
                     <div class="d-flex col align-items-center justify-content-center">
-
-                        <!--<div class="bs-icon-sm bs-icon-rounded bs-icon-semi-white text-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon">
-                            <svg class="bi bi-geo-alt-fill" fill="currentColor" height="2em" viewBox="0 0 16 16"
-                                 width="2em" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
-                            </svg>
-                        </div>
-                        -->
-                        <div class="  me-3 w-25 rounded p-2"
+                        <div class="hotel_card_email  me-3 w-25 rounded p-2"
                              style=" flex-direction:column; display: flex; align-items: center; justify-content: space-around">
                             <div class=" bs-icon-sm bs-icon-rounded bs-icon-semi-white text-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon">
                                 <svg class="bi bi-telephone-fill" fill="currentColor" height="2em"
@@ -163,11 +159,12 @@
 
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center hotel_email">
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">
                                 barnhouse@gmail.com</p>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
-                        <div class=" me-3 w-25 rounded p-2"
+
+                        <div class="hotel_card_contact me-3 w-25 rounded p-2"
                              style=" flex-direction:column; display: flex; align-items: center; justify-content: space-around">
                             <div class=" bs-icon-sm bs-icon-rounded bs-icon-semi-white text-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon">
                                 <svg class="bi bi-telephone-fill" fill="currentColor" height="2em"
@@ -176,11 +173,12 @@
                                           fill-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center hotel_contact">+94 71
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">+94 71
                                 406 5987</p>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
-                        <div class=" me-3 w-25 rounded p-2"
+
+                        <div class=" me-3 w-25 rounded p-2 hotel_card_city"
                              style=" flex-direction:column; display: flex; align-items: center; justify-content: space-around">
                             <div class=" bs-icon-sm bs-icon-rounded bs-icon-semi-white text-primary d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-3 bs-icon">
                                 <svg class="bi bi-geo-alt fill" fill="currentColor" height="2em"
@@ -188,20 +186,21 @@
                                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                                 </svg>
                             </div>
-                            <a class="w-100 flex-row align-items-center fw-bold mb-0 text-center hotel_city" href="">Map
+                            <a class="w-100 flex-row align-items-center fw-bold mb-0 text-center " href="">City
                                 View </a>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
                     </div>
                 </div>
             </div>
-            <section>
-                <div class="hotel_cover" style="height: 300px; width: 100%">
+            <div>
+                <div class="hotel_card_iframe" style="height: 300px; width: 100%">
                     <iframe allowfullscreen=""
                             height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120829.49971584947!2d79.81427439432068!3d6.630824700903716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae248ca9dfd4817%3A0xfc624cac52678315!2sThe%20Barnhouse%20-%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1698046596175!5m2!1sen!2slk"
                             style="border:0;"
-                            width="100%"></iframe>
+                            width="100%">
+                    </iframe>
                 </div>
 
                 <div class="h-50 position-relative " style="top: -50px;">
@@ -209,20 +208,25 @@
                         <div class="col w-25 h-25 ">
                             <div class="card">
                                 <div class="card-body pt-5">
-                                    <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-3 bs-icon lg"
+                                    <div class="rounded-5 bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-5 bs-icon lg"
                                          style="top: 30px;">
                                         <svg class="bi bi-flag" fill="currentColor" height="1em"
                                              viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
                                         </svg>
                                     </div>
-                                    <h4 class="card-title">Option 1 </h4>
-                                    <h6 class="text-muted card-subtitle mb-2">Full Board with A/C Luxury Room –
-                                        Double</h6>
-                                    <p class="card-text"></p>
+                                    <div class="hotel_card_option">
+                                        <h4 class="mt-3 card-title hotel_card_option">Option 1 </h4>
+                                        <h6 class="text-muted card-subtitle mb-2 hotel_card_option_description">Full
+                                            Board with A/C Luxury Room –
+                                            Double</h6>
+                                        <p class="card-text"></p>
+                                    </div>
                                 </div>
-                                <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5 hotel_opt_1_price">60000 </strong>.00
+                                <div class="card-footer bg-light p-2">Rs.
+                                    <strong class="h5 hotel_opt_1_price">
+                                        60000
+                                    </strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -235,14 +239,14 @@
                         <div class="col w-25 ">
                             <div class="card">
                                 <div class="card-body pt-5">
-                                    <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-3 bs-icon lg"
+                                    <div class="rounded-5 bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-5 bs-icon lg"
                                          style="top: 30px;">
                                         <svg class="bi bi-flag" fill="currentColor" height="1em"
                                              viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
                                         </svg>
                                     </div>
-                                    <h4 class="card-title">Option 2</h4>
+                                    <h4 class=" mt-3 card-title">Option 2</h4>
                                     <h6 class="text-muted card-subtitle mb-2">Half Board with A/C Luxury Room -
                                         Double</h6>
                                     <!-- <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
@@ -262,14 +266,14 @@
                         <div class="col w-25 ">
                             <div class="card">
                                 <div class="card-body pt-5">
-                                    <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-3 bs-icon lg"
+                                    <div class="rounded-5 bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-5 bs-icon lg"
                                          style="top: 30px;">
                                         <svg class="bi bi-flag" fill="currentColor" height="1em"
                                              viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
                                         </svg>
                                     </div>
-                                    <h4 class="card-title">Option 3</h4>
+                                    <h4 class=" mt-3 card-title">Option 3</h4>
                                     <h6 class="text-muted card-subtitle mb-2">Full Board with A/C Luxury Room –
                                         Triple</h6>
                                     <!--<p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
@@ -289,14 +293,14 @@
                         <div class="col w-25 ">
                             <div class="card">
                                 <div class="card-body pt-5">
-                                    <div class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-3 bs-icon lg"
+                                    <div class="rounded-5 bs-icon-primary d-flex flex-shrink-0 justify-content-center align-items-center position-absolute mb-5 bs-icon lg"
                                          style="top: 30px;">
                                         <svg class="bi bi-flag" fill="currentColor" height="1em"
                                              viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
                                         </svg>
                                     </div>
-                                    <h4 class="card-title">Option 4</h4>
+                                    <h4 class="mt-3 card-title">Option 4</h4>
                                     <h6 class="text-muted card-subtitle mb-2">Half Board with A/C Luxury Room -
                                         Triple</h6>
                                     <!--<p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
@@ -316,11 +320,14 @@
 
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
         <hr>
     </div>
+
 </section>
+
+
 <section class="p-3 flex-column align-items-center" style="margin: 0 13.33vw 0 13.33vw">
     <div class="row border border-primary flex-row align-items-center justify-content-around">
         <h1 class="text-center text-capitalize">Hotel Manage form</h1>
@@ -829,7 +836,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </section>
 <section class=" rounded vh-80 p-3 flex-column align-items-center" style="margin: 75px 13.33vw 0 13.33vw">
     <form class="">
@@ -1009,6 +1016,7 @@
     });
 
 </script>
+<script src="../script/hotel/controller/HotelController.js" type="module"></script>
 </body>
 </html>
 
