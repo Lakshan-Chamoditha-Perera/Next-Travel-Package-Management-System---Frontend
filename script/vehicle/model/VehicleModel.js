@@ -1,6 +1,9 @@
 export function save_vehicle(vehicle) {
     return new Promise((resolve, reject) => {
-        const vehicleBlob = new Blob([JSON.stringify(vehicle)], {type: 'application/json'});
+        const vehicleBlob = new Blob(
+            [JSON.stringify(vehicle)],
+            {type: 'application/json'}
+        );
         let form = new FormData();
 
         form.append("vehicle", vehicleBlob);

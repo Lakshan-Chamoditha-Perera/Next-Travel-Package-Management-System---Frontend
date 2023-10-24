@@ -1,7 +1,14 @@
-import {getAll,getLastOngoingHotelId} from "../../hotel/model/HotelModel.js";
+import {getAll, getLastOngoingHotelId, save_hotel} from "../../hotel/model/HotelModel.js";
 
-function createHotelCard(data){
-const htmlElement = `<div class="col w-75 hotel_card">
+const hotel_name_regex = /^[a-zA-Z0-9\s]+$/;
+const iframe_regex = /<\s*iframe\s*(?:[^>]*)>/i;
+const email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const double_regex = /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
+const contact_num_regex = /^\d{10}$/;
+const description_regex = /^[a-zA-Z0-9\s]+$/
+
+function createHotelCard(data) {
+    const htmlElement = `<div class="col w-75 hotel_card">
             <div class="card ">
                 <img class="card-img-top w-80 d-block fit-cover main_hotel_img"
                      src="https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -190,7 +197,7 @@ const htmlElement = `<div class="col w-75 hotel_card">
         </div>`;
 }
 
-function loadHotelCardList(){
+function loadHotelCardList() {
     let promise = getAll();
     promise.then((data) => {
         console.log("array size: " + data.length)
@@ -203,9 +210,10 @@ function loadHotelCardList(){
         // alert(e.message);
     });
 }
+
 // ---------------------------------------------------------------------------------------
 // get hotel id --------------------------------------------------------------------------
-function getLastHotelId(){
+function getLastHotelId() {
     let promise = getLastOngoingHotelId();
     promise.then((data) => {
         console.log("last id: " + data)
@@ -214,8 +222,143 @@ function getLastHotelId(){
         alert("Error in getting hotel details !");
     });
 }
-// ---------------------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------------------
 $(document).ready(() => {
     getLastHotelId();
 })
+
+// ---------------------------------------------------------------------------------------
+
+
+// save hotel ----------------------------------------------------------------------------
+
+function validateImages(imageInputIds) {
+    const invalidImages = [];
+    imageInputIds.forEach(function (inputId) {
+        const fileInput = document.getElementById(inputId);
+        if (fileInput.files.length === 0) {
+            invalidImages.push(inputId);
+        }
+    });
+
+    if (invalidImages.length > 0) {
+        alert("The following images are invalid: " + invalidImages.join(", "));
+        return false;
+    }
+    return true;
+}
+
+function validateHotelData() {
+    if (!hotel_name_regex.test($('#hotel_form_name').val())) {
+        alert("Invalid hotel name !");
+        return false;
+    }
+    if (!$('#hotel_form_iframe').val().match(iframe_regex)) {
+        alert("Invalid iframe !");
+        return false;
+    }
+    if (!email_regex.test($('#hotel_form_email').val())) {
+        alert("Invalid email !")
+        return false;
+    }
+    if (!contact_num_regex.test($('#hotel_form_contact').val())) {
+        alert("Invalid contact number !")
+        return false;
+    }
+    if (!hotel_name_regex.test($('#hotel_form_location').val())) {
+        alert("Invalid location !")
+        return false;
+    }
+    if (!($('#hotel_form_star_rate').val() >= 1 && $('#hotel_form_star_rate').val() <= 5)) {
+        alert("Invalid star rate!")
+        return false;
+    }
+
+    if ($("input[name='pets-allowed-group']:checked").val() == null) {
+        alert("Invalid pets allowed !")
+        return false;
+    }
+    if (!double_regex.test($('#hotel_form_cancellation_tax').val())) {
+        alert("Invalid cancellation tax !")
+        return false;
+    }
+
+    if (!description_regex.test($('#hotel_form_opt1_description').val().trim())) {
+        alert("Invalid option 1 description !")
+        return false;
+    }
+    if (!double_regex.test($('#hotel_form_opt1_price').val())) {
+        alert("Invalid option 1 price !")
+        return false;
+    }
+
+    if (!description_regex.test($('#hotel_form_opt2_description').val().trim())) {
+        alert("Invalid option 2 description !")
+        return false;
+    }
+    if (!double_regex.test($('#hotel_form_opt2_price').val())) {
+        alert("Invalid option 2 price !")
+        return false;
+    }
+
+    if (!description_regex.test($('#hotel_form_opt3_description').val().trim())) {
+        alert("Invalid option 3 description !")
+        return false;
+    }
+    if (!double_regex.test($('#hotel_form_opt3_price').val())) {
+        alert("Invalid option 3 price !")
+        return false;
+    }
+
+    if (!description_regex.test($('#hotel_form_opt1_description').val().trim())) {
+        alert("Invalid option 4 description !")
+        return false;
+    }
+    if (!double_regex.test($('#hotel_form_opt4_price').val())) {
+        alert("Invalid option 4 price !")
+        return false;
+    }
+    return validateImages(["hotel_form_img_1", "hotel_form_img_2", "hotel_form_img_3", "hotel_form_img_4",]);
+}
+
+$('#btn_save_hotel').on('click', (e) => {
+    e.preventDefault();
+    if (validateHotelData()) {
+        console.log("validated -> hotel details");
+        let hotel = {
+            id: $('#hotel_form_id').val(),
+            name: $('#hotel_form_name').val(),
+            geo_location: $('#hotel_form_iframe').val(),
+            email: $('#hotel_form_email').val(),
+            contact_list: $('#hotel_form_contact').val(),
+            location: $('#hotel_form_location').val(),
+            star_rate: $('#hotel_form_star_rate').val(),
+            is_pet_allowed: $("input[name='pets-allowed-group']:checked").val(),
+            description: $('#hotel_form_description').val(),
+            cancellation_criteria: $('#hotel_form_cancellation_criteria').val(),
+            tax: $('#hotel_form_cancellation_tax').val(),
+            room_type_list: [{
+                name: $('#hotel_form_opt1_description').val(),
+                price: $('#hotel_form_opt1_price').val()
+            }, {
+                name: $('#hotel_form_opt2_description').val(),
+                price: $('#hotel_form_opt2_price').val()
+            }, {
+                name: $('#hotel_form_opt3_description').val(),
+                price: $('#hotel_form_opt3_price').val()
+            }, {
+                name: $('#hotel_form_opt4_description').val(),
+                price: $('#hotel_form_opt4_price').val()
+            }],
+        }
+        let promise = save_hotel(hotel);
+        promise.then(
+            (data) => {
+                alert("Hotel details saved successfully !")
+            }
+        ).catch((e) => {
+            alert("Error in saving hotel details !")
+        });
+    }
+});

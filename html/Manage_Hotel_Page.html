@@ -195,11 +195,9 @@
             </div>
             <div>
                 <div class="hotel_card_iframe" style="height: 300px; width: 100%">
-                    <iframe allowfullscreen=""
-                            height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120829.49971584947!2d79.81427439432068!3d6.630824700903716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae248ca9dfd4817%3A0xfc624cac52678315!2sThe%20Barnhouse%20-%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1698046596175!5m2!1sen!2slk"
-                            style="border:0;"
-                            width="100%">
+                    <iframe allowfullscreen="" class="h-100 w-100"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120829.49971584947!2d79.81427439432068!3d6.630824700903716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae248ca9dfd4817%3A0xfc624cac52678315!2sThe%20Barnhouse%20-%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1698046596175!5m2!1sen!2slk">
                     </iframe>
                 </div>
 
@@ -353,29 +351,32 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <p><strong>Hotel Name</strong><span class="text-danger">*</span></p>
-                        <input class="form-control" name placeholder="Turyaa Hotel" required type="text"/>
+                        <input class="form-control" id="hotel_form_name" name placeholder="Turyaa Hotel" required
+                               type="text"/>
                     </div>
                     <div class="col">
-                        <p><strong>Location URL</strong><span class="text-danger">*</span></p>
-                        <input class="form-control" name placeholder="https://maps.app.goo.gl/oyXxepVDGwk7T9Gu5"
-                               required
-                               type="url"/>
+                        <p><strong>Location iframe</strong><span class="text-danger">*</span></p>
+                        <input class="form-control" id="hotel_form_iframe" name
+                               placeholder="https://maps.app.goo.gl/oyXxepVDGwk7T9Gu5"
+                               required type="text"/>
                     </div>
                 </div>
             </div>
             <div class="form-group m-3">
                 <p><strong>Email </strong><span class="text-danger">*</span></p>
-                <input class="form-control" name placeholder="user@domain.com" type="email"/>
+                <input class="form-control" id="hotel_form_email" name placeholder="user@domain.com" type="email"/>
             </div>
             <div class="form-group m-3">
                 <div class="row">
                     <div class="col">
                         <p><strong>Contact Number </strong><span class="text-danger">*</span></p>
-                        <input class="form-control" name placeholder="077 77 77 7777" type="number"/>
+                        <input class="form-control" id="hotel_form_contact" name placeholder="077 77 77 7777"
+                               type="number"/>
                     </div>
                     <div class="col">
                         <p><strong>City <span class="text-danger">*</span></strong></p>
-                        <input class="form-control" name placeholder="Panadura" required type="text"/>
+                        <input class="form-control" id="hotel_form_location" name placeholder="Panadura" required
+                               type="text"/>
                     </div>
                 </div>
             </div>
@@ -383,7 +384,8 @@
                 <div class="row">
                     <div class="col">
                         <p><strong>Star Rate <span class="text-danger">*</span></strong></p>
-                        <input class="form-control" max="5" min="0" name placeholder="range 0 - 5" required
+                        <input class="form-control" id="hotel_form_star_rate" max="5" min="0" name
+                               placeholder="range 0 - 5" required
                                type="number"/>
                     </div>
                     <div class="col">
@@ -421,7 +423,7 @@
                                   type="text">
                         </textarea>
                         <label>Tax: </label>
-                        <input class="form-control" id="cancellation_tax" max="100" min="0"
+                        <input class="form-control" id="hotel_form_cancellation_tax" max="100" min="0"
                                name placeholder="50%" required type="number"/>
                     </div>
                 </div>
@@ -430,36 +432,38 @@
                 <div class="row">
                     <div class="col">
                         <p><strong>Option 1 <span class="text-danger">*</span></strong></p>
-                        <input class="form-control mb-3" id="opt1_description"
+                        <input class="form-control mb-3" id="hotel_form_opt1_description"
                                placeholder="Full Board with A/C Luxury Room – Double" required type="text">
                         </input>
-                        <input class="form-control" id="opt1_price" min="0" placeholder="10000.00" required
+                        <input class="form-control" id="hotel_form_opt1_price" min="0" placeholder="10000.00" required
                                type="number"/>
                     </div>
                     <div class="col">
                         <p><strong>Option 2 <span class="text-danger">*</span></strong></p>
-                        <input class="form-control mb-3" id="opt2_description"
+                        <input class="form-control mb-3" id="hotel_form_opt2_description"
                                placeholder="Half Board with A/C Luxury Room -
                                         Double" required
-                               type="number">
-                        <input class="form-control" id="opt2_price" min="0" name placeholder="10000.00" required
+                               type="text">
+                        <input class="form-control" id="hotel_form_opt2_price" min="0" name placeholder="10000.00"
+                               required
                                type="number"/>
                     </div>
                     <div class="col">
                         <p><strong>Option 3 <span class="text-danger">*</span></strong></p>
-                        <input class="form-control mb-3" id="opt3_description" name
-                               placeholder="Full Board with A/C Luxury Room –
-                                        Triple" required
-                               type="number">
-                        <input class="form-control" id="opt3_price" min="0" name placeholder="10000.00" required
+                        <input class="form-control mb-3" id="hotel_form_opt3_description" name
+                               placeholder="Full Board with A/C Luxury Room – Triple" required
+                               type="text">
+                        <input class="form-control" id="hotel_form_opt3_price" min="0" name placeholder="10000.00"
+                               required
                                type="number"/>
                     </div>
                     <div class="col">
                         <p><strong>Option 4 <span class="text-danger">*</span></strong></p>
-                        <input class="form-control mb-3" id="opt4_description" min="0" name
+                        <input class="form-control mb-3" id="hotel_form_opt4_description" min="0" name
                                placeholder="Half Board with A/C Luxury Room - Triple" required
-                               type="number">
-                        <input class="form-control" id="opt4_price" min="0" name placeholder="10000.00" required
+                               type="text">
+                        <input class="form-control" id="hotel_form_opt4_price" min="0" name placeholder="10000.00"
+                               required
                                type="number"/>
                     </div>
                 </div>
@@ -470,7 +474,7 @@
                     <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
                     <div class="file">
                         <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
-                            <input class="form-control border-0" id="hotel_img_1" type="file"/>
+                            <input class="form-control border-0" id="hotel_form_img_1" type="file"/>
                             <div class="input-group-append">
                                 <label class="btn btn-light m-0 rounded-pill px-4">
                                     <i class="fa fa-cloud-upload mr-2 text-muted"></i>
@@ -495,7 +499,7 @@
                     <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
                     <div class="file">
                         <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
-                            <input class="form-control border-0" id="hotel_img_2" type="file"/>
+                            <input class="form-control border-0" id="hotel_form_img_2" type="file"/>
                             <div class="input-group-append">
                                 <label class="btn btn-light m-0 rounded-pill px-4">
                                     <i class="fa fa-cloud-upload mr-2 text-muted"></i>
@@ -520,7 +524,7 @@
                     <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
                     <div class="file">
                         <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
-                            <input class="form-control border-0" id="hotel_img_3" type="file"/>
+                            <input class="form-control border-0" id="hotel_form_img_3" type="file"/>
                             <div class="input-group-append">
                                 <label class="btn btn-light m-0 rounded-pill px-4">
                                     <i class="fa fa-cloud-upload mr-2 text-muted"></i>
@@ -545,7 +549,7 @@
                     <p><strong>Hotel Image</strong><span class="text-danger">*</span></p>
                     <div class="file">
                         <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm ">
-                            <input class="form-control border-0" id="hotel_img_4" type="file"/>
+                            <input class="form-control border-0" id="hotel_form_img_4" type="file"/>
                             <div class="input-group-append">
                                 <label class="btn btn-light m-0 rounded-pill px-4">
                                     <i class="fa fa-cloud-upload mr-2 text-muted"></i>
@@ -1014,6 +1018,7 @@
             });
         });
     });
+
 
 </script>
 <script src="../script/hotel/controller/HotelController.js" type="module"></script>
