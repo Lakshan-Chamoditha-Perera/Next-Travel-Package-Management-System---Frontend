@@ -203,7 +203,8 @@ function loadHotelCardList(){
         // alert(e.message);
     });
 }
-
+// ---------------------------------------------------------------------------------------
+// get hotel id --------------------------------------------------------------------------
 function getLastHotelId(){
     let promise = getLastOngoingHotelId();
     promise.then((data) => {
@@ -213,7 +214,7 @@ function getLastHotelId(){
         alert("Error in getting hotel details !");
     });
 }
-
+// ---------------------------------------------------------------------------------------
 
 $(document).ready(() => {
     getLastHotelId();
