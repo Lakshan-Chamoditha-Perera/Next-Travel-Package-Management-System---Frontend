@@ -59,14 +59,18 @@ export function save_hotel(hotel) {
         });
     })
 }
+
 //----------------------------------------------------------------------------------------------------
 // delete --------------------------------------------------------------------------------------------
 export function delete_hotel(hotel_id) {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8091/api/v1/hotel/delete/" + hotel_id,
+            "url": "http://localhost:8091/api/v1/hotel/delete",
             "method": "DELETE",
             "timeout": 0,
+            "headers": {
+                "id": hotel_id
+            },
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
             resolve(response);
@@ -75,16 +79,14 @@ export function delete_hotel(hotel_id) {
         });
     })
 }
+
 //----------------------------------------------------------------------------------------------------
 // get -----------------------------------------------------------------------------------------------
 
 export function get_hotel(hotel_id) {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8091/api/v1/hotel/get",
-            "method": "GET",
-            "timeout": 0,
-            "headers": {
+            "url": "http://localhost:8091/api/v1/hotel/get", "method": "GET", "timeout": 0, "headers": {
                 "id": hotel_id,
             },
         };
