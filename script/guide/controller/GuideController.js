@@ -8,8 +8,8 @@ const contact_number = /^\d{10}$/;
 const address_pattern = /^\d+\s[A-z\s]+\s[A-z\s]+\s\d{5}(-\d{4})?$/
 
 // -----------------------------------------------------------------------------------------
-// get last ongoing vehicle id -------------------------------------------------------------
-function getLastVehicleId() {
+// get last ongoing guide id -------------------------------------------------------------
+function loadLastGuideId() {
     let promise = getLastGuideId();
     promise.then((data) => {
         console.log(data);
@@ -150,7 +150,7 @@ $(document).ready(() => {
 
         document.getElementsByClassName('guide_grid_container')[0].innerHTML += elementHTML;
     });
-    getLastVehicleId();
+    loadLastGuideId();
 })
 
 // -----------------------------------------------------------------------------------------

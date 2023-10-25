@@ -1,4 +1,4 @@
-import {getAll, getLastOngoingHotelId, save_hotel} from "../../hotel/model/HotelModel.js";
+import {delete_hotel, get_hotel, getAll, getLastOngoingHotelId, save_hotel} from "../../hotel/model/HotelModel.js";
 
 const hotel_name_regex = /^[a-zA-Z0-9\s]+$/;
 const iframe_regex = /<\s*iframe\s*(?:[^>]*)>/i;
@@ -6,6 +6,7 @@ const email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const double_regex = /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
 const contact_num_regex = /^\d{10}$/;
 const description_regex = /^[a-zA-Z0-9\s]+$/
+const hotel_id_regex = /^H\d{3,}$/;
 
 function createHotelCard(data) {
     const htmlElement = `<div class="col w-75 hotel_card">
@@ -353,4 +354,58 @@ $('#btn_delete_hotel').on('click', (e) => {
     }).catch((e) => {
         alert("Error in deleting hotel !")
     });
-}
+});
+
+// ---------------------------------------------------------------------------------------
+// get hotel -----------------------------------------------------------------------------
+
+$('#btn_search').on('click', (e) => {
+    e.preventDefault();
+    if (hotel_id_regex.test($('#txt_search_hotel').val())) {
+        let promise = get_hotel($('#txt_search_hotel').val());
+        promise.then((data) => {
+            Swal.fire({
+                icon: 'success', title: 'Done', text: 'Hotel details loaded successfully !'
+            })
+            console.log(data)
+
+            document.getElementById('hotel_form_id').textContent = data.id;
+            $('#hotel_form_name').val(data.name);
+            $('#hotel_form_iframe').val(data.geo_location);
+            $('#hotel_form_email').val(data.email);
+            $('#hotel_form_contact').val(data.contact);
+            $('#hotel_form_location').val(data.location);
+            $('#hotel_form_star_rate').val(data.star_rate);
+            $("input[name='pets-allowed-group'][value='" + data.is_pet_allowed + "']").prop('checked', true);
+            $('#hotel_form_description').val(data.description);
+            $('#hotel_form_cancellation_criteria').val(data.cancellation_criteria);
+            $('#hotel_form_cancellation_tax').val(data.tax);
+
+            $('#hotel_form_opt1_description').val(data.options_list[0].description);
+            $('#hotel_form_opt1_price').val(data.options_list[0].price);
+
+            $('#hotel_form_opt2_description').val(data.options_list[1].description);
+            $('#hotel_form_opt2_price').val(data.options_list[1].price);
+
+            $('#hotel_form_opt3_description').val(data.options_list[2].description);
+            $('#hotel_form_opt3_price').val(data.options_list[2].price);
+
+            $('#hotel_form_opt4_description').val(data.options_list[3].description);
+            $('#hotel_form_opt4_price').val(data.options_list[3].price);
+
+
+            // createHotelCard(data);
+        }).catch((e) => {
+            Swal.fire({
+                icon: 'error', title: e.data, text: 'Hotel not found !'
+            })
+        });
+    } else {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Invalid hotel id !', // footer: '<a href="">Why do I have this issue?</a>'
+        })
+    }
+});
