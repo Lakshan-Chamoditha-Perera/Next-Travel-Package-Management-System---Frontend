@@ -337,11 +337,7 @@ $('#btn_save_hotel').on('click', (e) => {
         console.log(hotel)
         let promise = save_hotel(hotel);
         promise.then((data) => {
-            Swal.fire(
-                'Good job!',
-                'Hotel details saved successfully !',
-                'success'
-            )
+            Swal.fire('Good job!', 'Hotel details saved successfully !', 'success')
             // alert("Hotel details saved successfully !")
         }).catch((e) => {
             alert("Error in saving hotel details !")
@@ -406,9 +402,7 @@ $('#btn_search').on('click', (e) => {
         });
     } else {
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Invalid hotel id !', // footer: '<a href="">Why do I have this issue?</a>'
+            icon: 'error', title: 'Oops...', text: 'Invalid hotel id !', // footer: '<a href="">Why do I have this issue?</a>'
         })
     }
 });
