@@ -337,7 +337,12 @@ $('#btn_save_hotel').on('click', (e) => {
         console.log(hotel)
         let promise = save_hotel(hotel);
         promise.then((data) => {
-            alert("Hotel details saved successfully !")
+            Swal.fire(
+                'Good job!',
+                'Hotel details saved successfully !',
+                'success'
+            )
+            // alert("Hotel details saved successfully !")
         }).catch((e) => {
             alert("Error in saving hotel details !")
         });
@@ -365,10 +370,10 @@ $('#btn_search').on('click', (e) => {
         let promise = get_hotel($('#txt_search_hotel').val());
         promise.then((data) => {
             Swal.fire({
-                icon: 'success', title: 'Done', text: 'Hotel details loaded successfully !'
+                icon: 'success', title: 'Hotel Found', text: 'Hotel details loaded successfully !'
             })
-            console.log(data)
 
+            console.log(data)
             document.getElementById('hotel_form_id').textContent = data.id;
             $('#hotel_form_name').val(data.name);
             $('#hotel_form_iframe').val(data.geo_location);
