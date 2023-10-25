@@ -1,10 +1,5 @@
 import {
-    delete_hotel,
-    get_hotel,
-    getAll,
-    getLastOngoingHotelId,
-    save_hotel,
-    update_hotel
+    delete_hotel, get_hotel, getAll, getLastOngoingHotelId, save_hotel, update_hotel
 } from "../../hotel/model/HotelModel.js";
 
 const hotel_name_regex = /^[a-zA-Z0-9\s]+$/;
@@ -16,14 +11,15 @@ const description_regex = /^[a-zA-Z0-9\s]+$/
 const hotel_id_regex = /^H\d{3,}$/;
 
 function createHotelCard(data) {
+
     const htmlElement = `<div class="col w-75 hotel_card">
             <div class="card ">
                 <img class="card-img-top w-80 d-block fit-cover main_hotel_img"
-                     src="https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                     src="data:image/png;base64,${data.image_list[0]}"
                      style="height: 400px;"/>
                 <div class="card-body p-4 ">
-                    <p class="text-primary card-text mb-0">Article</p>
-                    <h1 class="card-title hotel_card_name">${data.name}</h1>
+                    <p class="text-primary card-text mb-0">${data.id}</p>
+                    <h1 class="card-title hotel_card_name">${data.name}
                         <span class="fa fa-star size checked hotel_card_star" style="font-size: 15px"></span>
                         <span class="fa fa-star checked hotel_card_star" style="font-size: 15px"></span>
                         <span class="fa fa-star checked hotel_card_star" style="font-size: 15px"></span>
@@ -31,7 +27,9 @@ function createHotelCard(data) {
                         <span class="fa fa-star hotel_card_star" style="font-size: 15px"></span>
                     </h1>
                     <p class="card-text hotel_card_description">
-                        ${data.description}
+                        Nullam id dolor id nibh ultricies vehicula ut id elit. Cras
+                        justo odio, dapibus
+                        ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.
                     </p>
 
                     <div class="d-flex col align-items-center justify-content-center">
@@ -42,10 +40,10 @@ function createHotelCard(data) {
                                      viewBox="0 0 16 16" width="2em" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.5 8.5V3.707l.854-.853A.5.5 0 0 0 11.5 2.5v-2A.5.5 0 0 0 11 0H9.5a.5.5 0 0 0-.5.5v8h1.5Z"/>
                                     <path d="M4 3h4v1H6.646A3.99 3.99 0 0 1 8 7v6h7V7a3 3 0 0 0-3-3V3a4 4 0 0 1 4 4v6a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V7a4 4 0 0 1 4-4Zm.585 4.157C4.836 7.264 5 7.334 5 7a1 1 0 0 0-2 0c0 .334.164.264.415.157C3.58 7.087 3.782 7 4 7c.218 0 .42.086.585.157Z"/>
+
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">
-                                 ${data.email}</p>
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">${data.email}</p>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
 
@@ -58,7 +56,7 @@ function createHotelCard(data) {
                                           fill-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">${data.contact_list[0]}</p>
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">${data.contact}</p>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
 
@@ -70,7 +68,7 @@ function createHotelCard(data) {
                                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                                 </svg>
                             </div>
-                            <a class="w-100 flex-row align-items-center fw-bold mb-0 text-center " href="">${data.location} </a>
+                            <a class="w-100 flex-row align-items-center fw-bold mb-0 text-center " href="">${data.location}</a>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
                     </div>
@@ -78,12 +76,11 @@ function createHotelCard(data) {
             </div>
             <div>
                 <div class="hotel_card_iframe" style="height: 300px; width: 100%">
-                    <iframe allowfullscreen=""
-                            height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                            src="${data.geo_location}"
-                            style="border:0;"
-                            width="100%">
-                    </iframe>
+                    <!--<iframe allowfullscreen="" 
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120829.49971584947!2d79.81427439432068!3d6.630824700903716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae248ca9dfd4817%3A0xfc624cac52678315!2sThe%20Barnhouse%20-%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1698046596175!5m2!1sen!2slk">
+                    </iframe>-->
+                    ${data.geo_location}
                 </div>
 
                 <div class="h-50 position-relative " style="top: -50px;">
@@ -100,14 +97,14 @@ function createHotelCard(data) {
                                     </div>
                                     <div class="hotel_card_option">
                                         <h4 class="mt-3 card-title hotel_card_option">Option 1 </h4>
-                                        <h6 class="text-muted card-subtitle mb-2 hotel_card_option_description">${data.room_type_price[0]}</h6>
+                                        <h6 class="text-muted card-subtitle mb-2 hotel_card_option_description">Full
+                                            Board with A/C Luxury Room –
+                                            Double</h6>
                                         <p class="card-text"></p>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-light p-2">Rs.
-                                    <strong class="h5 hotel_opt_1_price">
-                                        ${data.room_type_price[0].room_type_price}
-                                    </strong>
+                                    <strong class="h5 hotel_opt_1_price">${data.options_list[0].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -135,7 +132,7 @@ function createHotelCard(data) {
                                          porta gravida at eget metus.</p>-->
                                 </div>
                                 <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5 hotel_opt_2_price">60000 </strong>.00
+                                    <strong class="h5 hotel_opt_2_price">${data.options_list[1].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -162,7 +159,7 @@ function createHotelCard(data) {
                                         porta gravida at eget metus.</p>-->
                                 </div>
                                 <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5 hotel_opt_3_price">60000 </strong>.00
+                                    <strong class="h5 hotel_opt_3_price">${data.options_list[2].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -189,7 +186,7 @@ function createHotelCard(data) {
                                         porta gravida at eget metus.</p>-->
                                 </div>
                                 <div class="card-footer bg-primary p-2 ">Rs.
-                                    <strong class="h5 hotel_opt_4_price">60000 </strong>.00
+                                    <strong class="h5 hotel_opt_4_price">${data.options_list[3].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
@@ -202,7 +199,19 @@ function createHotelCard(data) {
                     </div>
                 </div>
             </div>
-        </div>`;
+        </div>
+        <hr>`;
+
+    document.getElementById('hotel_card_list_section').innerHTML += htmlElement;
+
+    /*let statList = document.querySelector("card-title hotel_card_name star_list");
+
+
+    for (let i = 0; i < data.star_rate; i++) {
+        statList[statList.length - 1].getElementsByClassName('hotel_card_star')[i].addClass('checked');
+    }*/
+
+
 }
 
 function loadHotelCardList() {
@@ -234,11 +243,11 @@ function getLastHotelId() {
 // ---------------------------------------------------------------------------------------
 $(document).ready(() => {
     getLastHotelId();
+    loadHotelCardList();
 })
 
 // ---------------------------------------------------------------------------------------
 // save hotel ----------------------------------------------------------------------------
-
 function validateImages(imageInputIds) {
     const invalidImages = [];
     imageInputIds.forEach(function (inputId) {
@@ -454,7 +463,7 @@ $('#btn_update_hotel').on('click', (e) => {
                 })
             });
         }
-    }else{
+    } else {
         Swal.fire({
             icon: 'error', title: 'Oops...', text: 'Invalid hotel id !', // footer: '<a href="">Why do I have this issue?</a>'
         })

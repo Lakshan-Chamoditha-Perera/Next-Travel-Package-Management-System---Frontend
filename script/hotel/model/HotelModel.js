@@ -1,10 +1,11 @@
+// ---------------------------------------------------------------------------------------------------
+// get all -------------------------------------------------------------------------------------------
 export function getAll() {
     return new Promise((resolve, reject) => {
         let settings = {
             "url": "http://localhost:8091/api/v1/hotel/getAll", "method": "GET", "timeout": 0,
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
-            console.log("success")
             resolve(response);
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown)
@@ -13,7 +14,8 @@ export function getAll() {
     })
 }
 
-
+// ---------------------------------------------------------------------------------------------------
+// get new id ----------------------------------------------------------------------------------------
 export function getLastOngoingHotelId() {
     return new Promise((resolve, reject) => {
         let settings = {
@@ -22,12 +24,13 @@ export function getLastOngoingHotelId() {
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
             resolve(response);
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown)
             reject(errorThrown);
         });
     })
 }
 
+// ---------------------------------------------------------------------------------------------------
+// save ----------------------------------------------------------------------------------------------
 export function save_hotel(hotel) {
     console.log(hotel)
     return new Promise((resolve, reject) => {
