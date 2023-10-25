@@ -406,7 +406,6 @@ $('#btn_search').on('click', (e) => {
             })
         });
     } else {
-
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
