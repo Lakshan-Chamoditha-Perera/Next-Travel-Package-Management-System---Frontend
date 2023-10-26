@@ -8,6 +8,15 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet">
     <link href="../assets/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .img_collection > img {
+            width: 23%;
+            height: 70px;
+            border: 2px solid #0b5ed7;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -413,15 +422,16 @@
                                         <h2>Villa grand</h2>
                                     </h6>
                                 </div>
-                                <div class="row border flex-row justify-content-center"  >
-                                    <div class="flex align-content-center py-md-5 w-50" style="display: flex; align-items: center; justify-content: space-around">
+                                <div class="row border flex-row justify-content-center">
+                                    <div class="flex align-content-center py-md-5 w-50"
+                                         style="display: flex; align-items: center; justify-content: space-around">
                                         <div class="card p-4">
                                             <img alt="product-image" class="card-img"
                                                  src="https://www.stryx.com/cdn/shop/articles/man-looking-attractive.jpg?v=1666662774">
                                             <div class="flex-row px-2 space-between w-full mb-sm">
                                                 <p class="category">${data.id}</p>
                                             </div>
-                                            <h1 class="product-name" >${data.name} </h1>
+                                            <h1 class="product-name">${data.name} </h1>
                                             <div class="flex-row">
                                                 <p class="price strike">Man day value</p>
                                                 <p class="price">Rs. ${data.man_day_value}</p>
@@ -431,11 +441,153 @@
                                                 <p class="price">${data.contact_number}</p>
                                             </div>
                                             <div class="row justify-content-end d-flex">
-                                                <button class="btn btn-primary rounded me-3  col-xl-4 btn-sm" type="submit">Select
+                                                <button class="btn btn-primary rounded me-3  col-xl-4 btn-sm"
+                                                        type="submit">Select
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row my-4" id="vehicle_details_container">
+                                <fieldset>
+                                    <legend>Need vehicle ?</legend>
+                                    <div class="custom-control custom-radio">
+                                        <input checked class="custom-control-input" id="vehicle_radio1"
+                                               name="vehicle_radio" type="radio"/>
+                                        <label class="form-label custom-control-label"
+                                               for="customRadio1">Yes</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input class="custom-control-input" id="vehicle_radio2" name="vehicle_radio"
+                                               type="radio"/>
+                                        <label class="form-label custom-control-label" for="customRadio2">No</label>
+                                    </div>
+                                </fieldset>
+                                <h2>Vehicle List</h2>
+                                <div class="row" id="category_list">
+                                    <div class="col d-flex border-primary border align-items-center border-primary flex-row ">
+                                        <div class="dropdown col-xl-3 p-2 ">
+                                            <button aria-expanded="false" aria-required="true"
+                                                    class=" btn btn btn-dark" data-bs-toggle="dropdown"
+                                                    dropdown-toggle
+                                                    type="button">
+                                                Select Category
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item">First Item</a>
+                                                <a class="dropdown-item">Second Item</a>
+                                                <a class="dropdown-item">Third Item</a>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown   col-xl-3 p-2 ">
+                                            <button aria-expanded="false" aria-required="true"
+                                                    class=" btn btn-primary dropdown-toggle"
+                                                    data-bs-toggle="dropdown"
+                                                    type="button">
+                                                Select Guide
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item">First Item</a>
+                                                <a class="dropdown-item">Second Item</a>
+                                                <a class="dropdown-item">Third Item</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row border flex-row justify-content-center">
+                                    <div class="flex align-content-center py-md-5 w-50"
+                                         style="display: flex; align-items: center; justify-content: space-around">
+                                        <div class="card p-3">
+                                            <img alt="product-image" class="card-img"
+                                                 src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
+                                            <div class="flex-row img_collection space-between">
+                                                <img class="vehicle_images"
+                                                     src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
+                                                <img class="vehicle_images"
+                                                     src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
+                                                <img class="vehicle_images"
+                                                     src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
+                                                <img class="vehicle_images"
+                                                     src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
+                                            </div>
+                                            <div class="flex-row space-between w-full mb-sm">
+                                                <p class="category">${data.id}</p>
+                                            </div>
+                                            <h1 class="product-name">${data.brand} </h1>
+                                            <div class="flex-row">
+                                                <p class="price strike">per day value</p>
+                                                <p class="price">Rs. ${data.fee_per_day}</p>
+                                            </div>
+                                            <div class="flex-row">
+                                                <p class="price strike">per day km</p>
+                                                <p class="price">Rs. ${data.fee_per_km}</p>
+                                            </div>
+                                            <div class="flex-row">
+                                                <p class="price strike">Fuel type</p>
+                                                <p class="price"><span>${data.fuel_type}</span></p>
+                                            </div>
+                                            <div class="flex-row">
+                                                <p class="price strike">Seat capacity</p>
+                                                <p class="price"><span>${data.seat_capacity}</span></p>
+                                            </div>
+                                            <div class="row justify-content-end d-flex">
+                                                <button class="btn btn-primary rounded me-3  col-xl-4 btn-sm"
+                                                        type="submit">Select
+                                                </button>
+                                            </div>
+                                            <!--            <div class="btn-col">-->
+                                            <!--                <a class="icon-link" href="#">View</a>-->
+                                            <!--            </div>-->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row border flex-row justify-content-center">
+                                    <div class="row my-2 card shadow">
+                                        <div class="card-header rounded-bottom-3 py-3">
+                                            <p class="text-primary h3 fw-bold">Cart</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <div aria-describedby="dataTable_info" class="table-responsive table mt-2">
+                                                <table class="table my-0" id="vehicle_data_table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Model</th>
+                                                        <th>Per km price</th>
+                                                        <th> Per Day Price</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>V001</td>
+                                                        <td>CHR</td>
+                                                        <td>1200</td>
+                                                        <td>1200</td>
+                                                    </tr>
+
+                                                    </tbody>
+
+                                                    <tfoot>
+                                                    <tr>
+                                                        <h2>
+                                                            Total :
+                                                            <strong id="vehicle_total">
+                                                            25000
+                                                            </strong>
+                                                        </h2>
+                                                    </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
