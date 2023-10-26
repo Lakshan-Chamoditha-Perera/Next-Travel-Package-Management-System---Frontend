@@ -11,7 +11,6 @@ const description_regex = /^[a-zA-Z0-9\s]+$/
 const hotel_id_regex = /^H\d{3,}$/;
 
 function createHotelCard(data) {
-
     const htmlElement = `<div class="col w-75 hotel_card">
             <div class="card ">
                 <img class="card-img-top w-80 d-block fit-cover main_hotel_img"
@@ -201,17 +200,12 @@ function createHotelCard(data) {
             </div>
         </div>
         <hr>`;
-
     document.getElementById('hotel_card_list_section').innerHTML += htmlElement;
 
     /*let statList = document.querySelector("card-title hotel_card_name star_list");
-
-
     for (let i = 0; i < data.star_rate; i++) {
         statList[statList.length - 1].getElementsByClassName('hotel_card_star')[i].addClass('checked');
     }*/
-
-
 }
 
 function loadHotelCardList() {
@@ -239,12 +233,6 @@ function getLastHotelId() {
         alert("Error in getting hotel details !");
     });
 }
-
-// ---------------------------------------------------------------------------------------
-$(document).ready(() => {
-    getLastHotelId();
-    loadHotelCardList();
-})
 
 // ---------------------------------------------------------------------------------------
 // save hotel ----------------------------------------------------------------------------
@@ -468,4 +456,10 @@ $('#btn_update_hotel').on('click', (e) => {
             icon: 'error', title: 'Oops...', text: 'Invalid hotel id !', // footer: '<a href="">Why do I have this issue?</a>'
         })
     }
+})
+
+// ---------------------------------------------------------------------------------------
+$(document).ready(() => {
+    getLastHotelId();
+    loadHotelCardList();
 })
