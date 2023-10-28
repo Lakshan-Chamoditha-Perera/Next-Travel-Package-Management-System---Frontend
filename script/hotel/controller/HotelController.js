@@ -1,5 +1,5 @@
 import {
-    delete_hotel, get_hotel, getAll, getLastOngoingHotelId, save_hotel, update_hotel
+    delete_hotel, get_hotel, getHotelList, getLastOngoingHotelId, save_hotel, update_hotel
 } from "../../hotel/model/HotelModel.js";
 
 const hotel_name_regex = /^[a-zA-Z0-9\s]+$/;
@@ -209,7 +209,7 @@ function createHotelCard(data) {
 }
 
 function loadHotelCardList() {
-    let promise = getAll();
+    let promise = getHotelList();
     promise.then((data) => {
         console.log("array size: " + data.length)
         if (data.length > 0) {
@@ -466,5 +466,5 @@ $('#btn_update_hotel').on('click', (e) => {
 // ---------------------------------------------------------------------------------------
 $(document).ready(() => {
     getLastHotelId();
-    loadHotelCardList(document.getElementById('hotel_card_list_section'));
+    loadHotelCardList();
 })

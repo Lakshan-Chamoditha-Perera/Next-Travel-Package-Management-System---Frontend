@@ -1,6 +1,9 @@
-import {getAll} from "../hotel/model/HotelModel.js";
-$(document).ready(()=>{
+import {getHotelList} from "../hotel/model/HotelModel.js";
+import {getAllVehicleList} from "../vehicle/model/VehicleModel.js";
+
+$(document).ready(() => {
     loadHotelCardList();
+    loadVehicleCardList();
 });
 
 //-------------------------------------------------------------------------------------------
@@ -201,8 +204,9 @@ function createHotelCard(data) {
         statList[statList.length - 1].getElementsByClassName('hotel_card_star')[i].addClass('checked');
     }*/
 }
+
 function loadHotelCardList() {
-    let promise = getAll();
+    let promise = getHotelList();
     promise.then((data) => {
         console.log("array size: " + data.length)
         if (data.length > 0) {
@@ -210,14 +214,60 @@ function loadHotelCardList() {
                 createHotelCard(ele)
             });
         } else {
-            Swal.fire(
-                'error',
-                'No hotels found !'
-            )
+            Swal.fire('error', 'No hotels found !')
         }
     }).catch((e) => {
         // alert(e.message);
     });
 }
+
 //-------------------------------------------------------------------------------------------
 
+function loadVehicleCardList() {
+    let allVehicleList = getAllVehicleList();
+    allVehicleList.then((data) => {
+        console.log(data);
+        data.forEach((vehicle) => {
+            createVehicleCard(vehicle);
+        })
+
+        function createVehicleCard(data) {
+            const elementHTML = ` 
+            <div class="my_card">
+                <img alt="product-image" class="card-img" src="data:image/png;base64,${data.imageList[0]}">
+                <div class="flex-row img_collection space-between">
+                    <img class="vehicle_images1" src="data:image/png;base64,${data.imageList[1]}">
+                    <img class="vehicle_images2" src="data:image/png;base64,${data.imageList[2]}">
+                    <img class="vehicle_images3" src="data:image/png;base64,${data.imageList[3]}">
+                    <img class="vehicle_images4" src="data:image/png;base64,${data.imageList[4]}">
+                </div>
+                <div class="flex-row space-between w-full mb-sm">
+                    <p class="category">${data.id}</p>
+                </div>
+                <h1 class="product-name">${data.brand} </h1>
+                <div class="flex-row">
+                    <p class="price strike">per day value</p>
+                    <p class="price">Rs. ${data.fee_per_day}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">per day km</p>
+                    <p class="price">Rs. ${data.fee_per_km}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Fuel type</p>
+                    <p class="price"><span>${data.fuel_type}</span></p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Seat capacity</p>
+                    <p class="price"><span>${data.seat_capacity}</span></p>
+                </div>
+                <!--            <div class="btn-col">-->
+                <!--                <a class="icon-link" href="#">View</a>-->
+                <!--            </div>-->
+            </div>`;
+            document.getElementById("vehicle_list").innerHTML += elementHTML;
+        }
+    }).catch((e) => {
+        Swal.fire('error', 'No vehicles found !', 'error')
+    })
+}

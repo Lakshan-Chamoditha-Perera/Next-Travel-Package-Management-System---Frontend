@@ -2,7 +2,7 @@ import {getLastOnGoingDriverId, save_driver, update_driver} from "../model/Drive
 import {
     delete_vehicle,
     get_vehicle,
-    getAll,
+    getAllVehicleList,
     getLastOnGoingVehicleId,
     save_vehicle,
     update_vehicle
@@ -222,7 +222,7 @@ function createVehicleCard(data) {
     document.getElementsByClassName('vehicle_grid_container')[0].innerHTML += elementHTML;
 }
 $(document).ready(() => {
-    let promise = getAll();
+    let promise = getAllVehicleList();
     promise.then((data) => {
         // console.log("array size: "+data.length)
         if (data.length > 0) {

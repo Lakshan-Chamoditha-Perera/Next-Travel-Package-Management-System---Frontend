@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------------------------------
 // get all -------------------------------------------------------------------------------------------
-export function getAll() {
+export function getHotelList() {
     return new Promise((resolve, reject) => {
         let settings = {
             "url": "http://localhost:8091/api/v1/hotel/getAll", "method": "GET", "timeout": 0,

@@ -73,7 +73,7 @@ export function get_vehicle(vehicle_id) {
     })
 }
 
-export function getAll(){
+export function getAllVehicleList(){
     return new Promise((resolve,reject)=>{
         let settings = {
             "url": "http://localhost:8087/api/v1/vehicle/getAll",
