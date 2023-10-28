@@ -1,15 +1,9 @@
-import {
-    delete_hotel, get_hotel, getAll, getLastOngoingHotelId, save_hotel, update_hotel
-} from "../../hotel/model/HotelModel.js";
+import {getAll} from "../hotel/model/HotelModel.js";
+$(document).ready(()=>{
+    loadHotelCardList();
+});
 
-const hotel_name_regex = /^[a-zA-Z0-9\s]+$/;
-const iframe_regex = /<\s*iframe\s*(?:[^>]*)>/i;
-const email_regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const double_regex = /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
-const contact_num_regex = /^\d{10}$/;
-const description_regex = /^[a-zA-Z0-9\s]+$/
-const hotel_id_regex = /^H\d{3,}$/;
-
+//-------------------------------------------------------------------------------------------
 function createHotelCard(data) {
     const htmlElement = `<div class="col w-75 hotel_card">
             <div class="card ">
@@ -200,14 +194,13 @@ function createHotelCard(data) {
             </div>
         </div>
         <hr>`;
-    document.getElementById("hotel_card_list_section").innerHTML += htmlElement;
+    document.getElementById("hotel_list").innerHTML += htmlElement;
 
     /*let statList = document.querySelector("card-title hotel_card_name star_list");
     for (let i = 0; i < data.star_rate; i++) {
         statList[statList.length - 1].getElementsByClassName('hotel_card_star')[i].addClass('checked');
     }*/
 }
-
 function loadHotelCardList() {
     let promise = getAll();
     promise.then((data) => {
@@ -226,245 +219,5 @@ function loadHotelCardList() {
         // alert(e.message);
     });
 }
+//-------------------------------------------------------------------------------------------
 
-// ---------------------------------------------------------------------------------------
-// get hotel id --------------------------------------------------------------------------
-function getLastHotelId() {
-    let promise = getLastOngoingHotelId();
-    promise.then((data) => {
-        console.log("last id: " + data);
-        document.getElementById('hotel_form_id').textContent = data;
-    }).catch((e) => {
-        alert("Error in getting hotel details !");
-    });
-}
-
-// ---------------------------------------------------------------------------------------
-// save hotel ----------------------------------------------------------------------------
-function validateImages(imageInputIds) {
-    const invalidImages = [];
-    imageInputIds.forEach(function (inputId) {
-        const fileInput = document.getElementById(inputId);
-        if (fileInput.files.length === 0) {
-            invalidImages.push(inputId);
-        }
-    });
-
-    if (invalidImages.length > 0) {
-        alert("The following images are invalid: " + invalidImages.join(", "));
-        return false;
-    }
-    return true;
-}
-
-function validateHotelData() {
-    if (!hotel_name_regex.test($('#hotel_form_name').val())) {
-        alert("Invalid hotel name !");
-        return false;
-    }
-    if (!$('#hotel_form_iframe').val().match(iframe_regex)) {
-        alert("Invalid iframe !");
-        return false;
-    }
-    if (!email_regex.test($('#hotel_form_email').val())) {
-        alert("Invalid email !")
-        return false;
-    }
-    if (!contact_num_regex.test($('#hotel_form_contact').val())) {
-        alert("Invalid contact number !")
-        return false;
-    }
-    if (!hotel_name_regex.test($('#hotel_form_location').val())) {
-        alert("Invalid location !")
-        return false;
-    }
-    if (!($('#hotel_form_star_rate').val() >= 1 && $('#hotel_form_star_rate').val() <= 5)) {
-        alert("Invalid star rate!")
-        return false;
-    }
-
-    if ($("input[name='pets-allowed-group']:checked").val() == null) {
-        alert("Invalid pets allowed !")
-        return false;
-    }
-    if (!double_regex.test($('#hotel_form_cancellation_tax').val())) {
-        alert("Invalid cancellation tax !")
-        return false;
-    }
-
-
-    if (!double_regex.test($('#hotel_form_opt1_price').val())) {
-        alert("Invalid option 1 price !")
-        return false;
-    }
-
-    if (!double_regex.test($('#hotel_form_opt2_price').val())) {
-        alert("Invalid option 2 price !")
-        return false;
-    }
-
-
-    if (!double_regex.test($('#hotel_form_opt3_price').val())) {
-        alert("Invalid option 3 price !")
-        return false;
-    }
-
-    if (!double_regex.test($('#hotel_form_opt4_price').val())) {
-        alert("Invalid option 4 price !")
-        return false;
-    }
-    return validateImages(["hotel_form_img_1", "hotel_form_img_2", "hotel_form_img_3", "hotel_form_img_4",]);
-}
-
-$('#btn_save_hotel').on('click', (e) => {
-    e.preventDefault();
-    if (validateHotelData()) {
-        console.log("validated -> hotel details");
-        let hotel = {
-            id: document.getElementById('hotel_form_id').textContent,
-            name: $('#hotel_form_name').val(),
-            geo_location: $('#hotel_form_iframe').val(),
-            email: $('#hotel_form_email').val(),
-            contact: $('#hotel_form_contact').val(),
-            location: $('#hotel_form_location').val(),
-            star_rate: $('#hotel_form_star_rate').val(),
-            is_pet_allowed: $("input[name='pets-allowed-group']:checked").val(),
-            description: $('#hotel_form_description').val(),
-            cancellation_criteria: $('#hotel_form_cancellation_criteria').val(),
-            tax: $('#hotel_form_cancellation_tax').val(),
-            options_list: [{
-                description: $('#hotel_form_opt1_description').val(), price: $('#hotel_form_opt1_price').val()
-            }, {
-                description: $('#hotel_form_opt2_description').val(), price: $('#hotel_form_opt2_price').val()
-            }, {
-                description: $('#hotel_form_opt3_description').val(), price: $('#hotel_form_opt3_price').val()
-            }, {
-                description: $('#hotel_form_opt4_description').val(), price: $('#hotel_form_opt4_price').val()
-            }],
-        }
-
-        console.log(hotel)
-        let promise = save_hotel(hotel);
-        promise.then((data) => {
-            Swal.fire('Good job!', 'Hotel details saved successfully !', 'success')
-            // alert("Hotel details saved successfully !")
-        }).catch((e) => {
-            alert("Error in saving hotel details !")
-        });
-    }
-});
-// ---------------------------------------------------------------------------------------
-// delete hotel --------------------------------------------------------------------------
-$('#btn_delete_hotel').on('click', (e) => {
-    e.preventDefault();
-    let id = document.getElementById('hotel_form_id').textContent;
-    let promise = delete_hotel(id);
-    promise.then((data) => {
-        alert("Hotel deleted successfully !")
-    }).catch((e) => {
-        alert("Error in deleting hotel !")
-    });
-});
-
-// ---------------------------------------------------------------------------------------
-// get hotel -----------------------------------------------------------------------------
-$('#btn_search').on('click', (e) => {
-    e.preventDefault();
-    if (hotel_id_regex.test($('#txt_search_hotel').val())) {
-        let promise = get_hotel($('#txt_search_hotel').val());
-        promise.then((data) => {
-            Swal.fire({
-                icon: 'success', title: 'Hotel Found', text: 'Hotel details loaded successfully !'
-            })
-
-            console.log(data)
-            document.getElementById('hotel_form_id').textContent = data.id;
-            $('#hotel_form_name').val(data.name);
-            $('#hotel_form_iframe').val(data.geo_location);
-            $('#hotel_form_email').val(data.email);
-            $('#hotel_form_contact').val(data.contact);
-            $('#hotel_form_location').val(data.location);
-            $('#hotel_form_star_rate').val(data.star_rate);
-            $("input[name='pets-allowed-group'][value='" + data.is_pet_allowed + "']").prop('checked', true);
-            $('#hotel_form_description').val(data.description);
-            $('#hotel_form_cancellation_criteria').val(data.cancellation_criteria);
-            $('#hotel_form_cancellation_tax').val(data.tax);
-
-            $('#hotel_form_opt1_description').val(data.options_list[0].description);
-            $('#hotel_form_opt1_price').val(data.options_list[0].price);
-
-            $('#hotel_form_opt2_description').val(data.options_list[1].description);
-            $('#hotel_form_opt2_price').val(data.options_list[1].price);
-
-            $('#hotel_form_opt3_description').val(data.options_list[2].description);
-            $('#hotel_form_opt3_price').val(data.options_list[2].price);
-
-            $('#hotel_form_opt4_description').val(data.options_list[3].description);
-            $('#hotel_form_opt4_price').val(data.options_list[3].price);
-
-
-            // createHotelCard(data);
-        }).catch((e) => {
-            Swal.fire({
-                icon: 'error', title: e.data, text: 'Hotel not found !'
-            })
-        });
-    } else {
-        Swal.fire({
-            icon: 'error', title: 'Oops...', text: 'Invalid hotel id !', // footer: '<a href="">Why do I have this issue?</a>'
-        })
-    }
-});
-
-//---------------------------------------------------------------------------------------
-// update -------------------------------------------------------------------------------
-$('#btn_update_hotel').on('click', (e) => {
-    e.preventDefault()
-    if (hotel_id_regex.test(document.getElementById('hotel_form_id').textContent)) {
-        if (validateHotelData()) {
-            let hotel = {
-                id: document.getElementById('hotel_form_id').textContent,
-                name: $('#hotel_form_name').val(),
-                geo_location: $('#hotel_form_iframe').val(),
-                email: $('#hotel_form_email').val(),
-                contact: $('#hotel_form_contact').val(),
-                location: $('#hotel_form_location').val(),
-                star_rate: $('#hotel_form_star_rate').val(),
-                is_pet_allowed: $("input[name='pets-allowed-group']:checked").val(),
-                description: $('#hotel_form_description').val(),
-                cancellation_criteria: $('#hotel_form_cancellation_criteria').val(),
-                tax: $('#hotel_form_cancellation_tax').val(),
-                options_list: [{
-                    description: $('#hotel_form_opt1_description').val(), price: $('#hotel_form_opt1_price').val()
-                }, {
-                    description: $('#hotel_form_opt2_description').val(), price: $('#hotel_form_opt2_price').val()
-                }, {
-                    description: $('#hotel_form_opt3_description').val(), price: $('#hotel_form_opt3_price').val()
-                }, {
-                    description: $('#hotel_form_opt4_description').val(), price: $('#hotel_form_opt4_price').val()
-                }],
-            }
-
-            console.log(hotel)
-            let promise = update_hotel(hotel);
-            promise.then((data) => {
-                Swal.fire('Good job!', 'Hotel details updated successfully !', 'success')
-            }).catch((e) => {
-
-                Swal.fire({
-                    icon: 'error', title: 'Oops...', text: 'Error in updating hotel detail !', // footer: '<a href="">Why do I have this issue?</a>'
-                })
-            });
-        }
-    } else {
-        Swal.fire({
-            icon: 'error', title: 'Oops...', text: 'Invalid hotel id !', // footer: '<a href="">Why do I have this issue?</a>'
-        })
-    }
-})
-
-// ---------------------------------------------------------------------------------------
-$(document).ready(() => {
-    getLastHotelId();
-    loadHotelCardList(document.getElementById('hotel_card_list_section'));
-})

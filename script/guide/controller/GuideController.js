@@ -82,10 +82,10 @@ function validateFormData() {
                 alert("Invalid man day value!");
             }
         } else {
-            alert("Invalid name!");
+            Swal.fire('Error!', 'Invalid name!', 'error')
         }
     } else {
-        alert("Invalid Guide ID !")
+        Swal.fire('Error!', 'Invalid Guide ID !', 'error')
     }
     return false;
 }
@@ -160,7 +160,7 @@ $('#btn_search').on('click', (e) => {
     if (guide_id_regex.test($('#txt_search_guide').val())) {
         get_guide($('#txt_search_guide').val())
             .then((data) => {
-                alert("Guide Found!");
+                Swal.fire('Success!', 'Guide found !', 'success')
                 console.log(data);
                 $('#guide_id').text(data.id);
                 $('#guide_name').val(data.name);
@@ -179,7 +179,7 @@ $('#btn_search').on('click', (e) => {
 
                 $('#btn_save_guide').prop('disabled', true);
             }).catch((e) => {
-            alert("Error in getting Guide !");
+            Swal.fire('Error!', 'Guide not found !', 'error')
         });
     }
 });
@@ -190,10 +190,10 @@ $('#btn_delete_guide').on('click', (e) => {
     if (guide_id_regex.test(document.getElementById('guide_id').textContent.trim())) {
         delete_guide(document.getElementById('guide_id').textContent.trim())
             .then((data) => {
-                alert("Guide Deleted!");
+                Swal.fire('Success!', 'Guide deleted successfully !', 'success')
                 location.reload();
             }).catch((e) => {
-            alert(e.toJSON());
+            Swal.fire('Error!', 'Error in deleting Guide !', 'error')
         });
     }
 });
@@ -216,10 +216,10 @@ $('#btn_update_guide').on('click', (e) => {
         let promise = update_guide(guide);
         promise.then((data) => {
             console.log(data);
-            alert("Guide updated successfully !");
+            Swal.fire('Success!', 'Guide updated successfully !', 'success')
             location.reload();
         }).catch((e) => {
-            alert("Error in updating Guide !");
+            Swal.fire('Error!', 'Error in updating Guide !', 'error')
         });
     }
 });
