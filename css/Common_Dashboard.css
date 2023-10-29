@@ -21,9 +21,8 @@ header {
     background-size: auto;
     border: 2px solid #000000;
     color: white;
-    background-repeat: space;
     /*background: url("https://as1.ftcdn.net/v2/jpg/02/52/46/52/1000_F_252465254_gJjMk87NxeugjLxWoO0JnZLUeZRnjRiF.jpg");*/
-    background: url("https://cdn.pixabay.com/photo/2019/04/25/15/12/sri-lanka-4155120_1280.jpg");
+    background: url("https://cdn.pixabay.com/photo/2019/04/25/15/12/sri-lanka-4155120_1280.jpg") space;
 }
 
 .my_card {

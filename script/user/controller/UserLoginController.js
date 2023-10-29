@@ -1,13 +1,12 @@
-
-
-
-import {existsByUsername, signup} from "/home/shan/Desktop/CW/Next Trave/script/user/model/UserModel.js";
+import {signup} from "../model/UserModel.js";
 
 const name_pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
 const email_pattern = /^([a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
 const phone_pattern = /^\d{10}$/;
 const id_pattern_old = /^([0-9]{9}[x|X|v|V]|[0-9]{12})$/;
 const id_pattern_new = /^(\d{4})(\d{3})(\d{4})(\d{1})$/;
+
+/*
 
 function checkPhotos() {
     const nicFrontInput = document.getElementById("nic_front");
@@ -58,7 +57,7 @@ function validateFormData() {
     return false;
 }
 
-/*
+/!*
 function userExistsByUsername(username) {
     let isExists = existsByUsername(username);
     isExists.then((data) => {
@@ -66,7 +65,7 @@ function userExistsByUsername(username) {
     }).catch((error) => {
         return false;
     });
-}*/
+}*!/
 
 $('#register_btn').on('click', (e) => {
     e.preventDefault();
@@ -133,3 +132,48 @@ $('#btn_check_user_availability').on('click', (e) => {
 
     }
 })
+*/
+
+
+function validateSignUpInfo() {
+    console.log("validateSignUpInfo -> clicked");
+
+    if (!name_pattern.test($('#txt_username').val())) {
+        Swal.fire('Invalid username', 'Please enter a valid username', 'error')
+        return false;
+    }
+    if (!email_pattern.test($('#txt_email').val())) {
+        Swal.fire('Invalid email', 'Please enter a valid email', 'error')
+        return false;
+    }
+    if ($('#txt_password').val() !== $('#txt_password_confirm').val()) {
+        Swal.fire('Password mismatch', 'Please enter a valid password', 'error')
+        return false;
+    }
+
+    return true;
+}
+
+$('#btn_register').on('click', (e) => {
+    e.preventDefault()
+    if (validateSignUpInfo()) {
+        let user = {
+            username: $('#txt_username').val(), email: $('#txt_email').val(), password: $('#txt_password').val()
+        }
+        let isSaved = signup(user);
+        isSaved.then((data) => {
+            if (data.data == true) {
+                Swal.fire('User saved successfully', 'Please login to continue', 'success')
+                $('#txt_username').val('')
+                $('#txt_email').val('')
+                $('#txt_password').val('')
+                $('#txt_password_confirm').val('')
+            } else {
+                Swal.fire('An error occurred while saving the user!', data.message, 'error')
+            }
+        }).catch((error) => {
+            console.log(error);
+            Swal.fire('An error occurred while saving the user', 'error')
+        });
+    }
+});

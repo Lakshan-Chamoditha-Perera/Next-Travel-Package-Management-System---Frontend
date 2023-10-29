@@ -1,3 +1,4 @@
+/*
 //signup new user
 export function signup(user) {
     console.log("signup called");
@@ -38,6 +39,22 @@ export function existsByUsername(username) {
             }, error: (err) => {
                 reject(false);
             }
+        });
+    });
+}*/
+
+export function signup(user) {
+    return new Promise((resolve, reject) => {
+        let settings = {
+            "url": "http://localhost:9090/auth/register", "method": "POST", "timeout": 0, "headers": {
+                "Content-Type": "application/json"
+            }, "data": JSON.stringify(user),
+        };
+
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            resolve(response);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            reject(errorThrown);
         });
     });
 }
