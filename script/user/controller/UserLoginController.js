@@ -1,4 +1,4 @@
-import {signup} from "../model/UserModel.js";
+import {login, signup} from "../model/UserModel.js";
 
 const name_pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
 const email_pattern = /^([a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
@@ -134,7 +134,8 @@ $('#btn_check_user_availability').on('click', (e) => {
 })
 */
 
-
+// ----------------------------------------------------------------------------------------------------
+// signup ---------------------------------------------------------------------------------------------
 function validateSignUpInfo() {
     console.log("validateSignUpInfo -> clicked");
 
@@ -175,5 +176,37 @@ $('#btn_register').on('click', (e) => {
             console.log(error);
             Swal.fire('An error occurred while saving the user', 'error')
         });
+    }
+});
+
+// ----------------------------------------------------------------------------------------------------
+// login ----------------------------------------------------------------------------------------------
+
+$('#btn_login').on('click', (e) => {
+    e.preventDefault();
+    if (name_pattern.test($('#login_username').val()) && $('#login_password').val() != '') {
+        let user = {
+            username: $('#login_username').val(), password: $('#login_password').val()
+        }
+        console.log(user);
+        let isSaved = login(user);
+        isSaved.then((data) => {
+            if (data.data != false) {
+                console.log(data.data);
+                Swal.fire(
+                    'Login success',
+                    'You have successfully logged in',
+                    'success'
+                )
+                localStorage.setItem('user', JSON.stringify(data.data));
+            } else {
+                Swal.fire('Login failed', data.message, 'error')
+            }
+        }).catch((error) => {
+            console.log(error);
+            Swal.fire('Login failed', 'An error occurred while login', 'error')
+        });
+    } else {
+        Swal.fire('Login failed', 'Invalid username or password', 'error');
     }
 });

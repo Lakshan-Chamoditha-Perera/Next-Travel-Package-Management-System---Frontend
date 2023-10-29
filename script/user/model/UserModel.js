@@ -58,3 +58,20 @@ export function signup(user) {
         });
     });
 }
+//----------------------------------------------------------------------------------------------------
+// login ---------------------------------------------------------------------------------------------
+export function login(user) {
+    return new Promise((resolve, reject) => {
+        let settings = {
+            "url": "http://localhost:9090/auth/login", "method": "POST", "timeout": 0, "headers": {
+                "Content-Type": "application/json"
+            }, "data": JSON.stringify(user),
+        };
+
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            resolve(response);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            reject(errorThrown);
+        });
+    });
+}

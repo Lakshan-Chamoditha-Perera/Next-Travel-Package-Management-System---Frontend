@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="../assets/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
-<!--    <link href="../css/login.css" rel="stylesheet">-->
+    <!--    <link href="../css/login.css" rel="stylesheet">-->
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -174,6 +174,7 @@
         .btn:hover {
             background-color: #4d84e2;
         }
+
         .panels-container {
             position: absolute;
             height: 100%;
@@ -299,6 +300,7 @@
                 min-height: 800px;
                 height: 100vh;
             }
+
             .signin-signup {
                 width: 100%;
                 top: 95%;
@@ -405,9 +407,11 @@
             .image {
                 display: none;
             }
+
             .panel .content {
                 padding: 0.5rem 1rem;
             }
+
             .contain {
                 padding: 1.5rem;
             }
@@ -563,25 +567,25 @@
                 <h2 class="title">Sign in</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Username" />
+                    <input id="login_username" placeholder="Username" type="text"/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password" />
+                    <input id="login_password" placeholder="Password" type="password"/>
                 </div>
-                <input type="submit" id="btn_login" value="Login" class="btn solid" />
+                <input class="btn solid" id="btn_login" type="submit" value="Login"/>
                 <p class="social-text">Or Sign in with social platforms</p>
                 <div class="social-media">
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-google"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -590,33 +594,33 @@
                 <h2 class="title">Sign up</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" id="txt_username" placeholder="Username" />
+                    <input id="txt_username" placeholder="Username" type="text"/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" id="txt_email" placeholder="Email" />
+                    <input id="txt_email" placeholder="Email" type="email"/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="txt_password" placeholder="Password" />
+                    <input id="txt_password" placeholder="Password" type="password"/>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="txt_password_confirm" placeholder="Repeat - Password" />
+                    <input id="txt_password_confirm" placeholder="Repeat - Password" type="password"/>
                 </div>
-                <input type="submit" class="btn"  id="btn_register" value="Sign up" />
+                <input class="btn" id="btn_register" type="submit" value="Sign up"/>
                 <p class="social-text">Or Sign up with social platforms</p>
                 <div class="social-media">
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-google"></i>
                     </a>
-                    <a href="#" class="social-icon">
+                    <a class="social-icon" href="#">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -653,7 +657,8 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script crossorigin="anonymous"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
