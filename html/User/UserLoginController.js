@@ -1,4 +1,4 @@
-import {login, signup} from "../model/UserModel.js";
+import {login, signup} from "./UserModel.js";
 
 const name_pattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
 const email_pattern = /^([a-zA-Z0-9_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})$/;
@@ -198,15 +198,13 @@ $('#btn_login').on('click', (e) => {
                         // window.location.href = "admin_dashboard.html";
                         break;
                     case 'ROLE_USER':
-                        //open new window
-
-                        window.location.href = "../../../html/Booking.html";
+                        window.location.href = "../Booking.html";
                         break;
                     case 'ROLE_HOTEL_MANAGER':
-                        window.location.href = "../../../html/Manage_Hotel_Page.html";
-                        break;
+                       window.location.href = "../Guide/Manage_Guide.html";
+                      break;
                     case 'ROLE_VEHICLE_MANAGER':
-                        window.location.href = "../../../html/Manage_Vehicle_Page.html";
+                        window.location.href = "../Manage_Vehicle_Page.html";
                         break;
                     case 'ROLE_GUIDE_MANAGER':
                         window.location.href = "../../../html/Manage_Guide_Page.html";
@@ -232,7 +230,7 @@ $('#btn_login').on('click', (e) => {
                 confirmButtonText: 'Login as Guest',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "../../../html/Common_Dashboard.html";
+                    window.location.href = "../Common/Common_Dashboard.html";
                 }
             })
         });
