@@ -200,14 +200,12 @@ $('#btn_login').on('click', (e) => {
                         break;
                     case 'ROLE_USER':
                         localStorage.setItem("user", JSON.stringify(data.data));
-                        console.log(data.data);
                         window.location.href = "../Booking/Booking.html";
                         break;
                     case 'ROLE_HOTEL_MANAGER':
                         localStorage.setItem("user", JSON.stringify(data.data));
-                        console.log(data.data);
                         window.location.href = "../Hotel/Manage_Hotel_Page.html";
-                      break;
+                        break;
                     case 'ROLE_VEHICLE_MANAGER':
                         window.location.href = "../Vehicle/Manage_Vehicle_Page.html";
                         break;
@@ -220,7 +218,7 @@ $('#btn_login').on('click', (e) => {
                 // localStorage.setItem('user', JSON.stringify(data.data));
             } else {
                 Swal.fire({
-                    icon:'error',
+                    icon: 'error',
                     title: 'An error occurred while login',
                     text: 'Please try again',
                     confirmButtonText: 'Login as Guest',
@@ -241,9 +239,7 @@ $('#btn_login').on('click', (e) => {
         });
     } else {
         Swal.fire({
-            icon: 'warning',
-            title: 'Invalid Inputs!',
-            text: 'Username and password cannot be empty',
+            icon: 'warning', title: 'Invalid Inputs!', text: 'Username and password cannot be empty',
         })
     }
 });
