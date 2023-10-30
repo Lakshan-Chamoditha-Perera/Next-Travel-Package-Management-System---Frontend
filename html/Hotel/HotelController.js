@@ -1,6 +1,6 @@
 import {
     delete_hotel, get_hotel, getHotelList, getLastOngoingHotelId, save_hotel, update_hotel
-} from "../../hotel/model/HotelModel.js";
+} from "./HotelModel.js";
 
 const hotel_name_regex = /^[a-zA-Z0-9\s]+$/;
 const iframe_regex = /<\s*iframe\s*(?:[^>]*)>/i;

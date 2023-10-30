@@ -1,4 +1,4 @@
-import {getHotelList} from "../../script/hotel/model/HotelModel.js";
+import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
 
 $(document).ready(() => {

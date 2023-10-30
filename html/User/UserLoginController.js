@@ -206,7 +206,7 @@ $('#btn_login').on('click', (e) => {
                     case 'ROLE_HOTEL_MANAGER':
                         localStorage.setItem("user", JSON.stringify(data.data));
                         console.log(data.data);
-                        // window.location.href = "../Guide/Manage_Guide.html";
+                        window.location.href = "../Hotel/Manage_Hotel_Page.html";
                       break;
                     case 'ROLE_VEHICLE_MANAGER':
                         window.location.href = "../Vehicle/Manage_Vehicle_Page.html";
