@@ -1,5 +1,5 @@
 import {getHotelList} from "../../script/hotel/model/HotelModel.js";
-import {getAllVehicleList} from "../../script/vehicle/model/VehicleModel.js";
+import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
 
 $(document).ready(() => {
     loadHotelCardList();

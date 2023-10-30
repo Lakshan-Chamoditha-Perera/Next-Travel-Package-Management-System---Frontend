@@ -209,7 +209,7 @@ $('#btn_login').on('click', (e) => {
                         // window.location.href = "../Guide/Manage_Guide.html";
                       break;
                     case 'ROLE_VEHICLE_MANAGER':
-                        window.location.href = "../Manage_Vehicle_Page.html";
+                        window.location.href = "../Vehicle/Manage_Vehicle_Page.html";
                         break;
                     case 'ROLE_GUIDE_MANAGER':
                         window.location.href = "../Guide/Manage_Guide.html";

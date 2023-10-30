@@ -1,4 +1,4 @@
-import {getLastOnGoingDriverId, save_driver, update_driver} from "../model/DriverModel.js";
+import {getLastOnGoingDriverId, save_driver, update_driver} from "./DriverModel.js";
 import {
     delete_vehicle,
     get_vehicle,
@@ -6,7 +6,7 @@ import {
     getLastOnGoingVehicleId,
     save_vehicle,
     update_vehicle
-} from "../model/VehicleModel.js";
+} from "./VehicleModel.js";
 
 const vehicle_id_regex = /^V\d{3,}$/;
 const vehicle_brand_regex = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
