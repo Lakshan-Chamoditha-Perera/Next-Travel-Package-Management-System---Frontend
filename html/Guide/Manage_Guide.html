@@ -311,6 +311,18 @@
 <script src="../../assets/fontawesome/js/all.min.js"></script>
 <script src="GuideController.js" type="module"></script>
 <script>
+    $("document").ready(function () {
+        let user = JSON.parse(localStorage.getItem("user"))
+        console.log(user)
+        Swal.fire({
+            title: 'Welcome back '+ user.username,
+            icon: 'success',
+            confirmButtonText: 'Cool'
+        })
+    });
+</script>
+<script>
+
     function setProfileImg() {
         const input = document.getElementById('profile_img');
         const avatarBg = document.querySelector('.avatar-bg');

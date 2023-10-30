@@ -184,6 +184,7 @@ $('#btn_register').on('click', (e) => {
 
 $('#btn_login').on('click', (e) => {
     e.preventDefault();
+    localStorage.removeItem('user');
     if (name_pattern.test($('#login_username').val()) && $('#login_password').val() != '') {
         let user = {
             username: $('#login_username').val(), password: $('#login_password').val()
@@ -198,16 +199,20 @@ $('#btn_login').on('click', (e) => {
                         // window.location.href = "admin_dashboard.html";
                         break;
                     case 'ROLE_USER':
-                        window.location.href = "../Booking.html";
+                        localStorage.setItem("user", JSON.stringify(data.data));
+                        console.log(data.data);
+                        window.location.href = "../Booking/Booking.html";
                         break;
                     case 'ROLE_HOTEL_MANAGER':
-                       window.location.href = "../Guide/Manage_Guide.html";
+                        localStorage.setItem("user", JSON.stringify(data.data));
+                        console.log(data.data);
+                        // window.location.href = "../Guide/Manage_Guide.html";
                       break;
                     case 'ROLE_VEHICLE_MANAGER':
                         window.location.href = "../Manage_Vehicle_Page.html";
                         break;
                     case 'ROLE_GUIDE_MANAGER':
-                        window.location.href = "../../../html/Manage_Guide_Page.html";
+                        window.location.href = "../Guide/Manage_Guide.html";
                         break;
                     default:
                         Swal.fire('Login failed', 'Invalid ROLE', 'error');
@@ -215,7 +220,7 @@ $('#btn_login').on('click', (e) => {
                 // localStorage.setItem('user', JSON.stringify(data.data));
             } else {
                 Swal.fire({
-                    icon: 'Login failed',
+                    icon:'error',
                     title: 'An error occurred while login',
                     text: 'Please try again',
                     confirmButtonText: 'Login as Guest',
@@ -236,7 +241,9 @@ $('#btn_login').on('click', (e) => {
         });
     } else {
         Swal.fire({
-            icon: 'warning', title: 'Please input username and password', text: 'Username and password cannot be empty',
+            icon: 'warning',
+            title: 'Invalid Inputs!',
+            text: 'Username and password cannot be empty',
         })
     }
 });
