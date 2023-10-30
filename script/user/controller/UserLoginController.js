@@ -192,21 +192,53 @@ $('#btn_login').on('click', (e) => {
         let isSaved = login(user);
         isSaved.then((data) => {
             if (data.data != false) {
-                console.log(data.data);
-                Swal.fire(
-                    'Login success',
-                    'You have successfully logged in',
-                    'success'
-                )
-                localStorage.setItem('user', JSON.stringify(data.data));
+                // Swal.fire('Login success', 'You have successfully logged in', 'success')
+                switch (data.data.role) {
+                    case 'ADMIN':
+                        // window.location.href = "admin_dashboard.html";
+                        break;
+                    case 'ROLE_USER':
+                        //open new window
+
+                        window.location.href = "../../../html/Booking.html";
+                        break;
+                    case 'ROLE_HOTEL_MANAGER':
+                        window.location.href = "../../../html/Manage_Hotel_Page.html";
+                        break;
+                    case 'ROLE_VEHICLE_MANAGER':
+                        window.location.href = "../../../html/Manage_Vehicle_Page.html";
+                        break;
+                    case 'ROLE_GUIDE_MANAGER':
+                        window.location.href = "../../../html/Manage_Guide_Page.html";
+                        break;
+                    default:
+                        Swal.fire('Login failed', 'Invalid ROLE', 'error');
+                }
+                // localStorage.setItem('user', JSON.stringify(data.data));
             } else {
-                Swal.fire('Login failed', data.message, 'error')
+                Swal.fire({
+                    icon: 'Login failed',
+                    title: 'An error occurred while login',
+                    text: 'Please try again',
+                    confirmButtonText: 'Login as Guest',
+                })
             }
         }).catch((error) => {
             console.log(error);
-            Swal.fire('Login failed', 'An error occurred while login', 'error')
+            Swal.fire({
+                icon: 'Login failed',
+                title: 'An error occurred while login',
+                text: 'Please try again',
+                confirmButtonText: 'Login as Guest',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "../../../html/Common_Dashboard.html";
+                }
+            })
         });
     } else {
-        Swal.fire('Login failed', 'Invalid username or password', 'error');
+        Swal.fire({
+            icon: 'warning', title: 'Please input username and password', text: 'Username and password cannot be empty',
+        })
     }
 });
