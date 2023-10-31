@@ -163,3 +163,34 @@ for (let i = 0; i < btnList.length; i++) {
     });
 }
 //-------------------------------------------------------------------------------------------------------
+const guideYes = document.getElementById("custom_guide_radio1");
+const guideNo = document.getElementById("custom_guide_radio2");
+const guideDetailsContainer = document.getElementById("guide_details_container");
+
+function updateGuideDetailsDisplay() {
+    if (guideYes.checked) {
+        guideDetailsContainer.style.display = "flex";
+    } else if (guideNo.checked) {
+        guideDetailsContainer.style.display = "none";
+    }
+}
+guideYes.addEventListener("change", updateGuideDetailsDisplay);
+guideNo.addEventListener("change", updateGuideDetailsDisplay);
+updateGuideDetailsDisplay();
+//-------------------------------------------------------------------------------------------------------
+const vehicleYes = document.getElementById("custom_vehicle_radio1");
+const vehicleNo = document.getElementById("custom_vehicle_radio2");
+const vehicleDetailsContainer = document.getElementById("vehicle_details_container");
+
+function updateVehicleDetailsDisplay() {
+    if (vehicleYes.checked) {
+        vehicleDetailsContainer.style.display = "flex";
+    } else if (vehicleNo.checked) {
+        vehicleDetailsContainer.style.display = "none";
+    }
+}
+vehicleYes.addEventListener("change", updateVehicleDetailsDisplay);
+vehicleNo.addEventListener("change", updateVehicleDetailsDisplay);
+updateVehicleDetailsDisplay();
+
+//-------------------------------------------------------------------------------------------------------
