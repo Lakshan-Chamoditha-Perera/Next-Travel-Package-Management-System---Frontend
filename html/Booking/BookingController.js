@@ -133,6 +133,8 @@ for (let i = 0; i < btnList.length; i++) {
                     if (!isNaN(quantity)) {
                         let total = price * quantity;
                         price_cell.textContent = total;
+                        price_cell.className = 'col-option-total'
+                        calculate_package_total()
                     } else {
                         price_cell.textContent = ''; // Clear the total if the input is not a valid number
                     }
@@ -348,3 +350,17 @@ allVehicles.then((data) => {
         }
     }
 });
+
+// -------------------------------------------------------------------------------------------------------
+function calculate_package_total() {
+    let collectionOf = document.getElementById("selected_option_table_body").getElementsByTagName("tr");
+    let total = 0;
+    for (let i = 0; i < collectionOf.length; i++) {
+        let row = collectionOf[i];
+        let priceCell = row.querySelector(".col-option-total");
+        if (priceCell) {
+            total += parseInt(priceCell.textContent);
+        }
+    }
+    document.getElementById("hotel_sub_total").innerText = total + '';
+}
