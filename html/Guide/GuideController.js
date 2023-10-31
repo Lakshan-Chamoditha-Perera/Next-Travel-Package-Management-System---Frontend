@@ -1,4 +1,4 @@
-import {delete_guide, get_guide, getAll, getLastGuideId, save_guide, update_guide} from "./GuideModel.js";
+import {delete_guide, get_guide, getAllGuides, getLastGuideId, save_guide, update_guide} from "./GuideModel.js";
 
 
 const guide_id_regex = /^G\d{3,}$/;
@@ -22,7 +22,7 @@ function loadLastGuideId() {
 // -----------------------------------------------------------------------------------------
 // get all ---------------------------------------------------------------------------------
 function loadCards(createGuideCard) {
-    let promise = getAll();
+    let promise = getAllGuides();
     promise.then((data) => {
         console.log("array size: " + data.length)
         if (data.length > 0) {

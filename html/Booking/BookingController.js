@@ -1,5 +1,6 @@
 import {getLastOnGoingPackageId} from "./BookingModel.js";
 import {getHotelList} from "../Hotel/HotelModel.js";
+import {getAllGuides} from "../Guide/GuideModel.js";
 // -------------------------------------------------------------------------------------------------------
 let promise = getLastOnGoingPackageId();
 promise.then((response) => {
@@ -73,7 +74,6 @@ let btnList = document.getElementsByClassName("select-option-btn");
 let cartTableBody = document.getElementById("selected_options_table_body"); // Assuming you have a cart table to append rows to
 
 function isRoomExists(id) {
-
     const tableBody = document.getElementById("selected_option_table_body");
     const rows = tableBody.getElementsByTagName("tr");
     for (let i = 0; i < rows.length; i++) {
@@ -155,10 +155,7 @@ for (let i = 0; i < btnList.length; i++) {
                 Swal.fire('Warning', 'This room is already selected !', 'warning');
             }
         } else {
-            Swal.fire(
-                'Error!',
-                'No room found !'
-            );
+            Swal.fire('Error!', 'No room found !');
         }
     });
 }
@@ -174,6 +171,7 @@ function updateGuideDetailsDisplay() {
         guideDetailsContainer.style.display = "none";
     }
 }
+
 guideYes.addEventListener("change", updateGuideDetailsDisplay);
 guideNo.addEventListener("change", updateGuideDetailsDisplay);
 updateGuideDetailsDisplay();
@@ -189,8 +187,62 @@ function updateVehicleDetailsDisplay() {
         vehicleDetailsContainer.style.display = "none";
     }
 }
+
 vehicleYes.addEventListener("change", updateVehicleDetailsDisplay);
 vehicleNo.addEventListener("change", updateVehicleDetailsDisplay);
 updateVehicleDetailsDisplay();
 
 //-------------------------------------------------------------------------------------------------------
+
+let all = getAllGuides();
+all.then((data) => {
+    if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+            const guideItem = $('<a class="dropdown-item"></a');
+            guideItem.attr('data-value', JSON.stringify(data[i])); // Use data-value for custom data
+            guideItem.text(data[i].name);
+            guideItem.on('click', function () {
+                $('#selected_guide_name').text($(this).text());
+                const selectedGuide = JSON.parse($(this).attr('data-value'));
+                // console.log(selectedHotel)
+                $('#guide_list_combobox').val(JSON.stringify(selectedGuide));
+                document.getElementById("guide_list_combobox").innerHTML = selectedGuide.id;
+
+                const element = `<div class="flex align-content-center py-md-5 w-50"
+                                         style="display: flex; align-items: center; justify-content: space-around">
+                                        <div class="card p-4">
+                                            <img alt="guide-image" class="card-img"
+                                                 src="https://www.stryx.com/cdn/shop/articles/man-looking-attractive.jpg?v=1666662774">
+                                            <div class="flex-row px-2 space-between w-full mb-sm">
+                                                <h3 class="category">${selectedGuide.id}</h3>
+                                            </div>
+                                            <h1 class="product-name">${selectedGuide.name} </h1>
+                                            <div class="flex-row">
+                                                <p class="price strike">Man day value</p>
+                                                <h2 class="price">Rs. ${selectedGuide.man_day_value}</h2>
+                                            </div>
+                                            <div class="flex-row">
+                                                <p class="price strike">Contact : </p>
+                                                <p class="price">${selectedGuide.contact_number}</p>
+                                            </div>
+                                            <div class="row justify-content-end d-flex">
+                                                <button class="btn btn-primary rounded me-3  col-xl-4 btn-sm"
+                                                        type="submit">Select
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>`
+                document.getElementById('guide_card').innerHTML = element;
+            });
+            $('#guide_combo_item_list').append(guideItem);
+        }
+        Swal.fire(
+            'Success!',
+            'Guide list loaded !',
+            'success'
+        )
+    }
+
+}).catch((error) => {
+    Swal.fire('Error!', 'An error occurred while getting guide list !', 'error');
+});

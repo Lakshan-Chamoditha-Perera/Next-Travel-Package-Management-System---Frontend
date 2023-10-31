@@ -12,7 +12,7 @@ export function getLastGuideId() {
     })
 }
 
-export function getAll() {
+export function getAllGuides() {
     return new Promise((resolve, reject) => {
         let settings = {
             "url": "http://localhost:8089/api/v1/guide/getAll", "method": "GET", "timeout": 0,
