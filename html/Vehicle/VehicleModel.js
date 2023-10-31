@@ -81,7 +81,6 @@ export function getAllVehicleList(){
             "timeout": 0,
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
-            console.log("success")
             resolve(response);
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(errorThrown)

@@ -1,6 +1,7 @@
 import {getLastOnGoingPackageId} from "./BookingModel.js";
 import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllGuides} from "../Guide/GuideModel.js";
+import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
 // -------------------------------------------------------------------------------------------------------
 let promise = getLastOnGoingPackageId();
 promise.then((response) => {
@@ -194,8 +195,8 @@ updateVehicleDetailsDisplay();
 
 //-------------------------------------------------------------------------------------------------------
 
-let all = getAllGuides();
-all.then((data) => {
+let allGuides = getAllGuides();
+allGuides.then((data) => {
     if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
             const guideItem = $('<a class="dropdown-item"></a');
@@ -236,13 +237,114 @@ all.then((data) => {
             });
             $('#guide_combo_item_list').append(guideItem);
         }
-        Swal.fire(
-            'Success!',
-            'Guide list loaded !',
-            'success'
-        )
+        Swal.fire('Success!', 'Guide list loaded !', 'success')
     }
 
 }).catch((error) => {
     Swal.fire('Error!', 'An error occurred while getting guide list !', 'error');
+});
+//-------------------------------------------------------------------------------------------------------
+let allVehicles = getAllVehicleList();
+allVehicles.then((data) => {
+    if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+            const vehicleItem = $('<a class="dropdown-item"></a');
+            vehicleItem.attr('data-value', JSON.stringify(data[i])); // Use data-value for custom data
+            vehicleItem.text(data[i].id);
+
+            vehicleItem.on('click', function () {
+                const selectedVehicle = JSON.parse($(this).attr('data-value'));
+                // console.log(selectedHotel)
+                $('#vehicle_list_combobox').val(JSON.stringify(selectedVehicle));
+                document.getElementById("vehicle_list_combobox").innerHTML = selectedVehicle.brand;
+
+                const element = ` <div class="flex align-content-center py-md-5 w-50">
+            <div class="card p-3">
+                <img alt="product-image" class="card-img" src="data:image/png;base64,${selectedVehicle.imageList[0]}">
+                <div class="flex-row img_collection space-between">
+                    <img class="vehicle_images1" src="data:image/png;base64,${selectedVehicle.imageList[1]}">
+                    <img class="vehicle_images2" src="data:image/png;base64,${selectedVehicle.imageList[2]}">
+                    <img class="vehicle_images3" src="data:image/png;base64,${selectedVehicle.imageList[3]}">
+                    <img class="vehicle_images4" src="data:image/png;base64,${selectedVehicle.imageList[4]}">
+                </div>
+                <div class="flex-row space-between w-full mb-sm">
+                    <p class="category">${selectedVehicle.id}</p>
+                </div>
+                <h1 class="product-name">${selectedVehicle.brand} </h1>
+                <div class="flex-row">
+                    <p class="price strike">per day value</p>
+                    <p class="price">Rs. ${selectedVehicle.fee_per_day}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">per day km</p>
+                    <p class="price">Rs. ${selectedVehicle.fee_per_km}</p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Fuel type</p>
+                    <p class="price"><span>${selectedVehicle.fuel_type}</span></p>
+                </div>
+                <div class="flex-row">
+                    <p class="price strike">Seat capacity</p>
+                    <p class="price"><span>${selectedVehicle.seat_capacity}</span></p>
+                </div>
+                <div class="row justify-content-end d-flex">
+                    <button class="btn btn-primary rounded me-3 col-xl-4 btn-sm" id="btn_add_vehicle_to_cart">
+                        Add +
+                    </button>
+                </div>
+            </div>
+        </div>`;
+                document.getElementById('vehicle_card').innerHTML = element;
+
+
+                function isVehicleExists(id) {
+                    const tableBody = document.getElementById("vehicle_data_table_body");
+                    const rows = tableBody.getElementsByTagName("tr");
+                    for (let i = 0; i < rows.length; i++) {
+                        const row = rows[i];
+                        const vehicleIdCell = row.querySelector(".col-vehicle-id");
+                        if (vehicleIdCell) {
+                            if (id == vehicleIdCell.textContent.trim()) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+
+                document.getElementById('btn_add_vehicle_to_cart').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let val = JSON.parse($('#vehicle_list_combobox').val());
+                    if (!isVehicleExists(val.id)) {
+                        let vehicle_id_cell = document.createElement('td');
+                        vehicle_id_cell.textContent = val.id;
+                        vehicle_id_cell.className = 'col-vehicle-id';
+
+                        let vehicle_brand_cell = document.createElement('td');
+                        vehicle_brand_cell.textContent = val.brand;
+                        vehicle_brand_cell.className = 'col-vehicle-brand';
+
+                        let vehicle_fee_per_day_cell = document.createElement('td');
+                        vehicle_fee_per_day_cell.textContent = val.fee_per_day;
+                        vehicle_fee_per_day_cell.className = 'col-vehicle-fee-per-day';
+
+                        let vehicle_total_cell = document.createElement('td');
+                        vehicle_total_cell.textContent = val.fee_per_day * parseInt($('#package_form_days_count').val()) + '';
+                        vehicle_total_cell.className = 'col-vehicle-total';
+
+                        let cart_row = document.createElement('tr');
+                        cart_row.appendChild(vehicle_id_cell);
+                        cart_row.appendChild(vehicle_brand_cell);
+                        cart_row.appendChild(vehicle_fee_per_day_cell);
+                        cart_row.appendChild(vehicle_total_cell);
+
+                        document.getElementById("vehicle_data_table_body").appendChild(cart_row);
+                    } else {
+                        Swal.fire('Warning', 'This vehicle is already selected !', 'warning')
+                    }
+                })
+            });
+            $('#vehicle_combo_item_list').append(vehicleItem);
+        }
+    }
 });

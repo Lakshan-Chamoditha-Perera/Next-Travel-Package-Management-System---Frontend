@@ -226,7 +226,6 @@ function loadHotelCardList() {
 function loadVehicleCardList() {
     let allVehicleList = getAllVehicleList();
     allVehicleList.then((data) => {
-        console.log(data);
         data.forEach((vehicle) => {
             createVehicleCard(vehicle);
         })
