@@ -124,8 +124,11 @@ for (let i = 0; i < btnList.length; i++) {
                     room_qty_input.classList.add('form-control');
                     room_qty_input.setAttribute('type', 'number');
                     room_qty_input.setAttribute('min', '1');
+                    room_qty_input.setAttribute('value', '1');
+                    room_qty_input.innerHTML = '1';
 
                     let price_cell = document.createElement('td');
+                    price_cell.textContent = selectedOption.price;
 
                     room_qty_input.addEventListener('input', function () {
                         let quantity = parseInt(room_qty_input.value);
@@ -358,10 +361,10 @@ allVehicles.then((data) => {
 
 // -------------------------------------------------------------------------------------------------------
 function calculate_package_rental() {
-    let collectionOf = document.getElementById("selected_option_table_body").getElementsByTagName("tr");
+    let selected_hotel_list = document.getElementById("selected_option_table_body").getElementsByTagName("tr");
     let total = 0;
-    for (let i = 0; i < collectionOf.length; i++) {
-        let row = collectionOf[i];
+    for (let i = 0; i < selected_hotel_list.length; i++) {
+        let row = selected_hotel_list[i];
         let priceCell = row.querySelector(".col-option-total");
         if (priceCell) total += parseInt(priceCell.textContent);
     }
@@ -386,11 +389,24 @@ function calculate_package_rental() {
 
     //
     if ($("input[name='vehicleRadio']:checked").val() == 'yes') {
-
+        let selected_vehicles_tr_list = document.getElementById("selected_vehicle_table_body").getElementsByTagName("tr");
+        let total = 0;
+        for (let i = 0; i < selected_vehicles_tr_list.length; i++) {
+            let row = selected_vehicles_tr_list[i];
+            let priceCell = row.querySelector(".col-vehicle-total");
+            if (priceCell) total += parseFloat(priceCell.textContent) * parseInt($("#package_form_days_count").text());
+        }
+        document.getElementById("vehicle_sub_total").innerText = total + '';
+    }else{
+        $('#vehicle_sub_total').text(0);
     }
+
+    let package_sub_total = parseFloat(document.getElementById("hotel_sub_total").textContent) + parseFloat(document.getElementById("guide_sub_total").textContent) + parseFloat(document.getElementById("vehicle_sub_total").textContent);
+    document.getElementById("package_sub_total").innerText = package_sub_total + '';
 }
 
-document.getElementById('btn_calculate_total').onclick = function () {
+document.getElementById('btn_calculate_total').onclick = function (e) {
+    e.preventDefault();
     calculate_package_rental();
 }
 // -------------------------------------------------------------------------------------------------------

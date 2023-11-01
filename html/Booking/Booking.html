@@ -225,7 +225,7 @@
                                     <div class="mb-3"><label class="form-label" for="user_id">
                                         <strong>Username</strong>
                                     </label>
-                                        <input class="form-control" id="user_id" name="username"
+                                        <input class="form-control" required id="user_id" name="username"
                                                placeholder="U000001" readonly type="text"/>
                                     </div>
                                 </div>
@@ -235,15 +235,15 @@
                                     <div class="mb-3"><label class="form-label" for="package_form_starting_date">
                                         <strong>Starting date</strong>
                                     </label>
-                                        <input class="form-control" id="package_form_starting_date" name="email"
+                                        <input class="form-control" required id="package_form_starting_date" name="email"
                                                placeholder="user@example.com" type="date"/></div>
                                 </div>
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="package_form_ending_date">
+                                        <label class="form-label"  for="package_form_ending_date">
                                             <strong>Ending date</strong>
                                         </label>
-                                        <input class="form-control" id="package_form_ending_date" name="first_name"
+                                        <input class="form-control" required id="package_form_ending_date" name="first_name"
                                                placeholder="John" type="date"/>
                                     </div>
                                 </div>
@@ -260,7 +260,7 @@
                                         <label class="form-label" for="package_form_ending_date">
                                             <strong>No of nights</strong>
                                         </label>
-                                        <input class="form-control" id="package_form_no_of_night" name="first_name"
+                                        <input  class="form-control" id="package_form_no_of_night" name="first_name"
                                                placeholder="" readonly type="number"/>
                                     </div>
                                 </div>
@@ -271,7 +271,7 @@
                                     <div class="mb-3"><label class="form-label" for="package_form_starting_date">
                                         <strong>Number of children</strong>
                                     </label>
-                                        <input class="form-control" id="package_form_child_count"
+                                        <input required class="form-control" id="package_form_child_count"
                                                min="0" placeholder="0" type="number"/></div>
                                 </div>
                                 <div class="col-xl-3">
@@ -279,7 +279,7 @@
                                         <label class="form-label" for="package_form_ending_date">
                                             <strong>Number of adult</strong>
                                         </label>
-                                        <input class="form-control" id="package_form_adult_count"
+                                        <input required class="form-control" id="package_form_adult_count"
                                                min="0" placeholder="0" type="number"/>
                                     </div>
                                 </div>
@@ -523,7 +523,7 @@
                                                         <th>Total</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="vehicle_data_table_body">
+                                                    <tbody id="selected_vehicle_table_body">
 
                                                     </tbody>
                                                 </table>
@@ -536,8 +536,8 @@
                             <hr>
                             <h1>
                                 <button class="btn btn-dark px-4 rounded-pill"
-                                        id="btn_calculate_total" type="button">
-                                    <i class="fa fa-money-bill mr-2"></i>Done
+                                        id="btn_calculate_total"  type="submit">
+                                    Check Total
                                 </button>
                             </h1>
                             <div class="row my-4 py-5 bg-white rounded shadow-sm">
@@ -586,15 +586,15 @@
                                             </li>
                                             <li class="d-flex justify-content-between py-3 border-bottom">
                                                 <strong class="text-muted">Vehicle
-                                                    Rental</strong><strong>$10.00</strong>
+                                                    Rental</strong><strong id="vehicle_sub_total" >0.00</strong>
                                             </li>
 
                                             <li class="d-flex justify-content-between py-3 border-bottom">
-                                                <strong class="text-muted">Tax</strong><strong>$0.00</strong>
+                                                <strong class="text-muted">Tax</strong><strong>0.00</strong>
                                             </li>
                                             <li class="d-flex justify-content-between py-3 border-bottom">
                                                 <strong class="text-muted">Total</strong>
-                                                <h5 class="font-weight-bold">$400.00</h5>
+                                                <h5 class="font-weight-bold" id="package_sub_total">0.00</h5>
                                             </li>
                                         </ul>
                                         <li class="d-flex justify-content-between py-3 border-bottom">
