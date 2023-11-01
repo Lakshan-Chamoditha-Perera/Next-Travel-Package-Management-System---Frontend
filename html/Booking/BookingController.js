@@ -13,7 +13,17 @@ promise.then((response) => {
 //-------------------------------------------------------------------------------------------------------
 let user_data = JSON.parse(localStorage.getItem("user"));
 $('#username').val(user_data.user_id);
-// -------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+
+const packageCategoryButton = document.getElementById("package_category");
+const packageCategoryList = document.getElementById("package_category_list");
+const dropdownItems = packageCategoryList.querySelectorAll(".dropdown-item");
+dropdownItems.forEach(item => {
+    item.addEventListener("click", function () {
+        packageCategoryButton.innerHTML = item.textContent;
+    });
+});
+// ------------------------------------------------------------------------------------------------------
 $('#package_form_ending_date').change(function () {
     if ($('#package_form_starting_date').val() != "" && $('#package_form_ending_date').val() != "") {
         if ($('#package_form_starting_date').val() > $('#package_form_ending_date').val()) {
@@ -329,29 +339,33 @@ allVehicles.then((data) => {
                     e.preventDefault();
                     let val = JSON.parse($('#vehicle_list_combobox').val());
                     if (!isVehicleExists(val.id)) {
-                        let vehicle_id_cell = document.createElement('td');
-                        vehicle_id_cell.textContent = val.id;
-                        vehicle_id_cell.className = 'col-vehicle-id';
+                        if (val.availability == 'available') {
+                            let vehicle_id_cell = document.createElement('td');
+                            vehicle_id_cell.textContent = val.id;
+                            vehicle_id_cell.className = 'col-vehicle-id';
 
-                        let vehicle_brand_cell = document.createElement('td');
-                        vehicle_brand_cell.textContent = val.brand;
-                        vehicle_brand_cell.className = 'col-vehicle-brand';
+                            let vehicle_brand_cell = document.createElement('td');
+                            vehicle_brand_cell.textContent = val.brand;
+                            vehicle_brand_cell.className = 'col-vehicle-brand';
 
-                        let vehicle_fee_per_day_cell = document.createElement('td');
-                        vehicle_fee_per_day_cell.textContent = val.fee_per_day;
-                        vehicle_fee_per_day_cell.className = 'col-vehicle-fee-per-day';
+                            let vehicle_fee_per_day_cell = document.createElement('td');
+                            vehicle_fee_per_day_cell.textContent = val.fee_per_day;
+                            vehicle_fee_per_day_cell.className = 'col-vehicle-fee-per-day';
 
-                        let vehicle_total_cell = document.createElement('td');
-                        vehicle_total_cell.textContent = val.fee_per_day * parseInt(document.getElementById('package_form_days_count').innerHTML) + '';
-                        vehicle_total_cell.className = 'col-vehicle-total';
+                            let vehicle_total_cell = document.createElement('td');
+                            vehicle_total_cell.textContent = val.fee_per_day * parseInt(document.getElementById('package_form_days_count').innerHTML) + '';
+                            vehicle_total_cell.className = 'col-vehicle-total';
 
-                        let cart_row = document.createElement('tr');
-                        cart_row.appendChild(vehicle_id_cell);
-                        cart_row.appendChild(vehicle_brand_cell);
-                        cart_row.appendChild(vehicle_fee_per_day_cell);
-                        cart_row.appendChild(vehicle_total_cell);
+                            let cart_row = document.createElement('tr');
+                            cart_row.appendChild(vehicle_id_cell);
+                            cart_row.appendChild(vehicle_brand_cell);
+                            cart_row.appendChild(vehicle_fee_per_day_cell);
+                            cart_row.appendChild(vehicle_total_cell);
 
-                        document.getElementById("selected_vehicle_table_body").appendChild(cart_row);
+                            document.getElementById("selected_vehicle_table_body").appendChild(cart_row);
+                        } else {
+                            Swal.fire('Error!', 'This vehicle is not available !', 'error');
+                        }
                     } else {
                         Swal.fire('Warning', 'This vehicle is already selected !', 'warning')
                     }
@@ -460,51 +474,59 @@ function validateForm() {
         }
     }
 
+    return true;
+
+
 }
 
 function getOptions() {
-    let option_detail_list = [];
     let selected_hotel_list = document.getElementById("selected_option_table_body").getElementsByTagName("tr");
+
+    let option_detail_list = [];
     for (let i = 0; i < selected_hotel_list.length; i++) {
         let row = selected_hotel_list[i];
 
-        let hotel_id = row.querySelector("col-hotel-id").textContent;
-        let option_id = row.querySelector("col-room-id").textContent;
-        let no_of_days = row.querySelector("form-control").textContent;
-        let price = row.querySelector("col-option-total").textContent;
+        let hotel_id = row.querySelector(".col-hotel-id").textContent;
+        let option_id = row.querySelector(".col-room-id").textContent;
+        let no_of_days = row.querySelector(".form-control").textContent;
+        let price = row.querySelector(".col-option-total").textContent;
         let option_detail = {
-            hotel_id: hotel_id,
-            room_id: option_id,
-            no_of_days: no_of_days,
-            price: price,
+            hotel_id: hotel_id, room_id: option_id, no_of_days: no_of_days, price: price,
         }
         option_detail_list.push(option_detail);
     }
     return option_detail_list;
+
 }
 
 function getVehicleIdList() {
-    let vehicle_id_list = [];
-    let selected_vehicle_list = document.getElementById("selected_vehicle_table_body").getElementsByTagName("tr");
-    for (let i = 0; i < selected_vehicle_list.length; i++) {
-        let row = selected_vehicle_list[i];
-        let vehicle_id = row.querySelector("col-vehicle-id").textContent;
-        vehicle_id_list.push(vehicle_id);
+    if ($("input[name='vehicleRadio']:checked").val() == 'yes') {
+        let vehicle_id_list = [];
+        let selected_vehicle_list = document.getElementById("selected_vehicle_table_body").getElementsByTagName("tr");
+        for (let i = 0; i < selected_vehicle_list.length; i++) {
+            let row = selected_vehicle_list[i];
+            let vehicle_id = row.querySelector(".col-vehicle-id").textContent;
+            vehicle_id_list.push(vehicle_id);
+        }
+        return vehicle_id_list;
     }
-    return vehicle_id_list;
-
+    return null;
 }
 
 $('#add_booking').on('click', function (e) {
     e.preventDefault();
+    calculate_package_rental();
+    console.log('add_booking');
     if (validateForm()) {
         let option_detail_list = getOptions();
         let vehicle_id_list = getVehicleIdList();
         let booking = {
             id: $('#booking_id').val(),
-            user_id: $('#username').val(),
-            category: 'package',
-            guide_id: JSON.parse($('#guide_list_combobox').val()).id,
+            user_id: $('#user_id').val(),
+            category: $('#package_category').text(),
+            is_guide_needed: $("input[name='guideRadio']:checked").val(),
+            is_vehicle_needed: $("input[name='vehicleRadio']:checked").val(),
+            guide_id: $('#guide_list_combobox').val().id,
             starting_date: $('#package_form_starting_date').val(),
             ending_date: $('#package_form_ending_date').val(),
             booked_date: new Date().toISOString().slice(0, 10),
@@ -519,12 +541,14 @@ $('#add_booking').on('click', function (e) {
             vehicle_list: vehicle_id_list,
         }
 
-        let promise = addBooking(booking);
-        promise.then(
-            Swal.fire('Success!', 'Booking added successfully !', 'success')
-        ).catch(
-            Swal.fire('Error!', 'An error occurred while adding booking !', 'error')
-        )
+        console.log(booking)
+
+        /* let promise = addBooking(booking);
+         promise.then(
+             Swal.fire('Success!', 'Booking added successfully !', 'success')
+         ).catch(
+             Swal.fire('Error!', 'An error occurred while adding booking !', 'error')
+         )*/
 
     }
 

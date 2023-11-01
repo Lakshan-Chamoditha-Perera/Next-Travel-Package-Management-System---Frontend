@@ -25,7 +25,7 @@
             height: 74px;
             margin: 0 auto;
             border-radius: 40px;
-            border:2px solid black;
+            border: 2px solid black;
         }
 
         input[type="checkbox"] {
@@ -57,7 +57,7 @@
             position: absolute;
             top: -16px;
             width: 40px;
-            height:40px;
+            height: 40px;
             background-color: #0c59df;
             border-radius: 50%;
             box-shadow: 2px 6px 25px #d7d7d7;
@@ -310,25 +310,26 @@
                                 </div>
 
                                 <div class="col col-xl-3">
-                                    <div class="mb-3">
                                         <label class="form-label" for="package_category">
-                                            <strong>Select Category</strong>
+                                            <strong>Category</strong>
                                         </label>
-                                        <div class="dropdown col-xl-3 p-2 ">
-                                            <button id="package_category" aria-expanded="false" aria-required="true"
-                                                    class=" btn btn btn-dark" data-bs-toggle="dropdown"
-                                                    type="button">
-                                                Select Category
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a value="Regular">Economy</a>
-                                                <a value="Mid-level">Mid-Range</a>
-                                                <a value="Luxury">Luxury</a>
-                                                <a value="Super-Luxury">Super-Luxury</a>
+                                        <div class="col align-items-center border-primary flex-row ">
+                                            <div class="dropdown ">
+                                                <button aria-expanded="false" aria-required="true"
+                                                        class=" btn btn-primary dropdown-toggle"
+                                                        data-bs-toggle="dropdown"
+                                                        id="package_category" type="button">
+                                                    Economy
+                                                </button>
+                                                <div class="dropdown-menu" id="package_category_list">
+                                                    <a class="dropdown-item">Economy</a>
+                                                    <a class="dropdown-item">Mid-Range</a>
+                                                    <a class="dropdown-item">Luxury</a>
+                                                    <a class="dropdown-item">Super-Luxury</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                  </div>
                             </div>
 
                             <div class="row my-4">
