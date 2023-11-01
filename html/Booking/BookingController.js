@@ -92,73 +92,78 @@ function isRoomExists(id) {
 for (let i = 0; i < btnList.length; i++) {
     btnList[i].addEventListener("click", function (e) {
         e.preventDefault();
-        const selectedHotel = JSON.parse($('#hotel_list_combobox').val());
-        if (selectedHotel.options_list != null && selectedHotel.options_list.length > i) {
-            let selectedOption = selectedHotel.options_list[i];
-            if (!isRoomExists(selectedOption.id)) {
+        let val1 = $('#hotel_list_combobox').val();
+        if (val1 != null && val1 != '') {
+            const selectedHotel = JSON.parse(val1);
+            if (selectedHotel.options_list != null && selectedHotel.options_list.length > i) {
+                let selectedOption = selectedHotel.options_list[i];
+                if (!isRoomExists(selectedOption.id)) {
 
-                let hotel_id_cell = document.createElement('td');
-                hotel_id_cell.textContent = selectedHotel.id;
-                hotel_id_cell.className = 'col-hotel-id';
+                    let hotel_id_cell = document.createElement('td');
+                    hotel_id_cell.textContent = selectedHotel.id;
+                    hotel_id_cell.className = 'col-hotel-id';
 
-                let hotel_name_cell = document.createElement('td');
-                hotel_name_cell.textContent = selectedHotel.name;
-                hotel_name_cell.className = 'col-hotel-name';
+                    let hotel_name_cell = document.createElement('td');
+                    hotel_name_cell.textContent = selectedHotel.name;
+                    hotel_name_cell.className = 'col-hotel-name';
 
-                let room_description_cell = document.createElement('td');
-                room_description_cell.textContent = selectedOption.description;
-                room_description_cell.className = 'col-room-description';
+                    let room_description_cell = document.createElement('td');
+                    room_description_cell.textContent = selectedOption.description;
+                    room_description_cell.className = 'col-room-description';
 
-                let room_id_cell = document.createElement('td');
-                room_id_cell.textContent = selectedOption.id;
-                room_id_cell.className = 'col-room-id';
+                    let room_id_cell = document.createElement('td');
+                    room_id_cell.textContent = selectedOption.id;
+                    room_id_cell.className = 'col-room-id';
 
-                let option_price_cell = document.createElement('td');
-                option_price_cell.textContent = selectedOption.price;
-                option_price_cell.className = 'col-option-price';
+                    let option_price_cell = document.createElement('td');
+                    option_price_cell.textContent = selectedOption.price;
+                    option_price_cell.className = 'col-option-price';
 
-                let room_qty_input = document.createElement('input');
-                room_qty_input.classList.add('w-50');
-                room_qty_input.classList.add('form-control');
-                room_qty_input.setAttribute('type', 'number');
-                room_qty_input.setAttribute('min', '1');
+                    let room_qty_input = document.createElement('input');
+                    room_qty_input.classList.add('w-50');
+                    room_qty_input.classList.add('form-control');
+                    room_qty_input.setAttribute('type', 'number');
+                    room_qty_input.setAttribute('min', '1');
 
-                let price_cell = document.createElement('td');
+                    let price_cell = document.createElement('td');
 
-                room_qty_input.addEventListener('input', function () {
-                    let quantity = parseInt(room_qty_input.value);
-                    let price = selectedOption.price;
+                    room_qty_input.addEventListener('input', function () {
+                        let quantity = parseInt(room_qty_input.value);
+                        let price = selectedOption.price;
 
-                    // Check if quantity is a valid number
-                    if (!isNaN(quantity)) {
-                        let total = price * quantity;
-                        price_cell.textContent = total;
-                        price_cell.className = 'col-option-total'
-                        calculate_package_total()
-                    } else {
-                        price_cell.textContent = ''; // Clear the total if the input is not a valid number
-                    }
-                });
+                        // Check if quantity is a valid number
+                        if (!isNaN(quantity)) {
+                            let total = price * quantity;
+                            price_cell.textContent = total;
+                            price_cell.className = 'col-option-total'
+                            calculate_package_rental()
+                        } else {
+                            price_cell.textContent = ''; // Clear the total if the input is not a valid number
+                        }
+                    });
 
-                let room_qty_cell = document.createElement('td');
-                room_qty_cell.appendChild(room_qty_input);
+                    let room_qty_cell = document.createElement('td');
+                    room_qty_cell.appendChild(room_qty_input);
 
-                let cart_row = document.createElement('tr');
-                cart_row.appendChild(hotel_id_cell);
-                cart_row.appendChild(hotel_name_cell);
+                    let cart_row = document.createElement('tr');
+                    cart_row.appendChild(hotel_id_cell);
+                    cart_row.appendChild(hotel_name_cell);
 
-                cart_row.appendChild(room_id_cell);
-                cart_row.appendChild(room_description_cell);
-                cart_row.appendChild(option_price_cell);
-                cart_row.appendChild(room_qty_cell);
-                cart_row.appendChild(price_cell);
+                    cart_row.appendChild(room_id_cell);
+                    cart_row.appendChild(room_description_cell);
+                    cart_row.appendChild(option_price_cell);
+                    cart_row.appendChild(room_qty_cell);
+                    cart_row.appendChild(price_cell);
 
-                document.getElementById("selected_option_table_body").appendChild(cart_row);
+                    document.getElementById("selected_option_table_body").appendChild(cart_row);
+                } else {
+                    Swal.fire('Warning', 'This room is already selected !', 'warning');
+                }
             } else {
-                Swal.fire('Warning', 'This room is already selected !', 'warning');
+                Swal.fire('Error!', 'No room found !');
             }
         } else {
-            Swal.fire('Error!', 'No room found !');
+            Swal.fire('Error!', 'Please select a hotel first !', 'error');
         }
     });
 }
@@ -217,12 +222,12 @@ allGuides.then((data) => {
                                             <img alt="guide-image" class="card-img"
                                                  src="https://www.stryx.com/cdn/shop/articles/man-looking-attractive.jpg?v=1666662774">
                                             <div class="flex-row px-2 space-between w-full mb-sm">
-                                                <h3 class="category">${selectedGuide.id}</h3>
+                                                <h3 class="category" <span id="selected_guide_card_id">${selectedGuide.id}</span></h3>
                                             </div>
                                             <h1 class="product-name">${selectedGuide.name} </h1>
                                             <div class="flex-row">
                                                 <p class="price strike">Man day value</p>
-                                                <h2 class="price">Rs. ${selectedGuide.man_day_value}</h2>
+                                                <h2 class="price" >Rs. <span id="selected_guide_card_man_day_value">${selectedGuide.man_day_value}</span></h2>
                                             </div>
                                             <div class="flex-row">
                                                 <p class="price strike">Contact : </p>
@@ -352,15 +357,40 @@ allVehicles.then((data) => {
 });
 
 // -------------------------------------------------------------------------------------------------------
-function calculate_package_total() {
+function calculate_package_rental() {
     let collectionOf = document.getElementById("selected_option_table_body").getElementsByTagName("tr");
     let total = 0;
     for (let i = 0; i < collectionOf.length; i++) {
         let row = collectionOf[i];
         let priceCell = row.querySelector(".col-option-total");
-        if (priceCell) {
-            total += parseInt(priceCell.textContent);
-        }
+        if (priceCell) total += parseInt(priceCell.textContent);
     }
     document.getElementById("hotel_sub_total").innerText = total + '';
+
+
+    // guide total-------------------------------------------------------------------
+    if ($("input[name='guideRadio']:checked").val() == 'yes') {
+        // console.log($("#guide_list_combobox").val()=='')
+        if ($("#guide_list_combobox").val() != '') {
+            let guide = JSON.parse($('#guide_list_combobox').val());
+            let numberOfDays = parseInt($("#package_form_days_count").text());
+            let subtotal = guide.man_day_value * numberOfDays;
+            $('#guide_sub_total').text(subtotal);
+        } else {
+            Swal.fire('Error!', 'Please select a guide !', 'error')
+        }
+    } else {
+        $('#guide_sub_total').text(0);
+    }
+
+
+    //
+    if ($("input[name='vehicleRadio']:checked").val() == 'yes') {
+
+    }
 }
+
+document.getElementById('btn_calculate_total').onclick = function () {
+    calculate_package_rental();
+}
+// -------------------------------------------------------------------------------------------------------

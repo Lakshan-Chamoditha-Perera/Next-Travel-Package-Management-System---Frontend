@@ -72,7 +72,7 @@
                                     <span>Bookings (completed)</span>
                                 </div>
                                 <div class="text-dark fw-bold h5 mb-0">
-                                    <span>$40,000</span>
+                                    <span>40000</span>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -252,7 +252,7 @@
                                         <label class="form-label" for="package_form_ending_date">
                                             <strong>Days Count</strong>
                                         </label>
-                                        <h2 id="package_form_days_count">0</h2>
+                                        <h2 id="package_form_days_count">1</h2>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -323,8 +323,8 @@
                                                     <div class="col me-2">
                                                         <div class="text-uppercase text-primary fw-bold text-xs mb-1">
                                                             <span>Option 1 </span></div>
-                                                        <div class="text-dark fw-bold h5 mb-0">Rs.
-                                                            <span id="selected_hotel_opt_1_price">$40,000</span>
+                                                        <div class="text-dark fw-bold h5 mb-0">
+                                                            <span id="selected_hotel_opt_1_price">select hotel</span>
                                                         </div>
                                                     </div>
                                                     <button class=" select-option-btn btn btn-primary rounded me-3  col-xl-4 btn-sm"
@@ -341,8 +341,8 @@
                                                     <div class="col me-2">
                                                         <div class="text-uppercase text-primary fw-bold text-xs mb-1">
                                                             <span>Option 2 </span></div>
-                                                        <div class="text-dark fw-bold h5 mb-0">Rs.
-                                                            <span id="selected_hotel_opt_2_price">40,000</span>
+                                                        <div class="text-dark fw-bold h5 mb-0">
+                                                            <span id="selected_hotel_opt_2_price">select hotel</span>
                                                         </div>
                                                     </div>
                                                     <button class="select-option-btn btn btn-primary rounded me-3  col-xl-4 btn-sm"
@@ -359,8 +359,8 @@
                                                     <div class="col me-2">
                                                         <div class="text-uppercase text-primary fw-bold text-xs mb-1">
                                                             <span>Option 3 </span></div>
-                                                        <div class="text-dark fw-bold h5 mb-0">Rs.
-                                                            <span id="selected_hotel_opt_3_price">$40,000</span>
+                                                        <div class="text-dark fw-bold h5 mb-0">
+                                                            <span id="selected_hotel_opt_3_price">select hotel</span>
                                                         </div>
                                                     </div>
                                                     <button class="select-option-btn btn btn-primary rounded me-3  col-xl-4 btn-sm"
@@ -378,7 +378,7 @@
                                                         <div class="text-uppercase text-primary fw-bold text-xs mb-1">
                                                             <span>Option 4 </span></div>
                                                         <div class="text-dark fw-bold h5 mb-0">
-                                                            Rs.<span id="selected_hotel_opt_4_price">$40,000</span>
+                                                            <span id="selected_hotel_opt_4_price">select hotel</span>
                                                         </div>
                                                     </div>
                                                     <button class="select-option-btn btn btn-primary rounded me-3  col-xl-4 btn-sm"
@@ -421,12 +421,13 @@
                             <h1>Need a guide ?</h1>
                             <div class="custom-control custom-radio">
                                 <input class="custom-control-input" id="custom_guide_radio1" name="guideRadio"
-                                       type="radio">
+                                       type="radio"
+                                       value="yes">
                                 <label class="form-label custom-control-label" for="custom_guide_radio1">Yes</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input checked class="custom-control-input" id="custom_guide_radio2"
-                                       name="guideRadio" type="radio">
+                                <input checked class="custom-control-input" id="custom_guide_radio2" name="guideRadio"
+                                       type="radio" value="no">
                                 <label class="form-label custom-control-label" for="custom_guide_radio2">No</label>
                             </div>
 
@@ -461,12 +462,14 @@
                             <h1>Need vehicle ?</h1>
                             <div class="custom-control custom-radio">
                                 <input class="custom-control-input" id="custom_vehicle_radio1" name="vehicleRadio"
-                                       type="radio">
+                                       type="radio"
+                                       value="yes">
                                 <label class="form-label custom-control-label" for="custom_vehicle_radio1">Yes</label>
                             </div>
                             <div class="custom-control custom-radio">
                                 <input checked class="custom-control-input" id="custom_vehicle_radio2"
-                                       name="vehicleRadio" type="radio">
+                                       name="vehicleRadio"
+                                       type="radio" value="no">
                                 <label class="form-label custom-control-label" for="custom_vehicle_radio2">No</label>
                             </div>
 
@@ -530,8 +533,13 @@
 
                                 </div>
                             </div>
-
-
+                            <hr>
+                            <h1>
+                                <button class="btn btn-dark px-4 rounded-pill"
+                                        id="btn_calculate_total" type="button">
+                                    <i class="fa fa-money-bill mr-2"></i>Done
+                                </button>
+                            </h1>
                             <div class="row my-4 py-5 bg-white rounded shadow-sm">
                                 <div class="col-lg-6">
                                     <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">
@@ -570,10 +578,11 @@
                                         <ul class="list-unstyled mb-4">
                                             <li class="d-flex justify-content-between py-3 border-bottom">
                                                 <strong class="text-muted">Hotels
-                                                    Subtotal </strong><strong id="hotel_sub_total" >0.00</strong>
+                                                    Subtotal </strong><strong id="hotel_sub_total">0.00</strong>
                                             </li>
                                             <li class="d-flex justify-content-between py-3 border-bottom">
-                                                <strong class="text-muted">Guide Rental</strong><strong>$10.00</strong>
+                                                <strong class="text-muted">Guide Rental</strong><strong
+                                                    id="guide_sub_total">0.00</strong>
                                             </li>
                                             <li class="d-flex justify-content-between py-3 border-bottom">
                                                 <strong class="text-muted">Vehicle
