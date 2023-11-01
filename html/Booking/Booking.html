@@ -16,6 +16,85 @@
             padding: 10px;
             border-radius: 10px;
         }
+
+        /* Third toggle btn */
+
+        .toggle-btn {
+            position: relative;
+            width: 145px;
+            height: 74px;
+            margin: 0 auto;
+            border-radius: 40px;
+            border:2px solid black;
+        }
+
+        input[type="checkbox"] {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: 0px;
+            cursor: pointer;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .
+        ._3rd-toggle-btn span {
+            display: block;
+            width: 145px;
+            height: 38px;
+            background-color: #0c59df;
+            border-radius: 20px;
+            transition: 0.5s ease background-color;
+        }
+
+        ._3rd-toggle-btn span:before {
+            content: "";
+            position: absolute;
+            top: -16px;
+            width: 40px;
+            height:40px;
+            background-color: #0c59df;
+            border-radius: 50%;
+            box-shadow: 2px 6px 25px #d7d7d7;
+            transform: translate(0px, 0px);
+            transition: 0.6s ease transform, 0.6s box-shadow;
+        }
+
+        ._3rd-toggle-btn span:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            left: 35px;
+            width: 0px;
+            height: 24px;
+            margin-top: -36px;
+            margin-left: -6px;
+            border: 6px solid #000;
+            border-radius: 20px;
+            transform: translate(0px, 0px);
+            transition: 0.4s ease width, 0.4s ease border-radius, 0.62s ease transform;
+        }
+
+        ._3rd-toggle-btn input[type="checkbox"]:checked + span:before {
+            box-shadow: 7px 6px 25px #e6e6e6;
+            transform: translate(75px, 0px);
+        }
+
+        ._3rd-toggle-btn input[type="checkbox"]:checked + span:after {
+            width: 24px;
+            border-radius: 50%;
+            transform: translate(64px, 0px);
+        }
+
+
+        /* Third toggle btn completed */
+
     </style>
 </head>
 <body>
@@ -225,26 +304,50 @@
                                     <div class="mb-3"><label class="form-label" for="user_id">
                                         <strong>Username</strong>
                                     </label>
-                                        <input class="form-control" required id="user_id" name="username"
-                                               placeholder="U000001" readonly type="text"/>
+                                        <input class="form-control" id="user_id" name="username" placeholder="U000001"
+                                               readonly required type="text"/>
+                                    </div>
+                                </div>
+
+                                <div class="col col-xl-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="package_category">
+                                            <strong>Select Category</strong>
+                                        </label>
+                                        <div class="dropdown col-xl-3 p-2 ">
+                                            <button id="package_category" aria-expanded="false" aria-required="true"
+                                                    class=" btn btn btn-dark" data-bs-toggle="dropdown"
+                                                    type="button">
+                                                Select Category
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a value="Regular">Economy</a>
+                                                <a value="Mid-level">Mid-Range</a>
+                                                <a value="Luxury">Luxury</a>
+                                                <a value="Super-Luxury">Super-Luxury</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row my-4">
                                 <div class="col col-xl-3">
                                     <div class="mb-3"><label class="form-label" for="package_form_starting_date">
                                         <strong>Starting date</strong>
                                     </label>
-                                        <input class="form-control" required id="package_form_starting_date" name="email"
-                                               placeholder="user@example.com" type="date"/></div>
+                                        <input class="form-control" id="package_form_starting_date" name="email"
+                                               placeholder="user@example.com"
+                                               required type="date"/></div>
                                 </div>
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label"  for="package_form_ending_date">
+                                        <label class="form-label" for="package_form_ending_date">
                                             <strong>Ending date</strong>
                                         </label>
-                                        <input class="form-control" required id="package_form_ending_date" name="first_name"
-                                               placeholder="John" type="date"/>
+                                        <input class="form-control" id="package_form_ending_date" name="first_name"
+                                               placeholder="John"
+                                               required type="date"/>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -260,7 +363,7 @@
                                         <label class="form-label" for="package_form_ending_date">
                                             <strong>No of nights</strong>
                                         </label>
-                                        <input  class="form-control" id="package_form_no_of_night" name="first_name"
+                                        <input class="form-control" id="package_form_no_of_night" name="first_name"
                                                placeholder="" readonly type="number"/>
                                     </div>
                                 </div>
@@ -271,27 +374,21 @@
                                     <div class="mb-3"><label class="form-label" for="package_form_starting_date">
                                         <strong>Number of children</strong>
                                     </label>
-                                        <input required class="form-control" id="package_form_child_count"
-                                               min="0" placeholder="0" type="number"/></div>
+                                        <input class="form-control" id="package_form_child_count" min="0"
+                                               placeholder="0" required type="number"/></div>
                                 </div>
                                 <div class="col-xl-3">
                                     <div class="mb-3">
                                         <label class="form-label" for="package_form_ending_date">
                                             <strong>Number of adult</strong>
                                         </label>
-                                        <input required class="form-control" id="package_form_adult_count"
-                                               min="0" placeholder="0" type="number"/>
+                                        <input class="form-control" id="package_form_adult_count" min="0"
+                                               placeholder="0" required type="number"/>
                                     </div>
                                 </div>
-                                <!--<div class="col-xl-3">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="package_form_ending_date">
-                                            <strong>Total head count</strong>
-                                        </label>
-                                        <h2 id="package_form_total_head_count">0</h2>
-                                    </div>
-                                </div>-->
+
                             </div>
+
                             <div class="row my-4">
                                 <h2>Hotel List</h2>
                                 <div class="col-xl-3">
@@ -408,9 +505,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody id="selected_option_table_body">
-                                                <tr>
 
-                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -477,17 +572,7 @@
 
                                 <h2>Vehicle List</h2>
                                 <div class="row" id="category_list">
-                                    <div class="col d-flex border-primary border align-items-center border-primary flex-row ">
-                                        <div class="dropdown col-xl-3 p-2 ">
-                                            <button aria-expanded="false" aria-required="true"
-                                                    class=" btn btn btn-dark" data-bs-toggle="dropdown"
-                                                    type="button">
-                                                Select Category
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item">First Item</a>
-                                            </div>
-                                        </div>
+                                    <div class="col d-flex border-primary  align-items-center border-primary flex-row ">
                                         <div class="dropdown   col-xl-3 p-2 ">
                                             <button aria-expanded="false" aria-required="true"
                                                     class=" btn btn-primary dropdown-toggle"
@@ -497,7 +582,6 @@
                                                 Select Vehicle
                                             </button>
                                             <div class="dropdown-menu" id="vehicle_combo_item_list">
-                                                <a class="dropdown-item">First Item</a>
                                             </div>
                                         </div>
                                     </div>
@@ -536,7 +620,7 @@
                             <hr>
                             <h1>
                                 <button class="btn btn-dark px-4 rounded-pill"
-                                        id="btn_calculate_total"  type="submit">
+                                        id="btn_calculate_total" type="submit">
                                     Check Total
                                 </button>
                             </h1>
@@ -586,7 +670,7 @@
                                             </li>
                                             <li class="d-flex justify-content-between py-3 border-bottom">
                                                 <strong class="text-muted">Vehicle
-                                                    Rental</strong><strong id="vehicle_sub_total" >0.00</strong>
+                                                    Rental</strong><strong id="vehicle_sub_total">0.00</strong>
                                             </li>
 
                                             <li class="d-flex justify-content-between py-3 border-bottom">
@@ -601,8 +685,8 @@
                                             <input aria-describedby="button-addon3" class="form-control border-black"
                                                    placeholder="Billing Amount" type="text"/>
                                         </li>
-                                        <a class="mt-3 btn btn-dark rounded-pill py-2 btn-block" href="#">
-                                            Make Payment
+                                        <a class="mt-3 btn btn-dark rounded-pill py-2 btn-block" id="add_booking">
+                                            Process to checkout
                                         </a>
                                     </div>
                                 </div>
@@ -672,6 +756,8 @@
             icon: 'success',
             confirmButtonText: 'Cool'
         })
+        $('#user_id').val(user.user_id)
+        $('#user_id').innerHTML = user.user_id
     });
 
     function navigate(id) {

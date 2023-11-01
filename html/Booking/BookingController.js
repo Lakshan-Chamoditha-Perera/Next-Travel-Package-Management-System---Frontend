@@ -1,4 +1,4 @@
-import {getLastOnGoingPackageId} from "./BookingModel.js";
+import {addBooking, getLastOnGoingPackageId} from "./BookingModel.js";
 import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllGuides} from "../Guide/GuideModel.js";
 import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
@@ -17,7 +17,7 @@ $('#username').val(user_data.user_id);
 $('#package_form_ending_date').change(function () {
     if ($('#package_form_starting_date').val() != "" && $('#package_form_ending_date').val() != "") {
         if ($('#package_form_starting_date').val() > $('#package_form_ending_date').val()) {
-            Swal.fire('Error!', 'Starting date must be less than ending date !', 'error')
+            Swal.fire('Error!', 'Starting date must be less than or equal to ending date !', 'error')
             $('#package_form_ending_date').val("");
         } else {
             calculate_days_count();
@@ -32,9 +32,14 @@ function calculate_days_count() {
     let start_date = new Date($('#package_form_starting_date').val());
     let end_date = new Date($('#package_form_ending_date').val());
     let days_count = Math.abs(end_date - start_date) / (1000 * 60 * 60 * 24);
-    document.getElementById('package_form_days_count').innerText = days_count;
+
+    // Ensure that "days_count" is not negative
+    if (days_count <= 0) days_count = 1; // Set a minimum of 1 day
+
+    document.getElementById('package_form_days_count').innerText = days_count + '';
     $('#package_form_no_of_night').val(days_count - 1);
 }
+
 
 // -------------------------------------------------------------------------------------------------------
 //load hotel list ----------------------------------------------------------------------------------------
@@ -129,6 +134,7 @@ for (let i = 0; i < btnList.length; i++) {
 
                     let price_cell = document.createElement('td');
                     price_cell.textContent = selectedOption.price;
+                    price_cell.className = 'col-option-total'
 
                     room_qty_input.addEventListener('input', function () {
                         let quantity = parseInt(room_qty_input.value);
@@ -138,8 +144,6 @@ for (let i = 0; i < btnList.length; i++) {
                         if (!isNaN(quantity)) {
                             let total = price * quantity;
                             price_cell.textContent = total;
-                            price_cell.className = 'col-option-total'
-                            calculate_package_rental()
                         } else {
                             price_cell.textContent = ''; // Clear the total if the input is not a valid number
                         }
@@ -308,8 +312,7 @@ allVehicles.then((data) => {
 
 
                 function isVehicleExists(id) {
-                    const tableBody = document.getElementById("vehicle_data_table_body");
-                    const rows = tableBody.getElementsByTagName("tr");
+                    const rows = document.getElementById("selected_vehicle_table_body").getElementsByTagName("tr");
                     for (let i = 0; i < rows.length; i++) {
                         const row = rows[i];
                         const vehicleIdCell = row.querySelector(".col-vehicle-id");
@@ -339,7 +342,7 @@ allVehicles.then((data) => {
                         vehicle_fee_per_day_cell.className = 'col-vehicle-fee-per-day';
 
                         let vehicle_total_cell = document.createElement('td');
-                        vehicle_total_cell.textContent = val.fee_per_day * parseInt($('#package_form_days_count').val()) + '';
+                        vehicle_total_cell.textContent = val.fee_per_day * parseInt(document.getElementById('package_form_days_count').innerHTML) + '';
                         vehicle_total_cell.className = 'col-vehicle-total';
 
                         let cart_row = document.createElement('tr');
@@ -348,7 +351,7 @@ allVehicles.then((data) => {
                         cart_row.appendChild(vehicle_fee_per_day_cell);
                         cart_row.appendChild(vehicle_total_cell);
 
-                        document.getElementById("vehicle_data_table_body").appendChild(cart_row);
+                        document.getElementById("selected_vehicle_table_body").appendChild(cart_row);
                     } else {
                         Swal.fire('Warning', 'This vehicle is already selected !', 'warning')
                     }
@@ -361,13 +364,18 @@ allVehicles.then((data) => {
 
 // -------------------------------------------------------------------------------------------------------
 function calculate_package_rental() {
+    console.log('calculate_package_rental');
     let selected_hotel_list = document.getElementById("selected_option_table_body").getElementsByTagName("tr");
     let total = 0;
+    // console.log("selected hotel list length : " + selected_hotel_list.length);
     for (let i = 0; i < selected_hotel_list.length; i++) {
         let row = selected_hotel_list[i];
         let priceCell = row.querySelector(".col-option-total");
-        if (priceCell) total += parseInt(priceCell.textContent);
+        let cellValue = priceCell ? parseInt(priceCell.textContent) : 0; // Use 0 if cell is not found or empty
+        console.log("price cell : " + cellValue);
+        total += cellValue;
     }
+    console.log(total)
     document.getElementById("hotel_sub_total").innerText = total + '';
 
 
@@ -386,8 +394,6 @@ function calculate_package_rental() {
         $('#guide_sub_total').text(0);
     }
 
-
-    //
     if ($("input[name='vehicleRadio']:checked").val() == 'yes') {
         let selected_vehicles_tr_list = document.getElementById("selected_vehicle_table_body").getElementsByTagName("tr");
         let total = 0;
@@ -397,7 +403,7 @@ function calculate_package_rental() {
             if (priceCell) total += parseFloat(priceCell.textContent) * parseInt($("#package_form_days_count").text());
         }
         document.getElementById("vehicle_sub_total").innerText = total + '';
-    }else{
+    } else {
         $('#vehicle_sub_total').text(0);
     }
 
@@ -409,4 +415,117 @@ document.getElementById('btn_calculate_total').onclick = function (e) {
     e.preventDefault();
     calculate_package_rental();
 }
+
 // -------------------------------------------------------------------------------------------------------
+
+function validateForm() {
+    if (/^\s*$/.test($('#package_form_starting_date').val())) {
+        Swal.fire('Error!', 'Please select starting date!', 'error');
+        return false;
+    }
+    if (/^\s*$/.test($('#package_form_ending_date').val())) {
+        Swal.fire('Error!', 'Please select ending date !', 'error')
+        return false;
+    }
+    if (!/^[0-9]*$/.test($('#package_form_child_count').val())) {
+        Swal.fire('Error!', 'Please enter a valid child count !', 'error')
+        return false;
+    }
+    if (!/^[0-9]*$/.test($('#package_form_adult_count').val())) {
+        Swal.fire('Error!', 'Please enter a valid adult count !', 'error')
+        return false;
+    }
+
+    if ($('#package_form_starting_date').val() > $('#package_form_ending_date').val()) {
+        Swal.fire('Error!', 'Starting date must be less than or equal to ending date !', 'error')
+        return false;
+    }
+    //check booking table contains at least one row
+    if ($('#selected_option_table_body').children().length == 0) {
+        Swal.fire('Error!', 'Please select at least one room !', 'error')
+        return false;
+    }
+
+    if ($("input[name='guideRadio']:checked").val() == 'yes') {
+        if ($("#guide_list_combobox").val() == '') {
+            Swal.fire('Error!', 'Please select a guide !', 'error')
+            return false;
+        }
+    }
+
+    if ($("input[name='vehicleRadio']:checked").val() == 'yes') {
+        if ($('#selected_vehicle_table_body').children().length == 0) {
+            Swal.fire('Error!', 'Please select at least one vehicle !', 'error')
+            return false;
+        }
+    }
+
+}
+
+function getOptions() {
+    let option_detail_list = [];
+    let selected_hotel_list = document.getElementById("selected_option_table_body").getElementsByTagName("tr");
+    for (let i = 0; i < selected_hotel_list.length; i++) {
+        let row = selected_hotel_list[i];
+
+        let hotel_id = row.querySelector("col-hotel-id").textContent;
+        let option_id = row.querySelector("col-room-id").textContent;
+        let no_of_days = row.querySelector("form-control").textContent;
+        let price = row.querySelector("col-option-total").textContent;
+        let option_detail = {
+            hotel_id: hotel_id,
+            room_id: option_id,
+            no_of_days: no_of_days,
+            price: price,
+        }
+        option_detail_list.push(option_detail);
+    }
+    return option_detail_list;
+}
+
+function getVehicleIdList() {
+    let vehicle_id_list = [];
+    let selected_vehicle_list = document.getElementById("selected_vehicle_table_body").getElementsByTagName("tr");
+    for (let i = 0; i < selected_vehicle_list.length; i++) {
+        let row = selected_vehicle_list[i];
+        let vehicle_id = row.querySelector("col-vehicle-id").textContent;
+        vehicle_id_list.push(vehicle_id);
+    }
+    return vehicle_id_list;
+
+}
+
+$('#add_booking').on('click', function (e) {
+    e.preventDefault();
+    if (validateForm()) {
+        let option_detail_list = getOptions();
+        let vehicle_id_list = getVehicleIdList();
+        let booking = {
+            id: $('#booking_id').val(),
+            user_id: $('#username').val(),
+            category: 'package',
+            guide_id: JSON.parse($('#guide_list_combobox').val()).id,
+            starting_date: $('#package_form_starting_date').val(),
+            ending_date: $('#package_form_ending_date').val(),
+            booked_date: new Date().toISOString().slice(0, 10),
+            no_of_nights: $('#package_form_no_of_night').val(),
+            no_of_adults: $('#package_form_adult_count').val(),
+            no_of_child: $('#package_form_child_count').val(),
+            no_of_days: $('#package_form_days_count').text(),
+            total_price: $('#package_sub_total').text(),
+            status: 'pending',
+            remark: '',
+            option_detail_list: option_detail_list,
+            vehicle_list: vehicle_id_list,
+        }
+
+        let promise = addBooking(booking);
+        promise.then(
+            Swal.fire('Success!', 'Booking added successfully !', 'success')
+        ).catch(
+            Swal.fire('Error!', 'An error occurred while adding booking !', 'error')
+        )
+
+    }
+
+});
