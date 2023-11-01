@@ -513,6 +513,7 @@ function getVehicleIdList() {
     return null;
 }
 
+
 $('#add_booking').on('click', function (e) {
     e.preventDefault();
     calculate_package_rental();
@@ -523,7 +524,7 @@ $('#add_booking').on('click', function (e) {
         let booking = {
             id: $('#booking_id').val(),
             user_id: $('#user_id').val(),
-            category: $('#package_category').text(),
+            category: $('#package_category').textContent,
             is_guide_needed: $("input[name='guideRadio']:checked").val(),
             is_vehicle_needed: $("input[name='vehicleRadio']:checked").val(),
             guide_id: $('#guide_list_combobox').val().id,
