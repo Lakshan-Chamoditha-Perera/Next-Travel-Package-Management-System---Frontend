@@ -655,6 +655,66 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid" id="make_payment_section">
+        <div class="row flex-column align-content-center align-items-center">
+            <h1>Make Payment</h1>
+            <div class="row flex align-items-center ">
+                <div class="p-2 w-50 bg-light rounded border border-black rounded-pill shadow-sm mb-3">
+                    <div class="input-group">
+                        <input aria-describedby="button-addon1" class="form-control border-0 bg-light"
+                               id="txt_search_vehicle"
+                               placeholder="Enter your package id?" type="search">
+                        <div class="input-group-append">
+                            <button class="btn btn-link text-primary" id="btn_search" type="submit"><i
+                                    class="fa fa-search"> </i> search
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row my-2 px-5 py-2 bg-white rounded shadow-sm">
+                    <h5>P000001</h5>
+                    <div class="flex-column align-items-center justify-content-center">
+                        <div class="bg-light rounded-pill px-4 py-2 text-uppercase font-weight-bold">
+                            Package Details
+                        </div>
+                        <div class="row">
+                            <ul class="list-unstyled mb-4">
+                                <li class="d-flex justify-content-between py-3 border-bottom">
+                                    <strong class="font-weight-bold text-muted">Status </strong><strong>Completed</strong>
+                                </li>
+                                <li class="d-flex justify-content-between py-3 border-bottom">
+                                    <strong class="text-muted">Package Total</strong><strong>0.00</strong>
+                                </li>
+                                <li class="d-flex justify-content-between py-3 border-bottom">
+                                    <strong class="text-muted">Received Amounts</strong><strong>0.00</strong>
+                                </li>
+
+                                <li class="d-flex justify-content-between py-3 border-bottom">
+                                    <input aria-describedby="button-addon3" class="form-control border-black"
+                                           placeholder="Billing Amount" required type="text">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">
+                            Payment slip
+                        </div>
+                        <div class="p-4">
+                            <p class="font-italic mb-4 ">
+                                Upload your payment slip to here
+                            </p>
+                            <input class=" form-control" cols="30" name="" rows="2" type="file">
+                        </div>
+                        <div class=" bg-light rounded-pill px-4 py-3 text-uppercase d-flex justify-content-center font-weight-bold">
+                            <a class=" w-25 btn btn-dark rounded-pill py-2 btn-block" id="make_payment">
+                                Pay
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <footer class="bg-black" style="padding: 20px 100px 0 100px; color: white; margin: auto; bottom: 0">
@@ -708,6 +768,7 @@
         $('#user_id').innerHTML = user.user_id
         navigate(1);
     });
+
     function navigate(id) {
         switch (id) {
             case 1:
