@@ -1,4 +1,4 @@
-export function getLastOnGoingPackageId(){
+export function getLastOnGoingPackageId() {
     return new Promise((resolve, reject) => {
         let settings = {
             "url": "http://localhost:8095/api/v1/booking/get/onGoingBookingId",
@@ -14,7 +14,7 @@ export function getLastOnGoingPackageId(){
     })
 }
 
-export function addBooking(booking){
+export function addBooking(booking) {
     return new Promise((resolve, reject) => {
         let settings = {
             "url": "http://localhost:8095/api/v1/booking/save",
@@ -30,6 +30,25 @@ export function addBooking(booking){
             resolve(response.message);
         }).fail(function (jqXHR, textStatus, errorThrown) {
             reject(errorThrown);
+        });
+    })
+}
+
+export function getBookingCountByUserAndStatus(user, status) {
+    return new Promise((resolve,reject)=>{
+        let settings = {
+            "url": "http://localhost:8095/api/v1/booking/get/bookingCount",
+            "method": "GET",
+            "timeout": 0,
+            "headers":{
+                "user_id":user,
+                "status":status
+            }
+        };
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            console.log(response)
+            resolve( response.data)
+        }).fail(function (jqXHR, textStatus, errorThrown) {
         });
     })
 }

@@ -119,15 +119,15 @@
     </div>
 </nav>
 <header class="masthead pt-5 border-opacity-10 " id="header">
-    <div class="container pt-4 pt-xl-5">
+    <div class="container  ">
         <div class="row pt-5">
             <div class="col-md-8 text-center text-md-start mx-auto">
-                <div class="text-center">
-                    <h3 class="display-1 fw-bold mb-5">Welcome
-                        <span class="underline">Back
-                            <i class="bi bi-luggage-fill"></i>
-                        </span>
-                    </h3>
+                <div class="text-center mb-5">
+                    <h2 class="display-4 fw-bold ">Welcome
+                        Back
+                    </h2>
+                    <p>Lorem ipsum dolor sit amet, electus deleniti dicta dignissimos, earum et eum eveniet excepturi
+                        illo ipsam placeat quos reiciendis repellat reprehenderit sit voluptates. Ad, impedit</p>
                 </div>
             </div>
 
@@ -136,7 +136,7 @@
     </div>
 </header>
 
-<section style="margin: 0 13.33vw 0 13.33vw">
+<section style="margin: 0 13.33vw 100px 13.33vw">
     <div class="container-fluid" id="dashboard_section">
         <div class="d-sm-flex justify-content-between align-items-center mb-4">
             <h3 class="text-dark mb-0">Dashboard</h3>
@@ -151,7 +151,7 @@
                                     <span>Bookings (completed)</span>
                                 </div>
                                 <div class="text-dark fw-bold h5 mb-0">
-                                    <span>40000</span>
+                                    <span id="completed_bookings_count">40000</span>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -167,8 +167,8 @@
                         <div class="row align-items-center no-gutters">
                             <div class="col me-2">
                                 <div class="text-uppercase text-success fw-bold text-xs mb-1">
-                                    <span>Ongoing Bookings</span></div>
-                                <div class="text-dark fw-bold h5 mb-0"><span>$215,000</span></div>
+                                    <span>Total Booking Price</span></div>
+                                <div class="text-dark fw-bold h5 mb-0"><span id="spent_total">50000</span></div>
                             </div>
                             <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
                         </div>
@@ -182,7 +182,7 @@
                             <div class="col me-2">
                                 <div class="text-uppercase text-warning fw-bold text-xs mb-1">
                                     <span>Pending Bookings</span></div>
-                                <div class="text-dark fw-bold h5 mb-0"><span>18</span></div>
+                                <div class="text-dark fw-bold h5 mb-0"><span id="pending_bookings_count">18</span></div>
                             </div>
                             <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
                         </div>
@@ -217,62 +217,15 @@
                                     <table class="table my-0" id="bookings_table">
                                         <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>B</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Booking ID</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Total</th>
+                                            <th>View</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>
-                                                Airi Satou
-                                            </td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Angelica Ramos</td>
-                                            <td>Chief Executive Officer(CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09<br/></td>
-                                            <td>$1,200,000</td>
-                                        </tr>
 
-                                        <tr>
-                                            <td>Caesar Vance
-                                            </td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                            <td>2011/12/12<br/></td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cara Stevens
-                                            </td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06<br/></td>
-                                            <td>$145,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Cedric Kelly
-                                            </td>
-                                            <td>Senior JavaScript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29<br/></td>
-                                            <td>$433,060</td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -310,26 +263,26 @@
                                 </div>
 
                                 <div class="col col-xl-3">
-                                        <label class="form-label" for="package_category">
-                                            <strong>Category</strong>
-                                        </label>
-                                        <div class="col align-items-center border-primary flex-row ">
-                                            <div class="dropdown ">
-                                                <button aria-expanded="false" aria-required="true"
-                                                        class=" btn btn-primary dropdown-toggle"
-                                                        data-bs-toggle="dropdown"
-                                                        id="package_category" type="button">
-                                                    Economy
-                                                </button>
-                                                <div class="dropdown-menu" id="package_category_list">
-                                                    <a class="dropdown-item">Economy</a>
-                                                    <a class="dropdown-item">Mid-Range</a>
-                                                    <a class="dropdown-item">Luxury</a>
-                                                    <a class="dropdown-item">Super-Luxury</a>
-                                                </div>
+                                    <label class="form-label" for="package_category">
+                                        <strong>Category</strong>
+                                    </label>
+                                    <div class="col align-items-center border-primary flex-row ">
+                                        <div class="dropdown ">
+                                            <button aria-expanded="false" aria-required="true"
+                                                    class=" btn btn-primary dropdown-toggle"
+                                                    data-bs-toggle="dropdown"
+                                                    id="package_category" type="button">
+                                                Economy
+                                            </button>
+                                            <div class="dropdown-menu" id="package_category_list">
+                                                <a class="dropdown-item">Economy</a>
+                                                <a class="dropdown-item">Mid-Range</a>
+                                                <a class="dropdown-item">Luxury</a>
+                                                <a class="dropdown-item">Super-Luxury</a>
                                             </div>
                                         </div>
-                                  </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row my-4">
@@ -751,16 +704,10 @@
 <script>
     $("document").ready(function () {
         let user = JSON.parse(localStorage.getItem("user"))
-        console.log(user)
-        Swal.fire({
-            title: 'Welcome back ' + user.username,
-            icon: 'success',
-            confirmButtonText: 'Cool'
-        })
         $('#user_id').val(user.user_id)
         $('#user_id').innerHTML = user.user_id
+        navigate(1);
     });
-
     function navigate(id) {
         switch (id) {
             case 1:
@@ -774,6 +721,5 @@
         }
     }
 </script>
-
 </body>
 </html>

@@ -1,4 +1,4 @@
-import {addBooking, getLastOnGoingPackageId} from "./BookingModel.js";
+import {addBooking, getBookingCountByUserAndStatus, getLastOnGoingPackageId} from "./BookingModel.js";
 import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllGuides} from "../Guide/GuideModel.js";
 import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
@@ -261,7 +261,6 @@ allGuides.then((data) => {
             });
             $('#guide_combo_item_list').append(guideItem);
         }
-        Swal.fire('Success!', 'Guide list loaded !', 'success')
     }
 
 }).catch((error) => {
@@ -494,10 +493,7 @@ function getOptions() {
         let no_of_days = row.querySelector(".form-control").textContent;
         let price = row.querySelector(".col-option-total").textContent;
         let option_detail = {
-            hotel_id: hotel_id,
-            option_id: option_id,
-            no_of_days: no_of_days,
-            price: price,
+            hotel_id: hotel_id, option_id: option_id, no_of_days: no_of_days, price: price,
         }
         option_detail_list.push(option_detail);
     }
@@ -527,7 +523,7 @@ function getGuideId() {
 }
 
 $('#add_booking').on('click', function (e) {
-    e.preventDefault();
+
     calculate_package_rental();
     console.log('add_booking');
     if (validateForm()) {
@@ -536,7 +532,7 @@ $('#add_booking').on('click', function (e) {
         let guide_id = getGuideId();
         let booking = {
             id: $('#booking_id').val(),
-            user_id: $('#user_id').val(),
+            user: $('#user_id').val(),
             category: document.getElementById("package_category").innerHTML,
             is_guide_needed: $("input[name='guideRadio']:checked").val(),
             is_vehicle_needed: $("input[name='vehicleRadio']:checked").val(),
@@ -554,11 +550,36 @@ $('#add_booking').on('click', function (e) {
             option_detail_list: option_detail_list,
             vehicle_list: vehicle_id_list,
         }
-
         console.log(booking)
         let promise = addBooking(booking);
         promise.then((data) => {
-            if (data == 'Success') Swal.fire('Success!', 'Booking added successfully !', 'success')
-        }).catch(Swal.fire('Error!', 'An error occurred while adding booking !', 'error'))
+            if (data == 'Success') {
+                Swal.fire('Success!', 'Booking added successfully !', 'success');
+                location.reload()
+            }
+        }).catch((error) => {
+            e.preventDefault();
+            Swal.fire('Error!', 'An error occurred while adding booking !', 'error')
+        });
     }
+});
+//-------------------------------------------------------------------------------------------------------
+$(document).ready(function () {
+    getBookingCountByUserAndStatus(localStorage.getItem("user_id"), "completed")
+        .then((number) => {
+            console.log(number)
+            $('#completed_bookings_count').text(number);
+        })
+        .catch((e) => {
+            $('#completed_bookings_count').text(0);
+        });
+
+    getBookingCountByUserAndStatus(localStorage.getItem("user_id"), "pending")
+        .then((number) => {
+            $('#pending_bookings_count').text(number);
+            console.log(number)
+        })
+        .catch((e) => {
+            $('#pending_bookings_count').text(0);
+        });
 });
