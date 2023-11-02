@@ -474,9 +474,12 @@ function validateForm() {
         }
     }
 
+    if (!/^(Economy|Mid-Range|Luxury|Super-Luxury)$/.test(document.getElementById("package_category").innerHTML)) {
+        Swal.fire('Error!', 'Please select a package category!', 'error');
+        return false;
+    }
+
     return true;
-
-
 }
 
 function getOptions() {
@@ -491,12 +494,14 @@ function getOptions() {
         let no_of_days = row.querySelector(".form-control").textContent;
         let price = row.querySelector(".col-option-total").textContent;
         let option_detail = {
-            hotel_id: hotel_id, room_id: option_id, no_of_days: no_of_days, price: price,
+            hotel_id: hotel_id,
+            option_id: option_id,
+            no_of_days: no_of_days,
+            price: price,
         }
         option_detail_list.push(option_detail);
     }
     return option_detail_list;
-
 }
 
 function getVehicleIdList() {
@@ -514,6 +519,13 @@ function getVehicleIdList() {
 }
 
 
+function getGuideId() {
+    if ($('input[name="guideRadio"]:checked').val() == 'yes') {
+        return JSON.parse($('#guide_list_combobox').val()).id;
+    }
+    return null;
+}
+
 $('#add_booking').on('click', function (e) {
     e.preventDefault();
     calculate_package_rental();
@@ -521,13 +533,14 @@ $('#add_booking').on('click', function (e) {
     if (validateForm()) {
         let option_detail_list = getOptions();
         let vehicle_id_list = getVehicleIdList();
+        let guide_id = getGuideId();
         let booking = {
             id: $('#booking_id').val(),
             user_id: $('#user_id').val(),
-            category: $('#package_category').textContent,
+            category: document.getElementById("package_category").innerHTML,
             is_guide_needed: $("input[name='guideRadio']:checked").val(),
             is_vehicle_needed: $("input[name='vehicleRadio']:checked").val(),
-            guide_id: $('#guide_list_combobox').val().id,
+            guide_id: guide_id,
             starting_date: $('#package_form_starting_date').val(),
             ending_date: $('#package_form_ending_date').val(),
             booked_date: new Date().toISOString().slice(0, 10),
@@ -543,14 +556,9 @@ $('#add_booking').on('click', function (e) {
         }
 
         console.log(booking)
-
-        /* let promise = addBooking(booking);
-         promise.then(
-             Swal.fire('Success!', 'Booking added successfully !', 'success')
-         ).catch(
-             Swal.fire('Error!', 'An error occurred while adding booking !', 'error')
-         )*/
-
+        let promise = addBooking(booking);
+        promise.then((data) => {
+            if (data == 'Success') Swal.fire('Success!', 'Booking added successfully !', 'success')
+        }).catch(Swal.fire('Error!', 'An error occurred while adding booking !', 'error'))
     }
-
 });

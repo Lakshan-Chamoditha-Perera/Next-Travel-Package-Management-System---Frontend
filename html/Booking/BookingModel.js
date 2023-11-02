@@ -26,9 +26,9 @@ export function addBooking(booking){
             "data": JSON.stringify(booking),
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
-            resolve(response);
+            console.log(response.message)
+            resolve(response.message);
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown)
             reject(errorThrown);
         });
     })
