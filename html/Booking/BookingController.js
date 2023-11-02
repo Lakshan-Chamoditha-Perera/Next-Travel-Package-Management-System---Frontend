@@ -565,7 +565,7 @@ $('#add_booking').on('click', function (e) {
 });
 //-------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
-    getBookingCountByUserAndStatus(localStorage.getItem("user_id"), "completed")
+    getBookingCountByUserAndStatus(JSON.parse(localStorage.getItem("user")).user_id,"completed")
         .then((number) => {
             console.log(number)
             $('#completed_bookings_count').text(number);
@@ -574,7 +574,7 @@ $(document).ready(function () {
             $('#completed_bookings_count').text(0);
         });
 
-    getBookingCountByUserAndStatus(localStorage.getItem("user_id"), "pending")
+    getBookingCountByUserAndStatus(JSON.parse(localStorage.getItem("user")).user_id, "pending")
         .then((number) => {
             $('#pending_bookings_count').text(number);
             console.log(number)
