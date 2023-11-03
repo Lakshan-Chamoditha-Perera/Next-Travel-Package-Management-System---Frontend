@@ -3,7 +3,7 @@
 export function getHotelList() {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8091/api/v1/hotel/getAll", "method": "GET", "timeout": 0,
+            "url": "http://localhost:9090/api/v1/hotel/getAll", "method": "GET", "timeout": 0,
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
             resolve(response);
@@ -19,7 +19,10 @@ export function getHotelList() {
 export function getLastOngoingHotelId() {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8091/api/v1/hotel/get/lastId", "method": "GET", "timeout": 0,
+            "url": "http://localhost:9090/api/v1/hotel/get/lastId", "method": "GET", "timeout": 0,
+            "headers": {
+                "Authorization": "Bearer "+JSON.parse(localStorage.getItem("user")).token
+            },
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
             resolve(response);
@@ -68,10 +71,7 @@ export function save_hotel(hotel) {
 export function delete_hotel(hotel_id) {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8091/api/v1/hotel/delete",
-            "method": "DELETE",
-            "timeout": 0,
-            "headers": {
+            "url": "http://localhost:8091/api/v1/hotel/delete", "method": "DELETE", "timeout": 0, "headers": {
                 "id": hotel_id
             },
         };

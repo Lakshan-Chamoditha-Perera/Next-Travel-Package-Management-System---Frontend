@@ -15,7 +15,7 @@ function loadLastGuideId() {
         console.log(data);
         document.getElementById('guide_id').textContent = data;
     }).catch((e) => {
-        alert("Error in getting Guide ID !");
+        Swal.fire('Error!', 'Error in getting Guide ID !', 'error')
     });
 }
 
@@ -29,7 +29,7 @@ function loadCards(createGuideCard) {
             data.forEach((ele) => {
                 createGuideCard(ele)
             });
-        } else alert("No Guide found !")
+        } else Swal.fire('Error!', 'No Guides Found!', 'error')
     }).catch((e) => {
         // alert(e.message);
     });
@@ -64,28 +64,29 @@ function validateFormData() {
                                 if (validateImagesInForm()) {
                                     return true;
                                 } else {
-                                    alert("Please select images !");
+                                    Swal.fire('Error!', 'Please select images !', 'error')
                                 }
                             } else {
-                                alert("Please select gender !")
+                                Swal.fire('Error', 'Please select gender !', 'error')
                             }
                         } else {
-                            alert("Invalid Address !");
+                            Swal.fire('Error', 'Invalid Address type', 'error')
                         }
                     } else {
-                        alert("Invalid Age !");
+                        Swal.fire('Error', 'Invalid Age input', 'error')
                     }
                 } else {
-                    alert("Invalid Contact Number !");
+                    Swal.fire('Error', 'Invalid Contact Number !', 'error')
                 }
             } else {
-                alert("Invalid man day value!");
+                Swal.fire('Error', 'Invalid man day value!', 'error')
             }
         } else {
             Swal.fire('Error!', 'Invalid name!', 'error')
+
         }
     } else {
-        Swal.fire('Error!', 'Invalid Guide ID !', 'error')
+        Swal.fire('Error', 'Invalid Guide ID !', 'error')
     }
     return false;
 }
@@ -107,11 +108,10 @@ $('#btn_save_guide').click((e) => {
         };
         let promise = save_guide(guide);
         promise.then((data) => {
-            console.log(data);
-            alert("Guide saved successfully !");
+            Swal.fire('Success!', 'Guide saved successfully !', 'success')
             location.reload();
         }).catch((e) => {
-            alert("Error in saving Guide !");
+            Swal.fire('Error!', 'Error in saving Guide !', 'error')
         });
     }
 });
