@@ -52,3 +52,46 @@ export function getBookingCountByUserAndStatus(user, status) {
         });
     })
 }
+
+//--------------------------------------------------------------------------------------
+//
+export function bookingIsExists(bookingId) {
+    return new Promise((resolve, reject)=>{
+        let settings ={
+            "url":"http://localhost:8095/api/v1/booking/get/isExists",
+            "method": "GET",
+            "timeout": 0,
+            "headers":{
+                "id":bookingId,
+            }
+        }
+
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            console.log(response)
+            resolve( response.data)
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+           reject(errorThrown)
+        });
+    })
+}
+
+//----------------------------------
+export function getBookingById(bookingId) {
+    return new Promise((resolve, reject)=>{
+        let settings ={
+            "url":"http://localhost:8095/api/v1/booking/get",
+            "method": "GET",
+            "timeout": 0,
+            "headers":{
+                "id":bookingId,
+            }
+        }
+
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            console.log(response)
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+           
+        });
+    })
+}

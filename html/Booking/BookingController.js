@@ -1,7 +1,8 @@
-import {addBooking, getBookingCountByUserAndStatus, getLastOnGoingPackageId} from "./BookingModel.js";
+import {addBooking, getBookingById, getBookingCountByUserAndStatus, getLastOnGoingPackageId} from "./BookingModel.js";
 import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllGuides} from "../Guide/GuideModel.js";
 import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
+import {getPaymentId} from "./PaymentModel.js";
 // -------------------------------------------------------------------------------------------------------
 let promise = getLastOnGoingPackageId();
 promise.then((response) => {
@@ -565,7 +566,7 @@ $('#add_booking').on('click', function (e) {
 });
 //-------------------------------------------------------------------------------------------------------
 $(document).ready(function () {
-    getBookingCountByUserAndStatus(JSON.parse(localStorage.getItem("user")).user_id,"completed")
+    getBookingCountByUserAndStatus(JSON.parse(localStorage.getItem("user")).user_id, "completed")
         .then((number) => {
             console.log(number)
             $('#completed_bookings_count').text(number);
@@ -582,4 +583,32 @@ $(document).ready(function () {
         .catch((e) => {
             $('#pending_bookings_count').text(0);
         });
+});
+
+// -------------------------------------------------------------------------------------------------------
+$('#btn_search_package').on('click', function (e) {
+    e.preventDefault();
+    if (/^B\d{3,}$/.test(document.getElementById('txt_search_package').value)) {
+        getBookingById(document.getElementById('txt_search_package').value).then(r => {
+
+        }).catch((e) => {
+            Swal.fire('error')
+        })
+    } else {
+        Swal.fire('Error!', 'Please enter a valid package id !', 'error');
+    }
+})
+//-------------------------------------------------------------------------------------------------------
+//load payment id
+$('#payment_form_button').on('click', function (e) {
+    e.preventDefault();
+    console.log('payment_form_button')
+    let promise = getPaymentId();
+    promise.then((data) => {
+        $('#payment_id').val(data);
+        document.getElementById("payment_id").innerHTML = data;
+        console.log(data)
+    }).catch((error) => {
+        Swal.fire('Error!', 'An error occurred while getting payment id !', 'error')
+    })
 });

@@ -112,6 +112,7 @@
                 <li class="nav-item"><a class="nav-link">Hotels</a></li>
                 <li class="nav-item"><a class="nav-link">Vehicles</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="navigate(2)">Booking</a></li>
+                <li class="nav-item"><a class="nav-link" id="payment_form_button" onclick="navigate(3)">Payment</a></li>
             </ul>
 
             <button class="btn btn-primary btn-xl " role="button">Logout</button>
@@ -655,25 +656,25 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid" id="make_payment_section">
+    <div class="mt-5 container-fluid" id="make_payment_section">
         <div class="row flex-column align-content-center align-items-center">
             <h1>Make Payment</h1>
-            <div class="row flex align-items-center ">
-                <div class="p-2 w-50 bg-light rounded border border-black rounded-pill shadow-sm mb-3">
+            <div class="row d-flex justify-content-end ">
+                <div class="p-2 w-50 bg-light rounded  rounded-pill shadow-sm mb-3">
                     <div class="input-group">
-                        <input aria-describedby="button-addon1" class="form-control border-0 bg-light"
-                               id="txt_search_vehicle"
+                        <input class="form-control border-0 bg-light"
+                               id="txt_search_package"
                                placeholder="Enter your package id?" type="search">
                         <div class="input-group-append">
-                            <button class="btn btn-link text-primary" id="btn_search" type="submit"><i
-                                    class="fa fa-search"> </i> search
+                            <button class="btn btn-link text-primary" id="btn_search_package" type="submit">
+                                <i class="fa fa-search"> </i>
                             </button>
                         </div>
                     </div>
 
                 </div>
                 <div class="row my-2 px-5 py-2 bg-white rounded shadow-sm">
-                    <h5>P000001</h5>
+                    <h3 class="mb-3" id="payment_id">uiubd</h3>
                     <div class="flex-column align-items-center justify-content-center">
                         <div class="bg-light rounded-pill px-4 py-2 text-uppercase font-weight-bold">
                             Package Details
@@ -761,6 +762,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../../assets/fontawesome/js/all.min.js"></script>
 <script src="BookingController.js" type="module"></script>
+<script src="PaymentModel.js" type="module"></script>
 <script>
     $("document").ready(function () {
         let user = JSON.parse(localStorage.getItem("user"))
@@ -772,11 +774,19 @@
     function navigate(id) {
         switch (id) {
             case 1:
-                $("#booking_section").hide()
                 $("#dashboard_section").show()
+                $("#booking_section").hide()
+                $("#make_payment_section").hide()
                 break;
             case 2:
                 $("#booking_section").show()
+                $("#make_payment_section").hide()
+                $("#dashboard_section").hide()
+                break;
+            case 3:
+
+                $("#make_payment_section").show()
+                $("#booking_section").hide()
                 $("#dashboard_section").hide()
                 break;
         }
