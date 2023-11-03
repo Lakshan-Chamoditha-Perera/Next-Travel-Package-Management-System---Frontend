@@ -694,7 +694,6 @@ $('#btn_make_payment').on('click', function (e) {
                 'An error occurred while saving payment!',
                 'error'
             );
-            )
         })
     }
 })

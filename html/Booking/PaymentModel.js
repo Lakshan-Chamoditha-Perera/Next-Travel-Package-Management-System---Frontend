@@ -1,7 +1,9 @@
 export function getPaymentId() {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8095/api/v1/payment/get/onGoingPaymentId", "method": "GET", "timeout": 0,
+            "url": "http://localhost:8095/api/v1/payment/get/onGoingPaymentId",
+            "method": "GET",
+            "timeout": 0,
         }
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
             resolve(response.data)
@@ -31,7 +33,10 @@ export function getPaymentTotalByBookingId(id) {
 
 export function save_payment(payment) {
     return new Promise((resolve, reject) => {
-        const blob = new Blob([JSON.stringify(payment)], {type: 'application/json'});
+        const blob = new Blob(
+            [JSON.stringify(payment)],
+            {type: 'application/json'}
+        );
 
         let formData = new FormData();
         formData.append("payment", blob);
@@ -48,7 +53,8 @@ export function save_payment(payment) {
         };
 
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
-            resolve(response)
+            console.log()
+            resolve(JSON.parse(response));
         }).fail(function (jqXHR, textStatus, errorThrown) {
             reject(errorThrown)
         });
