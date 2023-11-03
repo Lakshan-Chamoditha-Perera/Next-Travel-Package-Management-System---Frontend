@@ -2,7 +2,7 @@ import {addBooking, getBookingById, getBookingCountByUserAndStatus, getLastOnGoi
 import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllGuides} from "../Guide/GuideModel.js";
 import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
-import {getPaymentId, getPaymentTotalByBookingId} from "./PaymentModel.js";
+import {getPaymentId, getPaymentTotalByBookingId, save_payment} from "./PaymentModel.js";
 // -------------------------------------------------------------------------------------------------------
 let promise = getLastOnGoingPackageId();
 promise.then((response) => {
@@ -587,10 +587,16 @@ $(document).ready(function () {
 
 // -------------------------------------------------------------------------------------------------------
 function checkPayments(data) {
-    getPaymentTotalByBookingId(data.id).then((response) => {
-        console.log(response);
+    console.log("-------------------------")
+    getPaymentTotalByBookingId(data).then((response) => {
+        if (response.message == 'success') {
+            console.log("payment total : " + response.data);
+            document.getElementById('payment_form_received_amount').innerHTML = response.data;
+            document.getElementById('payment_form_due_amount').innerHTML = parseFloat(document.getElementById('payment_form_total').innerHTML) - parseFloat(response.data);
+            Swal.fire('Success!', 'Payments loaded!', 'success');
+        }
     }).catch((e) => {
-
+        Swal.fire('Error!', 'An error occurred while getting payment total !', 'error')
     });
 }
 
@@ -599,14 +605,13 @@ $('#btn_search_package').on('click', function (e) {
     if (/^B\d{3,}$/.test(document.getElementById('txt_search_package').value)) {
         getBookingById(document.getElementById('txt_search_package').value).then(response => {
             if (response.message == 'success') {
+                document.getElementById('payment_form_status').innerHTML = response.data.status;
                 switch (response.data.status) {
                     case 'pending':
-                        document.getElementById('payment_form_status').innerHTML = response.data.status;
+                        document.getElementById('payment_form_total').innerHTML = response.data.total_price;
                         checkPayments(response.data.id);
                         break;
                     case 'complete':
-                        document.getElementById('payment_form_total').innerHTML = response.data.total_price;
-                        document.getElementById('payment_form_total').innerHTML = response.data.total_price;
                         document.getElementById('payment_form_total').innerHTML = response.data.total_price;
                         Swal.fire('Success!', 'You have completed your booking!', 'success');
                         break;
@@ -638,3 +643,58 @@ $('#payment_form_button').on('click', function (e) {
         Swal.fire('Error!', 'An error occurred while getting payment id !', 'error')
     })
 });
+
+function validatePayment() {
+
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/.test($('#payment_form_paying_amount').val())) {
+        Swal.fire('Error!', 'Please enter a valid amount !', 'error')
+        return false;
+    }
+
+    const input = document.getElementById("payment_slip_input");
+    if (!input.files || input.files.length === 0) {
+        Swal.fire('Error!', 'Please select a payment slip !', 'error')
+        return false;
+    }
+
+    if ($('#payment_form_paying_amount').val() > parseFloat(document.getElementById('payment_form_due_amount').innerHTML)) {
+        Swal.fire('Error!', 'Please enter a valid amount !', 'error')
+        return false;
+    }
+    console.log("validated.....")
+    return true;
+}
+
+$('#btn_make_payment').on('click', function (e) {
+    //validate txt input
+    if (validatePayment()) {
+        let payment={
+            id: document.getElementById("payment_id").innerHTML,
+            booking_id: document.getElementById("txt_search_package").value,
+            amount: document.getElementById("payment_form_paying_amount").value,
+            payment_date: new Date().toISOString().slice(0, 10),
+        }
+        save_payment(payment).then((response) => {
+            if(response.message=='Success'){
+                Swal.fire(
+                    'Success!',
+                    'Payment Done!',
+                    'success'
+                );
+            }else{
+                Swal.fire(
+                    'Error!',
+                    'An error occurred while saving payment!',
+                    'error'
+                );
+            }
+        }).catch((reason)=>{
+            Swal.fire(
+                'Error!',
+                'An error occurred while saving payment!',
+                'error'
+            );
+            )
+        })
+    }
+})

@@ -31,8 +31,8 @@ export function save_guide(guide) {
     console.log(guide)
     return new Promise((resolve, reject) => {
         const guideBlob = new Blob([JSON.stringify(guide)], {type: 'application/json'});
-        let form = new FormData();
 
+        let form = new FormData();
         form.append("guide", guideBlob);
         form.append("nic_front", $('#nic_front')[0].files[0],);
         form.append("nic_back", $('#nic_back')[0].files[0],);
