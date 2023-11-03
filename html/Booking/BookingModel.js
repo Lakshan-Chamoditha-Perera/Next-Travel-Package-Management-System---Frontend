@@ -88,10 +88,9 @@ export function getBookingById(bookingId) {
         }
 
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
-            console.log(response)
-
+            resolve(response)
         }).fail(function (jqXHR, textStatus, errorThrown) {
-           
+
         });
     })
 }

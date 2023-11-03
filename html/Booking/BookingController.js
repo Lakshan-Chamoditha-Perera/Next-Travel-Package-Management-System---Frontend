@@ -2,7 +2,7 @@ import {addBooking, getBookingById, getBookingCountByUserAndStatus, getLastOnGoi
 import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllGuides} from "../Guide/GuideModel.js";
 import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
-import {getPaymentId} from "./PaymentModel.js";
+import {getPaymentId, getPaymentTotalByBookingId} from "./PaymentModel.js";
 // -------------------------------------------------------------------------------------------------------
 let promise = getLastOnGoingPackageId();
 promise.then((response) => {
@@ -586,11 +586,37 @@ $(document).ready(function () {
 });
 
 // -------------------------------------------------------------------------------------------------------
+function checkPayments(data) {
+    getPaymentTotalByBookingId(data.id).then((response) => {
+        console.log(response);
+    }).catch((e) => {
+
+    });
+}
+
 $('#btn_search_package').on('click', function (e) {
     e.preventDefault();
     if (/^B\d{3,}$/.test(document.getElementById('txt_search_package').value)) {
-        getBookingById(document.getElementById('txt_search_package').value).then(r => {
-
+        getBookingById(document.getElementById('txt_search_package').value).then(response => {
+            if (response.message == 'success') {
+                switch (response.data.status) {
+                    case 'pending':
+                        document.getElementById('payment_form_status').innerHTML = response.data.status;
+                        checkPayments(response.data.id);
+                        break;
+                    case 'complete':
+                        document.getElementById('payment_form_total').innerHTML = response.data.total_price;
+                        document.getElementById('payment_form_total').innerHTML = response.data.total_price;
+                        document.getElementById('payment_form_total').innerHTML = response.data.total_price;
+                        Swal.fire('Success!', 'You have completed your booking!', 'success');
+                        break;
+                    case 'cancelled':
+                        Swal.fire('warning', 'You have cancelled this order')
+                        break;
+                }
+            } else {
+                Swal.fire('Booking not Found', response.message,)
+            }
         }).catch((e) => {
             Swal.fire('error')
         })
