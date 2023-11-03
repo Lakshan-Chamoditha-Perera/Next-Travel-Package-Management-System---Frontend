@@ -1,6 +1,4 @@
-import {
-    delete_hotel, get_hotel, getHotelList, getLastOngoingHotelId, save_hotel, update_hotel
-} from "./HotelModel.js";
+import {delete_hotel, get_hotel, getHotelList, getLastOngoingHotelId, save_hotel, update_hotel} from "./HotelModel.js";
 
 const hotel_name_regex = /^[a-zA-Z0-9\s]+$/;
 const iframe_regex = /<\s*iframe\s*(?:[^>]*)>/i;
@@ -157,7 +155,7 @@ function createHotelCard(data) {
                                         justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
                                         porta gravida at eget metus.</p>-->
                                 </div>
-                                <div class="card-footer bg-primary p-2 ">Rs.
+                                <div class="card-footer  p-2 ">Rs.
                                     <strong class="h5 hotel_opt_3_price">${data.options_list[2].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +182,7 @@ function createHotelCard(data) {
                                         justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
                                         porta gravida at eget metus.</p>-->
                                 </div>
-                                <div class="card-footer bg-primary p-2 ">Rs.
+                                <div class="card-footer  p-2 ">Rs.
                                     <strong class="h5 hotel_opt_4_price">${data.options_list[3].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -217,10 +215,7 @@ function loadHotelCardList() {
                 createHotelCard(ele)
             });
         } else {
-            Swal.fire(
-                'error',
-                'No hotels found !'
-            )
+            Swal.fire('error', 'No hotels found !')
         }
     }).catch((e) => {
         // alert(e.message);
