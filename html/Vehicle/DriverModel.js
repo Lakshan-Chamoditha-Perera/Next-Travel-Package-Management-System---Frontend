@@ -1,5 +1,5 @@
 export function save_driver(driver) {
-    console.log("save_driver " + JSON.stringify(driver));
+    // console.log("save_driver " + JSON.stringify(driver));
     return new Promise((resolve, reject) => {
         const driverBlob = new Blob([JSON.stringify(driver)], {type: "application/json"});
         let formData = new FormData();
@@ -8,12 +8,15 @@ export function save_driver(driver) {
         formData.append("license_front", $('#img11')[0].files[0]);
 
         let settings = {
-            "url": "http://localhost:8087/api/v1/driver/save",
+            "url": "http://localhost:9090/api/v1/vehicle/driver/save",
             "method": "POST",
             "timeout": 0,
             "processData": false,
             "mimeType": "multipart/form-data",
             "contentType": false,
+            "headers": {
+                "Authorization": 'Bearer '+JSON.parse(localStorage.getItem("user")).token // Set the JWT token in the "Authorization" header
+            },
             "data": formData
         };
 
@@ -30,7 +33,12 @@ export function save_driver(driver) {
 export function getLastOnGoingDriverId() {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8087/api/v1/driver/get/lastId", "method": "GET", "timeout": 0,
+            "url": "http://localhost:9090/api/v1/vehicle/driver/get/lastId",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Authorization": 'Bearer '+JSON.parse(localStorage.getItem("user")).token // Set the JWT token in the "Authorization" header
+            },
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
             resolve(response);
@@ -51,7 +59,7 @@ export function update_driver(driver) {
         formData.append("license_front", $('#img11')[0].files[0]);
 
         let settings = {
-            "url": "http://localhost:8087/api/v1/driver/update",
+            "url": "http://localhost:8087/api/v1/vehicle/driver/update",
             "method": "PATCH",
             "timeout": 0,
             "processData": false,

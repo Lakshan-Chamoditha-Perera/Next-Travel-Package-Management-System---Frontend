@@ -1,4 +1,10 @@
-import {addBooking, getBookingById, getBookingCountByUserAndStatus, getLastOnGoingPackageId} from "./BookingModel.js";
+import {
+    addBooking,
+    getBookingById,
+    getBookingCountByUserAndStatus,
+    getBookingsByUserId,
+    getLastOnGoingPackageId
+} from "./BookingModel.js";
 import {getHotelList} from "../Hotel/HotelModel.js";
 import {getAllGuides} from "../Guide/GuideModel.js";
 import {getAllVehicleList} from "../Vehicle/VehicleModel.js";
@@ -565,7 +571,8 @@ $('#add_booking').on('click', function (e) {
     }
 });
 //-------------------------------------------------------------------------------------------------------
-$(document).ready(function () {
+
+function refreshDashboard() {
     getBookingCountByUserAndStatus(JSON.parse(localStorage.getItem("user")).user_id, "completed")
         .then((number) => {
             console.log(number)
@@ -583,6 +590,90 @@ $(document).ready(function () {
         .catch((e) => {
             $('#pending_bookings_count').text(0);
         });
+
+    getBookingsByUserId(JSON.parse(localStorage.getItem("user")).user_id).then((response) => {
+
+        document.getElementById('booking_table_body').innerHTML = '';
+        response.forEach((booking) => {
+            function createTableRow(booking) {
+                let tableRow = document.createElement('tr');
+
+                let bookingIdCell = document.createElement('td');
+                bookingIdCell.textContent = booking.id;
+                bookingIdCell.className = 'col-booking-id';
+
+                let bookingDateCell = document.createElement('td');
+                bookingDateCell.textContent = new Date(booking.booked_date).toISOString().split('T')[0];
+                bookingDateCell.className = 'col-booking-date';
+
+                let bookingStatusCell = document.createElement('td');
+                bookingStatusCell.textContent = booking.status;
+                bookingStatusCell.className = 'col-booking-status';
+
+                let bookingTotalCell = document.createElement('td');
+                bookingTotalCell.textContent = booking.total_price;
+                bookingTotalCell.className = 'col-booking-total';
+
+                let bookingActionCell = document.createElement('td');
+                bookingActionCell.className = 'col-booking-action';
+
+                let bookingActionBtn = document.createElement('button');
+                bookingActionBtn.className = 'btn btn-primary rounded me-3 col-xl-4 btn-sm';
+                bookingActionBtn.textContent = 'View';
+                bookingActionBtn.value = JSON.stringify(booking);
+
+                bookingActionBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // localStorage.setItem('booking', JSON.stringify(booking));
+                    // window.location.href = 'booking_details.html';
+                    let booking = JSON.parse(this.value);
+                    console.log(booking)
+                    //open in Swal
+                    const bookingMessage = `
+  <p><strong>Booking ID:</strong> ${booking.id}</p>
+  <p><strong>Category:</strong> ${booking.category}</p>
+  <p><strong>Booked Date:</strong> ${new Date(booking.booked_date).toDateString()}</p>
+  <p><strong>Starting Date:</strong> ${new Date(booking.starting_date).toDateString()}</p>
+  <p><strong>Ending Date:</strong> ${new Date(booking.ending_date).toDateString()}</p>
+  <p><strong>Total Price:</strong> $${booking.total_price.toFixed(2)}</p>
+  <p><strong>Number of Adults:</strong> ${booking.no_of_adults}</p>
+  <p><strong>Number of Children:</strong> ${booking.no_of_child}</p>
+  <p><strong>Is Vehicle Needed:</strong> ${booking.is_vehicle_needed}</p>
+  <p><strong>Is Guide Needed:</strong> ${booking.is_guide_needed}</p>
+  <p><strong>Status:</strong> ${booking.status}</p>
+  <!-- Add more details as needed -->
+`;
+
+                    Swal.fire({
+                        title: 'Booking Details', html: bookingMessage, icon: 'info', // You can change the icon to match your use case
+                        customClass: {
+                            container: 'custom-swal-container', // Define a custom class for the container
+                            html: 'custom-swal-html', // Define a custom class for the HTML content
+                        },
+                    });
+                });
+
+                bookingActionCell.appendChild(bookingActionBtn);
+
+                tableRow.appendChild(bookingIdCell);
+                tableRow.appendChild(bookingDateCell);
+                tableRow.appendChild(bookingStatusCell);
+                tableRow.appendChild(bookingTotalCell);
+                tableRow.appendChild(bookingActionCell);
+
+                document.getElementById('booking_table_body').appendChild(tableRow);
+            }
+
+            createTableRow(booking);
+        });
+    }).catch((e) => {
+        Swal.fire('Error!', 'An error occurred while getting booking list !', 'error')
+    })
+}
+
+$
+(document).ready(function () {
+    refreshDashboard()
 });
 
 // -------------------------------------------------------------------------------------------------------
@@ -665,35 +756,30 @@ function validatePayment() {
     return true;
 }
 
+
+
 $('#btn_make_payment').on('click', function (e) {
     //validate txt input
     if (validatePayment()) {
-        let payment={
+        let payment = {
             id: document.getElementById("payment_id").innerHTML,
             booking_id: document.getElementById("txt_search_package").value,
             amount: document.getElementById("payment_form_paying_amount").value,
             payment_date: new Date().toISOString().slice(0, 10),
         }
         save_payment(payment).then((response) => {
-            if(response.message=='Success'){
-                Swal.fire(
-                    'Success!',
-                    'Payment Done!',
-                    'success'
-                );
-            }else{
-                Swal.fire(
-                    'Error!',
-                    'An error occurred while saving payment!',
-                    'error'
-                );
+            if (response.message == 'Success') {
+                Swal.fire('Success!', 'Payment Done!', 'success');
+            } else {
+                Swal.fire('Error!', 'An error occurred while saving payment!', 'error');
             }
-        }).catch((reason)=>{
-            Swal.fire(
-                'Error!',
-                'An error occurred while saving payment!',
-                'error'
-            );
+        }).catch((reason) => {
+            Swal.fire('Error!', 'An error occurred while saving payment!', 'error');
         })
     }
+})
+
+$('#btn_dashboard').on('click', function (e) {
+    e.preventDefault();
+    refreshDashboard()
 })

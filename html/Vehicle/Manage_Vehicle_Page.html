@@ -9,17 +9,14 @@
     <link href="../../css/Manage_Vehicle_Page_Style.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <box-icon name='car' type='solid'></box-icon>
-            Car </a>
-        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
-                data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+
+<nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark" id="mainNav">
+    <div class="container"><a class="navbar-brand" >Next Travel &nbsp; </a>
+        <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" data-bs-toggle="collapse"
+                type="button"><i class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto text-uppercase">
                 <li class="nav-item">
                     <button aria-current="page" class="nav-link active" id="dashboard" onclick="navigate('dashboard')">
                         Dashboard
@@ -30,58 +27,18 @@
                         Manage
                     </button>
                 </li>
-                <!--                <label for="nav_search"></label><input id="nav_search" placeholder="Search : Input vehicle ID"></input>-->
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link" href="#">Delete</a>-->
-                <!--                </li>-->
             </ul>
-        </div>
 
+            <button class="btn btn-primary btn-xl " id="logout" role="button">Logout
+            </button>
+        </div>
     </div>
 </nav>
+
 <section id="view_all_section">
     <h1>Vehicle List</h1>
-
     <div class="vehicle_grid_container">
-        <div class="grid-item flex align-content-center">
-            <div class="card">
-                <img alt="product-image" class="card-img"
-                     src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
-                <div class="flex-row img_collection space-between">
-                    <img class="vehicle_images"
-                         src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
-                    <img class="vehicle_images"
-                         src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
-                    <img class="vehicle_images"
-                         src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
-                    <img class="vehicle_images"
-                         src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D">
-                </div>
-                <div class="flex-row space-between w-full mb-sm">
-                    <p class="category">${data.id}</p>
-                </div>
-                <h1 class="product-name">${data.brand} </h1>
-                <div class="flex-row">
-                    <p class="price strike">per day value</p>
-                    <p class="price">Rs. ${data.fee_per_day}</p>
-                </div>
-                <div class="flex-row">
-                    <p class="price strike">per day km</p>
-                    <p class="price">Rs. ${data.fee_per_km}</p>
-                </div>
-                <div class="flex-row">
-                    <p class="price strike">Fuel type</p>
-                    <p class="price"><span>${data.fuel_type}</span></p>
-                </div>
-                <div class="flex-row">
-                    <p class="price strike">Seat capacity</p>
-                    <p class="price"><span>${data.seat_capacity}</span></p>
-                </div>
-                <!--            <div class="btn-col">-->
-                <!--                <a class="icon-link" href="#">View</a>-->
-                <!--            </div>-->
-            </div>
-        </div>
+<!--
 
         <div class="grid-item flex align-content-center">
             <div class="card">
@@ -117,11 +74,13 @@
                     <p class="price strike">Seat capacity</p>
                     <p class="price"><span>${data.seat_capacity}</span></p>
                 </div>
-                <!--            <div class="btn-col">-->
-                <!--                <a class="icon-link" href="#">View</a>-->
-                <!--            </div>-->
+                &lt;!&ndash;            <div class="btn-col">&ndash;&gt;
+                &lt;!&ndash;                <a class="icon-link" href="#">View</a>&ndash;&gt;
+                &lt;!&ndash;            </div>&ndash;&gt;
             </div>
         </div>
+
+-->
 
     </div>
 </section>
@@ -365,6 +324,42 @@
 
 </section>
 <hr>
+
+
+<footer class="bg-black" style="padding: 20px 100px 0 100px; color: white; margin: auto; bottom: 0">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 footer-navigation">
+            <h3><a href="../Common/Common_Dashboard.html">Next <span>Travel </span></a></h3>
+            <p class="links"><a href="#">Home</a><strong> · </strong><a href="#">Blog</a><strong> · </strong><a
+                    href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">Faq</a><strong>
+                · </strong><a href="#">Contact</a></p>
+            <p class="company-name">Next Travel © 2023 </p>
+        </div>
+        <div class="col-sm-6 col-md-4 footer-contacts">
+            <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
+                <p><span class="new-line-span">21 Revolution Street</span> Paris, France</p>
+            </div>
+            <div><i class="fa fa-phone footer-contacts-icon"></i>
+                <p class="footer-center-info email text-start"> +1 555 123456</p>
+            </div>
+            <div><i class="fa fa-envelope footer-contacts-icon"></i>
+                <p><a href="#" target="_blank">nexttravel@company.com</a></p>
+            </div>
+        </div>
+        <div class="col-md-4 footer-about">
+            <h4>About the company</h4>
+            <p> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus
+                vehicula sit amet. </p>
+            <div class="social-links social-icons flex-row justify-content-around">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
 <script crossorigin="anonymous"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script crossorigin="anonymous"

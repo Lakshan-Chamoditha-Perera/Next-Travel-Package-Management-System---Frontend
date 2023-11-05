@@ -102,11 +102,6 @@ function createHotelCard(data) {
                                 </div>
                                 <div class="card-footer bg-light p-2">Rs.
                                     <strong class="h5 hotel_opt_1_price">${data.options_list[0].price}</strong>.00
-                                    <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
-                                         viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-                                              fill-rule="evenodd"></path>
-                                    </svg>--></a>
                                 </div>
                             </div>
                         </div>

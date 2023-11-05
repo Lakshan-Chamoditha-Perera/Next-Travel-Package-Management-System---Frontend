@@ -15,13 +15,16 @@ export function save_vehicle(vehicle) {
         form.append("driver_id",$('#driver_id').val(),);
         console.log($('#driver_id').val())
         let settings = {
-            "url": "http://localhost:8087/api/v1/vehicle/save",
+            "url": "http://localhost:9090/api/v1/vehicle/save",
             "method": "POST",
             "timeout": 0,
             "processData": false,
             "mimeType": "multipart/form-data",
             "contentType": false,
-            "data": form
+            "data": form,
+            "headers": {
+                "Authorization": 'Bearer '+JSON.parse(localStorage.getItem("user")).token // Set the JWT token in the "Authorization" header
+            },
         };
 
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
@@ -56,10 +59,11 @@ export function delete_vehicle(vehicle_id) {
 export function get_vehicle(vehicle_id) {
     return new Promise((resolve, reject) => {
         let settings = {
-            "url": "http://localhost:8087/api/v1/vehicle/get",
+            "url": "http://localhost:9090/api/v1/vehicle/get",
             "method": "GET",
             "timeout": 0,
             "headers": {
+                "Authorization": 'Bearer '+JSON.parse(localStorage.getItem("user")).token, // Set the JWT token in the "Authorization" header
                 "vehicle_id": vehicle_id,
             },
         };
@@ -76,7 +80,7 @@ export function get_vehicle(vehicle_id) {
 export function getAllVehicleList(){
     return new Promise((resolve,reject)=>{
         let settings = {
-            "url": "http://localhost:8087/api/v1/vehicle/getAll",
+            "url": "http://localhost:9090/api/v1/vehicle/getAll",
             "method": "GET",
             "timeout": 0,
         };
@@ -91,11 +95,16 @@ export function getAllVehicleList(){
 }
 
 export function getLastOnGoingVehicleId(){
+    console.log(JSON.parse(localStorage.getItem("user")).token)
     return new Promise((resolve,reject)=>{
         let settings = {
-            "url": "http://localhost:8087/api/v1/vehicle/get/lastId",
+            "url": "http://localhost:9090/api/v1/vehicle/get/lastId",
             "method": "GET",
             "timeout": 0,
+            //jwt token
+            "headers": {
+                "Authorization": 'Bearer '+JSON.parse(localStorage.getItem("user")).token // Set the JWT token in the "Authorization" header
+            },
         };
         $.ajax(settings).done(function (response, textStatus, jqXHR) {
             resolve(response);

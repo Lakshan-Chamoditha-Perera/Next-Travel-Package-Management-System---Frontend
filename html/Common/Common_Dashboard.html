@@ -38,7 +38,6 @@
             margin-top: 50px;
             height: 40vh;
             background-size: auto;
-            border: 2px solid #000000;
             color: white;
             /*background: url("https://as1.ftcdn.net/v2/jpg/02/52/46/52/1000_F_252465254_gJjMk87NxeugjLxWoO0JnZLUeZRnjRiF.jpg");*/
             background: url("https://cdn.pixabay.com/photo/2019/04/25/15/12/sri-lanka-4155120_1280.jpg") repeat-x;
@@ -117,7 +116,6 @@
             display: flex;
             justify-content: start;
             align-items: center;
-            border:2px solid #1a1e21;
             width: 100%;
         }
 
@@ -180,7 +178,6 @@
         .img_collection>img{
             width:23%;
             height: 70px;
-            border: 2px solid #0b5ed7;
             padding: 10px;
             border-radius: 10px;
         }
@@ -193,8 +190,10 @@
         #contact{
             margin-top: 50px;
             margin-bottom: 50px;
-
+            min-height: 80vh;
         }
+
+
     </style>
 </head>
 
@@ -272,10 +271,9 @@
 </section>
 
 <section id="hotels"
-         style="border: 2px solid black;border-radius: 15px; margin: 0 13.33vw 50px 13.33vw; height: auto; padding-top: 100px; display: flex; flex-direction: column">
+         style="margin: 0 13.33vw 50px 13.33vw; height: auto; padding-top: 100px; display: flex; flex-direction: column">
     <div class="row"
-         style=
-                 "margin-bottom: 50px;
+         style="margin-bottom: 50px;
              position: sticky ;
              top: 50px;
              z-index: 2;
@@ -307,38 +305,7 @@
         </div>
         <div id="vehicle_list"
              style="margin-top: 25px;  width: 100%; display: grid; grid-template-columns: repeat(3, 2fr); grid-gap: 20px; ">
-            <div class="my_card">
-                <img alt="product-image" class="card-img" src="">
-                <div class="flex-row img_collection space-between">
-                    <img class="vehicle_images" src="">
-                    <img class="vehicle_images" src="">
-                    <img class="vehicle_images" src="">
-                    <img class="vehicle_images" src="">
-                </div>
-                <div class="flex-row space-between w-full mb-sm">
-                    <p class="category">${data.id}</p>
-                </div>
-                <h1 class="product-name">${data.brand} </h1>
-                <div class="flex-row">
-                    <p class="price strike">per day value</p>
-                    <p class="price">Rs. ${data.fee_per_day}</p>
-                </div>
-                <div class="flex-row">
-                    <p class="price strike">per day km</p>
-                    <p class="price">Rs. ${data.fee_per_km}</p>
-                </div>
-                <div class="flex-row">
-                    <p class="price strike">Fuel type</p>
-                    <p class="price"><span>${data.fuel_type}</span></p>
-                </div>
-                <div class="flex-row">
-                    <p class="price strike">Seat capacity</p>
-                    <p class="price"><span>${data.seat_capacity}</span></p>
-                </div>
-                <!--            <div class="btn-col">-->
-                <!--                <a class="icon-link" href="#">View</a>-->
-                <!--            </div>-->
-            </div>
+
 
 
         </div>
@@ -355,20 +322,20 @@
                           style="min-height: 300px;" width="800"/></div>
             </div>
             <div class="col "
-                 style="border: 2px solid black ; display: flex; align-items: center;  flex-direction: column; justify-content: space-around">
-                <h1 class="fw-bold pb-md-4" style="border: 2px solid blue ; ">Features that make your team more <span
+                 style="display: flex; align-items: center;  flex-direction: column; justify-content: space-around">
+                <h1 class="fw-bold pb-md-4" >Features that make your team more <span
                         class="underline">productive</span></h1>
-                <p class="text-muted py-4 py-md-0 h2" style="border: 2px solid blue ; ">Lorem ipsum dolor sit amet,
+                <p class="text-muted py-4 py-md-0 h2">Lorem ipsum dolor sit amet,
                     consectetur adipisicing elit. Distinctio fugit iste quaerat ratione voluptas. Accusamus consectetur
                     consequuntur cupiditate. Consequuntur dolorem dolorum eaque explicabo in, modi molestias neque
                     nesciunt quisquam tenetur.</p>
-                <div class="row gy-4 row-cols-2 row-cols-md-2 m-1" style="border: 2px solid blue ; ">
+                <div class="row gy-4 row-cols-2 row-cols-md-2 m-1">
                     <div class="col border border-info rounded-4 ">
-                        <div><span class="fs-2 fw-bold text-primary bg-secondary">400+</span>
+                        <div><span class="fs-2 fw-bold text-primary">400+</span>
                             <p class="fw-normal text-muted">Customers</p>
                         </div>
                     </div>
-                    <div class="col  border border-info rounded-2 ">
+                    <div class="col border border-info rounded-4 ">
                         <div><span class="fs-2 fw-bold text-primary ">95+</span>
                             <p class="fw-normal text-muted">Travelling Places</p>
                         </div>
@@ -393,8 +360,8 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <p class="fw-bold text-success mb-2">Contacts</p>
-                <h2 class="fw-bold">How you can reach us</h2>
+                <p class="fw-bold text-success h1 mb-2">Contacts</p>
+                <h3 class="fw-bold">How you can reach us</h3>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -469,10 +436,10 @@
         </div>
         <div class="col-sm-6 col-md-4 footer-contacts">
             <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
-                <p><span class="new-line-span">21 Revolution Street</span> Paris, France</p>
+                <p><span class="new-line-span">21 Revolution Street</span> Kaluthara, Sri Lanka</p>
             </div>
             <div><i class="fa fa-phone footer-contacts-icon"></i>
-                <p class="footer-center-info email text-start"> +1 555 123456</p>
+                <p class="footer-center-info email text-start"> +94 11 564 1287</p>
             </div>
             <div><i class="fa fa-envelope footer-contacts-icon"></i>
                 <p><a href="#" target="_blank">nexttravel@company.com</a></p>

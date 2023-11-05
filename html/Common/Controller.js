@@ -39,7 +39,7 @@ function createHotelCard(data) {
 
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">${data.email}</p>
+                            <p class="w-100 d-flex justify-content-center flex-row align-items-center fw-bold mb-0 text-center ">${data.email}</p>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
 
@@ -52,7 +52,7 @@ function createHotelCard(data) {
                                           fill-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center ">${data.contact}</p>
+                            <p class="w-100 flex-row align-items-center fw-bold mb-0 text-center d-flex justify-content-center ">${data.contact}</p>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
 
@@ -64,7 +64,7 @@ function createHotelCard(data) {
                                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                                 </svg>
                             </div>
-                            <a class="w-100 flex-row align-items-center fw-bold mb-0 text-center " href="">${data.location}</a>
+                            <a class="w-100 flex-row d-flex justify-content-center align-items-center fw-bold mb-0 text-center " href="">${data.location}</a>
                             <!--                            <p class="text-muted mb-0">Erat netus</p>-->
                         </div>
                     </div>
@@ -154,7 +154,7 @@ function createHotelCard(data) {
                                         justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
                                         porta gravida at eget metus.</p>-->
                                 </div>
-                                <div class="card-footer bg-primary p-2 ">Rs.
+                                <div class="card-footer p-2 ">Rs.
                                     <strong class="h5 hotel_opt_3_price">${data.options_list[2].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +181,7 @@ function createHotelCard(data) {
                                         justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi
                                         porta gravida at eget metus.</p>-->
                                 </div>
-                                <div class="card-footer bg-primary p-2 ">Rs.
+                                <div class="card-footer p-2 ">Rs.
                                     <strong class="h5 hotel_opt_4_price">${data.options_list[3].price}</strong>.00
                                     <!--<svg class="bi bi-arrow-right" fill="currentColor" height="1em"
                                          viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">

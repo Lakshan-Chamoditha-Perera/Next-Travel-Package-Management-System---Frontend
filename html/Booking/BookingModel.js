@@ -75,7 +75,7 @@ export function bookingIsExists(bookingId) {
     })
 }
 
-//----------------------------------
+//--------------------------------------------------------------------------------------
 export function getBookingById(bookingId) {
     return new Promise((resolve, reject)=>{
         let settings ={
@@ -93,4 +93,30 @@ export function getBookingById(bookingId) {
 
         });
     })
+}
+//--------------------------------------------------------------------------------------
+
+export function getBookingsByUserId(user_id) {
+    return new Promise((resolve, reject)=>{
+        let settings ={
+            "url":"http://localhost:8095/api/v1/booking/get_by_user",
+            "method": "GET",
+            "timeout": 0,
+            "headers":{
+                "user_id":user_id,
+            }
+        }
+
+        $.ajax(settings).done(function (response, textStatus, jqXHR) {
+            resolve(response.data)
+            if(response.message!='success'){
+                resolve(response.data)
+            }else{
+                reject(response.message)
+            }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+
+        });
+    })
+
 }

@@ -93,9 +93,8 @@
         }
 
 
-        /* Third toggle btn completed */
-
     </style>
+
 </head>
 <body>
 
@@ -108,14 +107,14 @@
                 class="fa fa-bars"></i></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto text-uppercase">
-                <li class="nav-item"><a class="nav-link" onclick="navigate(1)">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" id="btn_dashboard" onclick="navigate(1)">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link">Hotels</a></li>
                 <li class="nav-item"><a class="nav-link">Vehicles</a></li>
                 <li class="nav-item"><a class="nav-link" onclick="navigate(2)">Booking</a></li>
                 <li class="nav-item"><a class="nav-link" id="payment_form_button" onclick="navigate(3)">Payment</a></li>
             </ul>
 
-            <button class="btn btn-primary btn-xl " role="button">Logout</button>
+            <button class="btn btn-primary btn-xl " id="logout" role="button">Logout</button>
         </div>
     </div>
 </nav>
@@ -225,12 +224,11 @@
                                             <th>View</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="booking_table_body">
 
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -776,7 +774,12 @@
         $('#user_id').val(user.user_id)
         $('#user_id').innerHTML = user.user_id
         navigate(1);
+
     });
+    $("#logout").click(function () {
+        localStorage.clear()
+        window.location.href = "../User/login.html"
+    })
 
     function navigate(id) {
         switch (id) {

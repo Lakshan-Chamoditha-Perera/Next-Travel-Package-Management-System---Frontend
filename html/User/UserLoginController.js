@@ -207,12 +207,15 @@ $('#btn_login').on('click', (e) => {
                         window.location.href = "../Hotel/Manage_Hotel_Page.html";
                         break;
                     case 'ROLE_VEHICLE_MANAGER':
+                        localStorage.setItem("user", JSON.stringify(data.data));
                         window.location.href = "../Vehicle/Manage_Vehicle_Page.html";
                         break;
                     case 'ROLE_GUIDE_MANAGER':
+                        localStorage.setItem("user", JSON.stringify(data.data));
                         window.location.href = "../Guide/Manage_Guide.html";
                         break;
                     default:
+
                         Swal.fire('Login failed', 'Invalid ROLE', 'error');
                 }
                 // localStorage.setItem('user', JSON.stringify(data.data));
